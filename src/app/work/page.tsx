@@ -1,13 +1,30 @@
 'use client';
-import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CornerDownLeft, X } from 'lucide-react';
+import { CornerDownLeft, X, Link as LinkIcon, Download, ClipboardCheck } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { Courier_Prime } from "next/font/google";
+import { useState, useRef, useEffect } from 'react';
+import { title } from 'process';
 
 const courier = Courier_Prime({ subsets: ["latin"], weight: ["400", "700"] });
+const resumePdfUrl = "/Resume.pdf";
 
 const projects = [
+  {
+    title: "View Resume",
+    description: "View or download my resume directly from here.",
+    modalContent: {
+      title: "My Resume",
+      description: [
+        "You can preview, download, or share my resume below. If you'd like to get in touch, feel free to connect via the links provided."
+      ],
+      images: [],
+      links: [
+        { title: "Download Resume", url: resumePdfUrl },
+        { title: "Shareable Link", url: typeof window !== 'undefined' ? window.location.origin + resumePdfUrl : resumePdfUrl }
+      ]
+    }
+  },
   {
     title: "Reverse Engineering a Legacy Laptop",
     description: "Disassembled an Acer Aspire 4736G and working to repurpose components such as battery, fan, LCD screen, keyboard, trackpad, and fingerprint reader.",
@@ -89,7 +106,7 @@ const projects = [
         "And the real victory was that I never stopped trying to fix it.",
       ],
       images: [],
-      links: []
+      links: [{ title: "Github Repo", url: "https://github.com/HackOverflow404/Control-Lights" }]
     }
   },
   {
@@ -109,7 +126,7 @@ const projects = [
       title: "Uplift",
       description: "This project involved building a cross-platform application using React Native. I integrated Tesseract.js for optical character recognition (OCR) and utilized LangChain with OpenAI for contextual chat assistance.",
       images: [],
-      links: []
+      links: [{ title: "Github Repo", url: "https://github.com/HackOverflow404/Uplift" }]
     }
   },
   {
@@ -119,7 +136,7 @@ const projects = [
       title: "Cyber Awareness Website",
       description: "This project involved creating a responsive website aimed at educating users about cybersecurity. The platform features interactive lessons and non-technical explanations to help users understand complex topics.",
       images: [],
-      links: []
+      links: [{ title: "Live Website", url: "https://hackoverflow404.github.io/cyberawareness/" }, { title: "Github Repo", url: "https://github.com/HackOverflow404/cyberawareness" }]
     }
   },
   {
@@ -131,6 +148,16 @@ const projects = [
       images: [],
       links: []
     }
+  },
+  {
+    title: "Research Paper on Leet Speak in Password Security",
+    description: "I wrote a research paper evaluating the use of leet speak in password security under the guidance of a professor at Shobhit University.",
+    modalContent: {
+      title: "Research Paper on Leet Speak in Password Security",
+      description: "This research paper explores the implications of using leet speak as a method for enhancing password security. It discusses the potential benefits and drawbacks, as well as recommendations for implementation.",
+      images: [],
+      links: [{ title: "Research Paper", url: "https://www.researchgate.net/publication/365478150_Evaluation_of_Leet_Speak_on_Password_Strength_and_Security" }]
+    }
   }
 ];
 
@@ -139,6 +166,38 @@ export default function ProjectsPage() {
   const [open, setOpen] = useState(false);
   type Project = typeof projects[number];
   const [selected, setSelected] = useState<Project | null>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    }
+
+    function handleEscape(event: KeyboardEvent) {
+      if (event.key === 'Escape') {
+        setOpen(false);
+      }
+    }
+
+    if (open) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('keydown', handleEscape);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [open]);
+
+  const handleCopy = (text: string) => {
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
     <main className="px-6 py-20 max-w-5xl mx-auto relative">
@@ -184,17 +243,20 @@ export default function ProjectsPage() {
       <AnimatePresence>
         {open && selected && (
           <motion.div
-            className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 scrollbar-hide"
+            className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            onClick={() => setOpen(false)}
           >
             <motion.div
-              className="bg-[#1a1a1a] max-w-2xl w-full m-2 max-h-[80vh] overflow-y-auto scrollbar-hide rounded-xl p-6 relative border border-cyan-400"
+              ref={modalRef}
+              className="bg-[#1a1a1a] max-w-2xl w-full m-2 max-h-[80vh] scrollbar-hide overflow-y-auto rounded-xl p-6 relative border border-cyan-400"
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
               transition={{ duration: 0.3 }}
+              onClick={(e) => e.stopPropagation()}
             >
               <button
                 className="absolute top-4 right-4 text-cyan-300 hover:text-cyan-500"
@@ -204,6 +266,37 @@ export default function ProjectsPage() {
                 <X className="w-5 h-5" />
               </button>
               <h2 className="text-2xl font-bold text-cyan-300 mb-4">{selected.modalContent.title}</h2>
+              {selected.modalContent.links?.length > 0 && (
+                <div className="my-8">
+                  <div className="flex flex-wrap gap-3">
+                    {selected.modalContent.links.map((link, idx) => (
+                      <a
+                        key={idx}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center px-4 py-2 border border-cyan-300 text-cyan-300 rounded-full text-sm hover:bg-cyan-600 hover:border-cyan-600 hover:text-black transition"
+                      >
+                        {link.title.includes('Download') ? (
+                          <Download className="w-4 h-4 mr-2" />
+                        ) : (
+                          <LinkIcon className="w-4 h-4 mr-2" />
+                        )}
+                        {link.title}
+                      </a>
+                    ))}
+                    {selected.title === "View Resume" && (
+                      <button
+                        onClick={() => handleCopy(window.location.origin + resumePdfUrl)}
+                        className="inline-flex items-center px-4 py-2 border border-cyan-300 text-cyan-300 rounded-full text-sm hover:bg-cyan-600 hover:border-cyan-600 hover:text-black transition"
+                      >
+                        <ClipboardCheck className="w-4 h-4 mr-2" />
+                        {copied ? 'Copied!' : 'Copy Link'}
+                      </button>
+                    )}
+                  </div>
+                </div>
+              )}
               <div className="space-y-4 text-gray-300">
                 {Array.isArray(selected.modalContent.description)
                   ? selected.modalContent.description.map((p, idx) => (
@@ -212,16 +305,14 @@ export default function ProjectsPage() {
                   : <p className="text-sm leading-relaxed">{selected.modalContent.description}</p>
                 }
               </div>
-              {selected.modalContent.links?.length > 0 && (
-                <div className="mt-6">
-                  <h4 className="text-cyan-400 font-semibold mb-2">Links</h4>
-                  <ul className="list-disc list-inside space-y-1">
-                    {selected.modalContent.links.map((link, idx) => (
-                      <li key={idx}>
-                        <a href={link.url} target="_blank" className="text-blue-400 underline">{link.title}</a>
-                      </li>
-                    ))}
-                  </ul>
+              {selected.title === "View Resume" && (
+                <div className="w-full h-[60vh] mt-6 border border-cyan-500 rounded overflow-hidden shadow-lg">
+                  <iframe
+                    src={resumePdfUrl}
+                    className="w-full h-full"
+                    title="Resume Preview"
+                    style={{ border: 'none' }}
+                  ></iframe>
                 </div>
               )}
             </motion.div>
