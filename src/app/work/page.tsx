@@ -9,7 +9,7 @@ const courier = Courier_Prime({ subsets: ["latin"], weight: ["400", "700"] });
 
 const projects = [
   {
-    title: "Repurposing Old Laptop",
+    title: "Reverse Engineering a Legacy Laptop",
     description: "Disassembled an Acer Aspire 4736G and working to repurpose components such as battery, fan, LCD screen, keyboard, trackpad, and fingerprint reader.",
     modalContent: {
       title: "Anatomy of a Machine: The Legacy Laptop Project",
@@ -51,11 +51,11 @@ const projects = [
     }
   },
   {
-    title: "PCB Badge + CTF at Sigpwny",
-    description: "Helped design an ESP32-based DEFCON-style badge and helped design CTF challenges for UIUCTF. Worked on SAO compatibility and embedded firmware.",
+    title: "PCB Badge for CTF at Sigpwny",
+    description: "Helped design an ESP32-based DEFCON-style badge. Worked on SAO compatibility and embedded firmware.",
     modalContent: {
-      title: "PCB Badge + CTF at Sigpwny",
-      description: "This project involved designing a PCB badge for the DEFCON conference, as well as creating Capture The Flag (CTF) challenges for the UIUCTF competition. I worked on ensuring SAO compatibility and developing embedded firmware for the badge.",
+      title: "PCB Badge for CTF at Sigpwny",
+      description: "This project involved designing a PCB badge for the DEFCON conference. I worked on ensuring SAO compatibility and developing embedded firmware for the badge.",
       images: [],
       links: []
     }
@@ -65,7 +65,29 @@ const projects = [
     description: "Flask app on Raspberry Pi for smartphone-based LED control. Used MQTT, Docker, and integrated the Matter protocol for smart home automation.",
     modalContent: {
       title: "Smart LED Strip Controller",
-      description: "This project involved creating a Flask application running on a Raspberry Pi that allows users to control LED strips via their smartphones. I utilized MQTT for real-time communication, Docker for containerization, and integrated the Matter protocol for seamless smart home automation.",
+      description: [
+        "It started, as many things in college do, with something small, a lost remote.",
+        "In the chaos of my freshman year move-out, the slender plastic controller for my beloved LED strip vanished. Without it, the strip, a cascade of colors once glowing beneath my bed frame, was reduced to nothing more than decorative wire. I could’ve ordered a replacement. I could’ve moved on. But that would’ve meant ignoring the itch. The challenge. The whisper of possibility that said: what if I could build something better?",
+        "So I did.",
+        "What began as a workaround quickly became an obsession, a gateway into the world of embedded systems, protocol design, and the architecture of smart homes. I decided to build my own Smart LED controller, one not tethered to a flimsy plastic dongle, but to the internet, to code, to me.",
+        "The first prototype was pragmatic: a Raspberry Pi, a trio of MOSFETs, and a set of GPIO pins pulsing with PWM signals to drive the 12V LED strip safely. The Pi, outputting a mere 3.3V, couldn’t drive the LEDs directly, but with carefully wired logic and a healthy respect for electrical isolation, it became the brain of the system. I wrote a Flask application to control the LEDs, served it over the local network, and containerized it with Docker for portable deployment. Within hours, I could control the entire room's ambience from a web browser. No remote needed.",
+        "But that wasn’t enough.",
+        "The idea of smart home control, true integration, voice control, and automation had always fascinated me. That’s when I stumbled upon MQTT, a lightweight publish/subscribe protocol used widely in IoT ecosystems. I had heard about it in passing, an offhand mention on the Journal Club podcast I listen to while coding, but now, it took center stage.",
+        "I dove in.",
+        "I replaced the Raspberry Pi as the LED controller with an ESP32, a tiny but mighty microcontroller perfect for embedded networked applications. The Pi transformed into the MQTT broker, a command and control center running DietPi, a minimalist OS that let me turn it into a dedicated Wi-Fi access point. That step, though seemingly minor, was crucial: my apartment’s Wi-Fi, locked down by Octave Management, made connecting IoT devices nearly impossible. By creating my own secure subnetwork, I circumvented that limitation entirely.",
+        "Now, the ESP32 subscribed to lighting commands over MQTT. The Raspberry Pi broadcasted those commands. And the Flask interface became just one of many clients that could publish to the topic. I even connected my Amazon Echo Show to the Pi’s access point, enabling voice control of the lights. It worked. And it was beautiful.",
+        "But technology never stands still, and neither do I.",
+        "As I explored further into the landscape of smart home standards, I discovered Matter, a new protocol promising secure, local, and interoperable communication between devices. It wasn’t just a new protocol; it was the future. Apple, Google, and Amazon were all backing it. It was everything I wanted this project to become.",
+        "So I tried.",
+        "I tried to migrate the project to Matter, to bring my ESP32 into the next generation of smart home ecosystems. I scoured documentation, cloned bleeding-edge repositories, and dove into the underworld of build tools like gn, ninja, and idf.py. But the deeper I went, the more tangled it became. Cross-compiling libraries. Dependency loops. Version mismatches. Unresolved symbols. Cryptic errors from SDKs that seemed allergic to working together. What should have been a new beginning became a recursive maze of dependency hell.",
+        "And in the end, Matter never worked. Not on my hardware. Not with the time I had. Not yet.",
+        "But that failure wasn’t a dead end. It was a forge.",
+        "Because even in defeat, I had learned more than I could have imagined. I didn’t just read about protocols, I implemented them. I didn’t just hear about security, I designed for it. I saw firsthand the fragility of modern ecosystems, the hidden cost of interoperability, and the sheer complexity behind something as simple as turning on a light.",
+        "And most importantly, I built something that mattered. Not because it was perfect, but because it was mine, from PWM signals to MQTT packets, from GPIO pinouts to containerized deployments.",
+        "A lost remote was never the real problem.",
+        "The real problem was that I couldn’t leave a broken system alone.",
+        "And the real victory was that I never stopped trying to fix it.",
+      ],
       images: [],
       links: []
     }
