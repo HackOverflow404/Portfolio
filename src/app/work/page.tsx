@@ -4,11 +4,13 @@ import { CornerDownLeft, X, Link as LinkIcon, Download, ClipboardCheck } from 'l
 import { useRouter } from 'next/navigation';
 import { Courier_Prime } from "next/font/google";
 import { useState, useRef, useEffect } from 'react';
-import { title } from 'process';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/free-mode';
 
 const courier = Courier_Prime({ subsets: ["latin"], weight: ["400", "700"] });
-const resumePdfUrl = "/Resume.pdf";
 
+const resumePdfUrl = "/Resume.pdf";
 const projects = [
   {
     title: "View Resume",
@@ -160,6 +162,14 @@ const projects = [
     }
   }
 ];
+
+const skills = {
+  "Core Programming Languages": {"Python": "/python.svg", "C": "/c.svg", "C++": "/cpp.svg", "JavaScript": "/javascript.svg", "TypeScript": "/typescript.svg", "Java": "/java.svg", "HTML/CSS": "/html.svg"},
+  "Software & Web Development": {"React/React Native": "/react.svg", "Next.js": "/nextjs.svg", "Flask": "/flask.svg", "Spring Boot": "/springboot.svg", "Docker": "/docker.svg", "Firebase": "/firebase.svg", "Cross-Platform Apps": "/crossplatform.svg", "Responsive Design": "/responsive.svg", "REST APIs": "/rest.svg", "Progressive Web Apps (PWA)": "/pwa.svg"},
+  "Embedded Systems & Hardware": {"ESP32": "/esp32.svg", "Raspberry Pi": "/raspberrypi.svg", "Circuit Design": "/circuit.svg", "MQTT": "/mqtt.svg", "Protocol Debugging (UART/I²C)": "/protocol.svg", "GStreamer": "/gstreamer.svg"},
+  "Cybersecurity & Systems": {"Pentesting Fundamentals": "/pentesting.svg", "WebRTC": "/webrtc.svg", "Network Protocol Analysis": "/network.svg", "CTFs (Sigpwny, CypherCon)": "/sigpwny.svg", "Hashcat": "/hashcat.svg"},
+  "AI & Tooling": {"LangChain + OpenAI": "/langchain.svg", "YOLO": "/yolo.svg", "TensorFlow": "/tensorflow.svg", "PyTorch": "/pytorch.svg", "Pandas": "/pandas.svg"},
+};
 
 export default function ProjectsPage() {
   const router = useRouter();
@@ -319,6 +329,37 @@ export default function ProjectsPage() {
           </motion.div>
         )}
       </AnimatePresence>
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className={`text-3xl md:text-5xl text-cyan-300 mt-30 text-center ${courier.className}`}
+      >
+        My Skills
+      </motion.h2>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2 }}
+        className="mt-12 space-y-12"
+      >
+        {Object.entries(skills).map(([category, skillMap]) => (
+          <div key={category}>
+            <h3 className="text-xl text-cyan-300 mb-4">{category}</h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+              {Object.entries(skillMap).map(([skillName, iconPath]) => (
+                <div
+                  key={skillName}
+                  className="flex flex-col items-center justify-center border border-cyan-300 bg-[#1a1a1a] p-4 rounded-xl transition transform hover:-translate-y-1 hover:shadow-lg hover:border-cyan-600"
+                >
+                  <img src={iconPath} alt={skillName} className="w-10 h-10 mb-2" />
+                  <span className="text-sm text-gray-300 text-center">{skillName}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </motion.div>
     </main>
   );
 }
