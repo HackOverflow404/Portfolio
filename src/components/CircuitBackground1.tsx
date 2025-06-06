@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import "./CircuitBackground.css"
+import "./CircuitBackground1.css"
 
 export default function Background() {
   useEffect(() => {
@@ -66,8 +66,8 @@ export default function Background() {
         }
       };
     }
-    var speed = 5;
-    var period = 1000;
+    var speed = 2;
+    var period = 3000;
     function pulse() {
       setTimeout(pulse, period);
       var h = Math.random() * (210 - 150) + 150;
