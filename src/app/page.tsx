@@ -78,7 +78,7 @@ export default function Home() {
                 <button onClick={() => {setBackground(0); setOpen(false)}} className="hover:bg-cyan-300 hover:text-black px-2 py-1 rounded transition-all duration-150">
                   Pulse + Particles
                 </button>
-                <button onClick={() => {setBackground(1); seOpen(false)}} className="hover:bg-cyan-300 hover:text-black px-2 py-1 rounded transition-all duration-150">
+                <button onClick={() => {setBackground(1); setOpen(false)}} className="hover:bg-cyan-300 hover:text-black px-2 py-1 rounded transition-all duration-150">
                   Circuit 1
                 </button>
                 <button onClick={() => {setBackground(2); setOpen(false)}} className="hover:bg-cyan-300 hover:text-black px-2 py-1 rounded transition-all duration-150">
