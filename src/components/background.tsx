@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import "./CircuitBackground2.css"
+import "./background.css"
 
 export default function Background() {
   useEffect(() => {
