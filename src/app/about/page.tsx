@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { CornerDownLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { Courier_Prime } from "next/font/google";
+import Image from 'next/image';
 
 const courier = Courier_Prime({ subsets: ["latin"], weight: ["400", "700"] });
 
@@ -23,11 +24,26 @@ export default function AboutPage() {
         initial={{ opacity: 0, y: 20 }} 
         animate={{ opacity: 1, y: 0 }} 
         transition={{ duration: 0.5 }}
-        className={`text-3xl md:text-5xl text-cyan-300 mb-12 text-center ${courier.className}`}
-        id="About-Me"
+        className={`text-3xl md:text-5xl text-cyan-300 mb-6 text-center ${courier.className}`}
       >
         About Me
       </motion.h2>
+
+      {/* Profile Picture */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }} 
+        animate={{ opacity: 1, y: 0 }} 
+        transition={{ duration: 0.5 }}
+        className="flex justify-center mb-12"
+      >
+        <Image
+          src="/Medhansh_Garg.png"
+          alt="Medhansh Garg"
+          width={350}
+          height={350}
+          className="shadow-lg"
+        />
+      </motion.div>
 
       <motion.div 
         initial={{ opacity: 0 }} 

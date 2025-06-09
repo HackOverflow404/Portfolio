@@ -364,7 +364,7 @@ export default function ProjectsPage() {
               >
                 <X className="w-5 h-5" />
               </button>
-              <h2 className="text-2xl font-bold text-cyan-300 mb-4">{selected.modalContent.title}</h2>
+              <h2 className={`text-2xl font-bold text-cyan-300 mb-4 ${courier.className}`}>{selected.modalContent.title}</h2>
               {Array.isArray(selected.modalContent.links) && selected.modalContent.links.length > 0 && (
                 <div className="my-4">
                   <div className="flex flex-wrap gap-3">
