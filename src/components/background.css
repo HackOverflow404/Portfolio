@@ -18,9 +18,26 @@ svg.circuit-path {
   transform: translate(50%, 50%);
   z-index: -9;
   opacity: 0.5;
-  /* height: 200%;
-  width: auto; */
 }
+
+.particles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .path {
   animation: draw 40s infinite;
   animation-timing-function: linear;
