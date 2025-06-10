@@ -4,6 +4,12 @@ import { CornerDownLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { Courier_Prime } from "next/font/google";
 import Image from 'next/image';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "About Me",
+  description: "Learn more about me and who I am",
+};
 
 const courier = Courier_Prime({ subsets: ["latin"], weight: ["400", "700"] });
 

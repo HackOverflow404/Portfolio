@@ -4,7 +4,10 @@ import { Courier_Prime } from "next/font/google";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Medhansh Garg | Portfolio",
+  title: {
+    template: "%s | Medhansh Garg",
+    default: "Medhansh Garg | Portfolio",
+  },
   description: "Cybersecurity Enthusiast | Embedded Developer | UIUC Computer Engineer",
 };
 

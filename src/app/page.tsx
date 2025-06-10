@@ -1,17 +1,19 @@
 'use client';
 import Link from 'next/link';
+import Head from "next/head";
 import { motion } from "framer-motion";
 import { Typewriter } from 'react-simple-typewriter';
 import { Courier_Prime } from "next/font/google";
 import Background from "@/components/background";
-
 
 const courier = Courier_Prime({ subsets: ["latin"], weight: ["400", "700"] });
 
 export default function Home() {
   return (
     <main className="h-[100dvh] overflow-hidden flex flex-col justify-center items-center px-6 relative">
-      {/* Background Component Logic */}
+      <Head>
+        <link rel="icon" href="/icon.ico" />
+      </Head>
       <Background />
 
       <motion.h1
