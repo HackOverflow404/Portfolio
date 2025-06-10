@@ -7,12 +7,6 @@ import { useState, useRef, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/free-mode';
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: "My Experience",
-  description: "Explore my projects and experience",
-};
 
 const courier = Courier_Prime({ subsets: ["latin"], weight: ["400", "700"] });
 
