@@ -14,13 +14,13 @@ Welcome to my personal portfolio website! This is a handcrafted, fully responsiv
 
 ## Features
 
-- 🔗 Smooth routing and animated transitions with Framer Motion  
-- 📱 Mobile-first responsive design  
-- 🧠 "About Me" page with detailed narrative sections  
-- 🔍 "My Work" page with interactive modal-based project previews  
-- 📄 In-site resume viewer with download and share link  
-- 💡 Skill tag visualization with dynamic icon mapping  
-- 🌌 Particle + animated gradient background for aesthetic flair  
+- Smooth routing and animated transitions with Framer Motion
+- Responsive design for desktop and mobile
+- "Home" page with animated circuit background and interactive particle cursor animation | Credit: [Circuit Animation](https://dribbble.com/shots/3433250-Circuit-Animation-SVG-CSS), [Cursor Animation](https://www.sliderrevolution.com/resources/css-animated-background/)
+- "About Me" page with detailed narrative sections
+- "My Work" page with interactive modal-based project previews
+- In-site resume viewer with download and share link
+- Skill tag visualization with dynamic icon mapping
 
 ---
 
