@@ -29,10 +29,10 @@ This site is deployed using Vercel, with automatic deployments on every push to 
 
 ---
 
-📬 Contact
+# Contact
 If you'd like to connect, feel free to reach out via:
 - [Email](mailto:medhansh2005@gmail.com)
-- [LinkedIn](https://linkedin.com/medhansh-garg)
+- [LinkedIn](https://linkedin.com/in/medhansh-garg)
 - [GitHub](https://github.com/hackoverflow404)
 
 # TODO:
