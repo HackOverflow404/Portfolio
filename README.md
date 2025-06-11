@@ -43,3 +43,4 @@ If you'd like to connect, feel free to reach out via:
 - Add certifications section
 - Add images to experience page
 - Add any missing experience or skills
+- Add contact details to about page
