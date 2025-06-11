@@ -1,7 +1,7 @@
 # Portfolio
 Welcome to my personal portfolio website! This is a handcrafted, fully responsive, animated portfolio built using **Next.js**, **Tailwind CSS**, and **Framer Motion**. It showcases who I am, what I do, and the projects that define my journey in cybersecurity, embedded systems, and full-stack development.
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Frontend Framework**: [Next.js](https://nextjs.org/)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
@@ -12,7 +12,7 @@ Welcome to my personal portfolio website! This is a handcrafted, fully responsiv
 
 ---
 
-## ✨ Features
+## Features
 
 - 🔗 Smooth routing and animated transitions with Framer Motion  
 - 📱 Mobile-first responsive design  
