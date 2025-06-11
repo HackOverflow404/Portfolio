@@ -24,12 +24,12 @@ Welcome to my personal portfolio website! This is a handcrafted, fully responsiv
 
 ---
 
-# Deployment
+## Deployment
 This site is deployed using Vercel, with automatic deployments on every push to main.
 
 ---
 
-# Contact
+## Contact
 If you'd like to connect, feel free to reach out via:
 - [Email](mailto:medhansh2005@gmail.com)
 - [LinkedIn](https://linkedin.com/in/medhansh-garg)
@@ -37,7 +37,7 @@ If you'd like to connect, feel free to reach out via:
 
 ---
 
-# TODO:
+## TODO
 - Add certifications section
-- Add images to experience
+- Add images to experience page
 - Add any missing experience or skills
