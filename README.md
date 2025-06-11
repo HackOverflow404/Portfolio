@@ -35,6 +35,8 @@ If you'd like to connect, feel free to reach out via:
 - [LinkedIn](https://linkedin.com/in/medhansh-garg)
 - [GitHub](https://github.com/hackoverflow404)
 
+---
+
 # TODO:
 - Add certifications section
 - Add images to experience
