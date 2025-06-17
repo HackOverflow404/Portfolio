@@ -272,6 +272,8 @@ export default function ProjectsPage() {
 
   useEffect(() => {
     console.log("BASE PATH:", process.env.NEXT_PUBLIC_BASE_PATH);
+    console.log("Node Environment:", process.env.NODE_ENV);
+    console.log("Current Base Path:", basePath);
   }, []);
 
   useEffect(() => {
