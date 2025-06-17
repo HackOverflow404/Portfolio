@@ -41,13 +41,12 @@ export default function AboutPage() {
         transition={{ duration: 0.5 }}
         className="flex justify-center mb-12"
       >
-        <Image
+        <img
           src={`${basePath}/Medhansh_Garg.png`}
           alt="Medhansh Garg"
           width={350}
           height={350}
           className="shadow-lg"
-          unoptimized
         />
       </motion.div>
 
