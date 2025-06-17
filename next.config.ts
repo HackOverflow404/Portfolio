@@ -6,9 +6,6 @@ const nextConfig = {
   output: isProd ? 'export' : undefined,
   basePath: isProd ? '/Portfolio' : '',
   assetPrefix: isProd ? '/Portfolio/' : '',
-  env: {
-    NEXT_PUBLIC_BASE_PATH: isProd ? '/Portfolio' : '',
-  },
 };
 
 module.exports = nextConfig;
