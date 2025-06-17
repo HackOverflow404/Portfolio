@@ -7,11 +7,13 @@ import { useState, useRef, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/free-mode';
+import Image from 'next/image';
 
 const courier = Courier_Prime({ subsets: ["latin"], weight: ["400", "700"] });
 
-const resumeURL = "/Resume.pdf";
-const skillsIconsBaseURL = "/skills_icons";
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+const resumeURL = `${basePath}/Resume.pdf`;
+const skillsIconsBaseURL = `${basePath}/skills_icons`;
 
 type ProjectLink = {
   title: string;
@@ -408,7 +410,7 @@ export default function ProjectsPage() {
                       });
                       return (
                         iconPath && (
-                          <img
+                          <Image
                             key={idx}
                             src={iconPath}
                             alt={skill}
@@ -466,7 +468,13 @@ export default function ProjectsPage() {
                   key={skillName}
                   className="flex flex-col items-center justify-center border border-cyan-300 bg-[#1a1a1a] p-4 rounded-xl transition transform hover:-translate-y-1 hover:shadow-lg hover:border-cyan-600"
                 >
-                  <img src={skillsIconsBaseURL + iconPath} alt={skillName} className="w-10 h-10 mb-2" />
+                  <Image
+                    src={skillsIconsBaseURL + iconPath}
+                    alt={skillName}
+                    width={40}
+                    height={40}
+                    className="mb-2"
+                  />
                   <span className="text-sm text-gray-300 text-center">{skillName}</span>
                 </div>
               ))}
