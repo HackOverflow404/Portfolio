@@ -420,6 +420,7 @@ export default function ProjectsPage() {
                             alt={skill}
                             title={skill}
                             className="h-8 w-8 object-contain hover:scale-110 transition-transform"
+                            unoptimized
                           />
                         )
                       );
@@ -478,6 +479,7 @@ export default function ProjectsPage() {
                     width={40}
                     height={40}
                     className="mb-2"
+                    unoptimized
                   />
                   <span className="text-sm text-gray-300 text-center">{skillName}</span>
                 </div>
