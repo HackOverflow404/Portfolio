@@ -6,6 +6,7 @@ import { Courier_Prime } from "next/font/google";
 import Image from 'next/image';
 
 const courier = Courier_Prime({ subsets: ["latin"], weight: ["400", "700"] });
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
 export default function AboutPage() {
   const router = useRouter();
@@ -28,8 +29,7 @@ export default function AboutPage() {
       >
         About Me
       </motion.h2>
-
-      {/* Profile Picture */}
+      
       <motion.div
         initial={{ opacity: 0, y: 20 }} 
         animate={{ opacity: 1, y: 0 }} 
@@ -37,7 +37,7 @@ export default function AboutPage() {
         className="flex justify-center mb-12"
       >
         <Image
-          src="/Medhansh_Garg.png"
+          src={`${basePath}/Medhansh_Garg.png`}
           alt="Medhansh Garg"
           width={350}
           height={350}
