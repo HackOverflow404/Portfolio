@@ -10,7 +10,7 @@ Welcome to my personal portfolio website! This is a handcrafted, fully responsiv
 - **Animations**: [Framer Motion](https://framer.com/motion/)
 - **Fonts**: Google Fonts - Courier Prime + Inter
 - **Icons**: [Lucide Icons](https://lucide.dev/)
-- **Deployment**: [Vercel](https://vercel.com)
+- **Deployment**: [Github Pages](https://pages.github.com/)
 
 ---
 
@@ -27,7 +27,7 @@ Welcome to my personal portfolio website! This is a handcrafted, fully responsiv
 ---
 
 ## Deployment
-This site is deployed using Vercel, with automatic deployments on every push to main.
+This site is deployed using GitHub Pages (previously using Vercel), with automatic deployments on every push to the main branch.
 
 ---
 
@@ -36,11 +36,13 @@ If you'd like to connect, feel free to reach out via:
 - [Email](mailto:medhansh2005@gmail.com)
 - [LinkedIn](https://linkedin.com/in/medhansh-garg)
 - [GitHub](https://github.com/hackoverflow404)
+- [Portfolio](https://hackoverflow404.github.io/Portfolio)
 
 ---
 
 ## TODO
 - Add certifications section
+- Add fetch-resume project and more to experience page
 - Add images to experience page
 - Add any missing experience or skills
-- Add contact details to about page
+- Add contact details to about me page
