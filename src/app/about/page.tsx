@@ -7,8 +7,7 @@ import Image from 'next/image';
 import { useEffect } from 'react';
 
 const courier = Courier_Prime({ subsets: ["latin"], weight: ["400", "700"] });
-// const basePath = process.env.NODE_ENV === 'production' ? "Portfolio" : '';
-const basePath = '';
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
 export default function AboutPage() {
   const router = useRouter();
