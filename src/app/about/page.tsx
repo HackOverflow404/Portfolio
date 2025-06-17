@@ -4,12 +4,17 @@ import { CornerDownLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { Courier_Prime } from "next/font/google";
 import Image from 'next/image';
+import { useEffect } from 'react';
 
 const courier = Courier_Prime({ subsets: ["latin"], weight: ["400", "700"] });
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
 export default function AboutPage() {
   const router = useRouter();
+
+  useEffect(() => {
+    console.log("BASE PATH:", process.env.NEXT_PUBLIC_BASE_PATH);
+  }, []);
 
   return (
     <main className="px-6 py-20 max-w-5xl mx-auto relative">
@@ -29,7 +34,7 @@ export default function AboutPage() {
       >
         About Me
       </motion.h2>
-      
+
       <motion.div
         initial={{ opacity: 0, y: 20 }} 
         animate={{ opacity: 1, y: 0 }} 

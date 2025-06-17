@@ -271,6 +271,10 @@ export default function ProjectsPage() {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
+    console.log("BASE PATH:", process.env.NEXT_PUBLIC_BASE_PATH);
+  }, []);
+
+  useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
         setOpen(false);
