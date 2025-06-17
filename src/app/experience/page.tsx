@@ -11,7 +11,8 @@ import Image from 'next/image';
 
 const courier = Courier_Prime({ subsets: ["latin"], weight: ["400", "700"] });
 
-const basePath = process.env.NODE_ENV === 'production' ? "Portfolio" : '';
+// const basePath = process.env.NODE_ENV === 'production' ? "Portfolio" : '';
+const basePath = '';
 const resumeURL = `${basePath}/Resume.pdf`;
 const skillsIconsBaseURL = `${basePath}/skills_icons`;
 
