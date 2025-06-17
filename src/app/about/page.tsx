@@ -47,6 +47,7 @@ export default function AboutPage() {
           width={350}
           height={350}
           className="shadow-lg"
+          unoptimized
         />
       </motion.div>
 
