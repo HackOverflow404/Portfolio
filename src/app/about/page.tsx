@@ -5,9 +5,9 @@ import { useRouter } from 'next/navigation';
 import { Courier_Prime } from "next/font/google";
 import Image from 'next/image';
 import { useEffect } from 'react';
+import { getAssetUrl } from '@/utils/basePath';
 
 const courier = Courier_Prime({ subsets: ["latin"], weight: ["400", "700"] });
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
 export default function AboutPage() {
   const router = useRouter();
@@ -15,7 +15,7 @@ export default function AboutPage() {
   useEffect(() => {
     console.log("BASE PATH:", process.env.NEXT_PUBLIC_BASE_PATH);
     console.log("Node Environment:", process.env.NODE_ENV);
-    console.log("Current Base Path:", basePath);
+    // console.log("Current Base Path:", basePath);
   }, []);
 
   return (
@@ -44,7 +44,7 @@ export default function AboutPage() {
         className="flex justify-center mb-12"
       >
         <img
-          src={`${basePath}/Medhansh_Garg.png`}
+          src={getAssetUrl("Medhansh_Garg.png")}
           alt="Medhansh Garg"
           width={350}
           height={350}

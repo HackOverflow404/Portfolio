@@ -8,12 +8,12 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import Image from 'next/image';
+import { getAssetUrl } from '@/utils/basePath';
 
 const courier = Courier_Prime({ subsets: ["latin"], weight: ["400", "700"] });
 
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
-const resumeURL = `${basePath}/Resume.pdf`;
-const skillsIconsBaseURL = `${basePath}/skills_icons`;
+const resumeURL = getAssetUrl('Resume.pdf');
+const skillsIconsBaseURL = getAssetUrl('skills_icons');
 
 type ProjectLink = {
   title: string;
@@ -273,7 +273,7 @@ export default function ProjectsPage() {
   useEffect(() => {
     console.log("BASE PATH:", process.env.NEXT_PUBLIC_BASE_PATH);
     console.log("Node Environment:", process.env.NODE_ENV);
-    console.log("Current Base Path:", basePath);
+    // console.log("Current Base Path:", basePath);
   }, []);
 
   useEffect(() => {
