@@ -4,19 +4,12 @@ import { CornerDownLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { Courier_Prime } from "next/font/google";
 import Image from 'next/image';
-import { useEffect } from 'react';
 import { getAssetUrl } from '@/utils/basePath';
 
 const courier = Courier_Prime({ subsets: ["latin"], weight: ["400", "700"] });
 
 export default function AboutPage() {
   const router = useRouter();
-
-  useEffect(() => {
-    console.log("BASE PATH:", process.env.NEXT_PUBLIC_BASE_PATH);
-    console.log("Node Environment:", process.env.NODE_ENV);
-    // console.log("Current Base Path:", basePath);
-  }, []);
 
   return (
     <main className="px-6 py-20 max-w-5xl mx-auto relative">
@@ -43,7 +36,7 @@ export default function AboutPage() {
         transition={{ duration: 0.5 }}
         className="flex justify-center mb-12"
       >
-        <img
+        <Image
           src={getAssetUrl("Medhansh_Garg.png")}
           alt="Medhansh Garg"
           width={350}
