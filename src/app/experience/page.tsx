@@ -4,7 +4,6 @@ import { CornerDownLeft, X, Link as LinkIcon, Download, ClipboardCheck } from 'l
 import { useRouter } from 'next/navigation';
 import { Courier_Prime } from "next/font/google";
 import { useState, useRef, useEffect } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import Image from 'next/image';
@@ -269,12 +268,6 @@ export default function ProjectsPage() {
   const [selected, setSelected] = useState<Project | null>(null);
   const modalRef = useRef<HTMLDivElement>(null);
   const [copied, setCopied] = useState(false);
-
-  useEffect(() => {
-    console.log("BASE PATH:", process.env.NEXT_PUBLIC_BASE_PATH);
-    console.log("Node Environment:", process.env.NODE_ENV);
-    // console.log("Current Base Path:", basePath);
-  }, []);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
