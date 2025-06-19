@@ -54,7 +54,6 @@ const projects: ProjectEntry[] = [
         "In a world obsessed with the new, I’m finding wonder in the old. I'm not just tearing down a machine, I’m reimagining it. Piece by piece, lesson by lesson."
       ],
       images: [],
-      links: []
     }
   },
   {
@@ -96,7 +95,6 @@ const projects: ProjectEntry[] = [
         "This badge isn’t just a tool; it’s a living, breathing embodiment of our collective creativity and technical skill. From wireless mesh networking to custom display firmware, the project has given me a holistic view of what it means to engineer an embedded system from scratch, blending hardware, firmware, and innovation in every step. I’m incredibly proud to be part of this team and can’t wait to see the room light up with hundreds of these badges in action, each one a symbol of curiosity, craft, and community.",
       ],
       images: [],
-      links: []
     }
   },
   {
@@ -145,7 +143,6 @@ const projects: ProjectEntry[] = [
         "Beyond the technical achievements, this internship sharpened my problem-solving mindset, deepened my ability to communicate complex ideas across interdisciplinary teams, and cultivated a strong sense of ownership and adaptability. Working in a fast-paced environment taught me how to prioritize ruthlessly, break down large challenges into tractable tasks, and stay grounded in both user needs and system constraints. It was a formative experience that not only strengthened my foundation in applied AI and systems engineering but also expanded my confidence in contributing meaningfully to impactful, real-world solutions."
       ],
       images: [],
-      links: []
     } 
   },
   {
@@ -210,7 +207,6 @@ const projects: ProjectEntry[] = [
 
       ],
       images: [],
-      links: []
     }
   },
   {

@@ -4,7 +4,6 @@ Welcome to my personal portfolio website! This is a handcrafted, fully responsiv
 ---
 
 ## Tech Stack
-
 - **Frontend Framework**: [Next.js](https://nextjs.org/)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **Animations**: [Framer Motion](https://framer.com/motion/)
@@ -15,7 +14,6 @@ Welcome to my personal portfolio website! This is a handcrafted, fully responsiv
 ---
 
 ## Features
-
 - Smooth routing and animated transitions with Framer Motion
 - Responsive design for desktop and mobile
 - "Home" page with animated circuit background and interactive particle cursor animation | Credit: [Circuit Animation](https://dribbble.com/shots/3433250-Circuit-Animation-SVG-CSS), [Cursor Animation](https://www.sliderrevolution.com/resources/css-animated-background/)
