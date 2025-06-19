@@ -52,7 +52,6 @@ export default function AboutPage() {
             height="200"
             loading="lazy"
             decoding="async"
-            style={{ borderRadius: "50%" }}
           />
         </picture>
       </motion.div>
