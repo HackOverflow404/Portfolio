@@ -1,3 +1,4 @@
+// Layout component for the About page
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {

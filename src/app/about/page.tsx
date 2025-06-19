@@ -1,3 +1,4 @@
+// Page component for the About page
 'use client';
 import { Courier_Prime } from "next/font/google";
 import { getAssetUrl } from '@/utils/basePath';
@@ -7,7 +8,6 @@ import { IoCall } from "react-icons/io5";
 import { MdEmail } from "react-icons/md";
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import Link from 'next/link';
 
 const courier = Courier_Prime({ subsets: ["latin"], weight: ["400", "700"] });
@@ -17,6 +17,7 @@ export default function AboutPage() {
 
   return (
     <main className="px-6 py-20 max-w-5xl mx-auto relative">
+      {/* Back button to navigate to home */}
       <button
         onClick={() => router.push("/")}
         className="absolute mt-5 top-4 left-4 flex items-center text-cyan-300 hover:text-cyan-600"
@@ -25,6 +26,8 @@ export default function AboutPage() {
         <LuCornerDownLeft className="w-5 h-5 mr-1" />
         Home
       </button>
+      
+      {/* Header Start */}
       <motion.h2 
         initial={{ opacity: 0, y: 20 }} 
         animate={{ opacity: 1, y: 0 }} 
@@ -33,22 +36,29 @@ export default function AboutPage() {
       >
         About Me
       </motion.h2>
-
       <motion.div
         initial={{ opacity: 0, y: 20 }} 
         animate={{ opacity: 1, y: 0 }} 
         transition={{ duration: 0.5 }}
         className="flex justify-center mb-12"
       >
-        <Image
-          src={getAssetUrl("Medhansh_Garg.png")}
-          alt="Medhansh Garg"
-          width={350}
-          height={350}
-          className="shadow-lg"
-        />
+        <picture>
+          <source srcSet={getAssetUrl("Medhansh_Garg.avif")} type="image/avif" />
+          <source srcSet={getAssetUrl("Medhansh_Garg.webp")} type="image/webp" />
+          <img
+            src={getAssetUrl("Medhansh_Garg.png")}
+            alt="Medhansh Garg"
+            width="200"
+            height="200"
+            loading="lazy"
+            decoding="async"
+            style={{ borderRadius: "50%" }}
+          />
+        </picture>
       </motion.div>
+      {/* Header End */}
 
+      {/* Contact Info Start */}
       <motion.div 
         initial={{ opacity: 0 }} 
         animate={{ opacity: 1 }} 
@@ -92,7 +102,17 @@ export default function AboutPage() {
             GitHub
           </Link>
         </section>
+      </motion.div>
+      {/* Contact Info End */}
 
+        
+      {/* About Me Start */}
+      <motion.div 
+        initial={{ opacity: 0 }} 
+        animate={{ opacity: 1 }} 
+        transition={{ delay: 0.2 }}
+        className="space-y-6 text-gray-300 text-lg"
+      >
         <section id="Who-I-Am">
           <h3 className={`text-2xl font-semibold text-cyan-300 mb-2 ${courier.className}`}>Who I Am</h3>
           <p>
@@ -149,6 +169,7 @@ export default function AboutPage() {
           </p>
         </section>
       </motion.div>
+      {/* About Me End */}
     </main>
   );
 }
