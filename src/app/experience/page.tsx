@@ -1,51 +1,27 @@
+// Page component for the Experience page
 'use client';
 import { LuCornerDownLeft, LuX, LuLink as LinkIcon, LuDownload, LuClipboardCheck } from 'react-icons/lu';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import projects, { resumeURL } from '@/data/projects';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Courier_Prime } from "next/font/google";
 import { getAssetUrl } from '@/utils/basePath';
 import { useRouter } from 'next/navigation';
 import skills from '@/data/skills';
-import Image from 'next/image';
-import 'swiper/css/free-mode';
-import 'swiper/css';
+import Modal from '@/components/Modal';
+import Carousel from "@/components/Carousel";
 
 const courier = Courier_Prime({ subsets: ["latin"], weight: ["400", "700"] });
 const skillsIconsBaseURL = getAssetUrl('skills_icons');
 
 export default function ProjectsPage() {
+  type Project = typeof projects[number];
   const router = useRouter();
   const [open, setOpen] = useState(false);
-  type Project = typeof projects[number];
   const [selected, setSelected] = useState<Project | null>(null);
-  const modalRef = useRef<HTMLDivElement>(null);
   const [copied, setCopied] = useState(false);
 
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
-        setOpen(false);
-      }
-    }
-
-    function handleEscape(event: KeyboardEvent) {
-      if (event.key === 'Escape') {
-        setOpen(false);
-      }
-    }
-
-    if (open) {
-      document.addEventListener('mousedown', handleClickOutside);
-      document.addEventListener('keydown', handleEscape);
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('keydown', handleEscape);
-    };
-  }, [open]);
-
+  // Copy handler for resume link
   const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text);
     setCopied(true);
@@ -54,15 +30,16 @@ export default function ProjectsPage() {
 
   return (
     <main className="px-6 py-20 max-w-5xl mx-auto relative">
+      {/* Back button to navigate to home */}
       <button
         onClick={() => router.push("/")}
         className="absolute mt-5 top-4 left-4 flex items-center text-cyan-300 hover:text-cyan-600"
         aria-label="Go back"
       >
-        <LuCornerDownLeft className="w-5 h-5 mr-1" />
-        Home
+        <LuCornerDownLeft className="w-5 h-5 mr-1" /> Home
       </button>
 
+      {/* Header Start */}
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -71,13 +48,16 @@ export default function ProjectsPage() {
       >
         My Experience
       </motion.h2>
-
+      {/* Header End */}
+      
+      {/* Closed Modal Start */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2 }}
         className="grid md:grid-cols-2 gap-8"
       >
+        {/* For every project, render a modal div */}
         {projects.map((project, i) => (
           <div
             key={i}
@@ -92,120 +72,126 @@ export default function ProjectsPage() {
           </div>
         ))}
       </motion.div>
-
-      <AnimatePresence>
-        {open && selected && (
-          <motion.div
-            className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setOpen(false)}
-          >
-            <motion.div
-              ref={modalRef}
-              className="bg-[#1a1a1a] max-w-2xl w-full m-2 max-h-[80vh] scrollbar-hide overflow-y-auto rounded-xl p-6 relative border border-cyan-400"
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              onClick={(e) => e.stopPropagation()}
+      {/* Closed Modal End */}
+      
+      {/* Open Modal Start */}
+      <Modal isOpen={open} onClose={() => setOpen(false)}>
+        {selected && (
+          <div className="relative">
+            {/* Modal Header Start */}
+            <button
+              className="absolute top-4 right-4 text-cyan-300 hover:text-cyan-500"
+              onClick={() => setOpen(false)}
+              aria-label="Close modal"
             >
-              <button
-                className="absolute top-4 right-4 text-cyan-300 hover:text-cyan-500"
-                onClick={() => setOpen(false)}
-                aria-label="Close modal"
-              >
-                <LuX className="w-5 h-5" />
-              </button>
-              <h2 className={`text-2xl font-bold text-cyan-300 mb-4 ${courier.className}`}>{selected.modalContent.title}</h2>
-              {Array.isArray(selected.modalContent.links) && selected.modalContent.links.length > 0 && (
-                <div className="my-4">
-                  <div className="flex flex-wrap gap-3">
-                    {selected.modalContent.links.map((link, idx) => (
-                      <a
-                        key={idx}
-                        href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center px-4 py-2 border border-cyan-300 text-cyan-300 rounded-full text-sm hover:bg-cyan-600 hover:border-cyan-600 hover:text-black transition"
-                      >
-                        {link.title.includes('Download') ? (
-                          <LuDownload className="w-4 h-4 mr-2" />
-                        ) : (
-                          <LinkIcon className="w-4 h-4 mr-2" />
-                        )}
-                        {link.title}
-                      </a>
-                    ))}
-                    {selected.title === "View Resume" && (
-                      <button
-                        onClick={() => handleCopy(window.location.origin + resumeURL)}
-                        className="inline-flex items-center px-4 py-2 border border-cyan-300 text-cyan-300 rounded-full text-sm hover:bg-cyan-600 hover:border-cyan-600 hover:text-black transition"
-                      >
-                        <LuClipboardCheck className="w-4 h-4 mr-2" />
-                        {copied ? 'Copied!' : 'Copy Link'}
-                      </button>
-                    )}
-                  </div>
+              <LuX className="w-5 h-5" />
+            </button>
+
+            <h2 className={`text-2xl font-bold text-cyan-300 mb-4 ${courier.className}`}>{selected.modalContent.title}</h2>
+            {/* Modal Header End */}
+
+            {/* Modal Link Start */}
+            {Array.isArray(selected.modalContent.links) && selected.modalContent.links.length > 0 && (
+              <div className="my-4">
+                <div className="flex flex-wrap gap-3">
+                  {selected.modalContent.links.map((link, idx) => (
+                    <a
+                      key={idx}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center px-4 py-2 border border-cyan-300 text-cyan-300 rounded-full text-sm hover:bg-cyan-600 hover:border-cyan-600 hover:text-black transition"
+                    >
+                      {link.title.includes('Download') ? (
+                        <LuDownload className="w-4 h-4 mr-2" />
+                      ) : (
+                        <LinkIcon className="w-4 h-4 mr-2" />
+                      )}
+                      {link.title}
+                    </a>
+                  ))}
+                  {selected.title === "View Resume" && (
+                    <button
+                      onClick={() => handleCopy(window.location.origin + resumeURL)}
+                      className="inline-flex items-center px-4 py-2 border border-cyan-300 text-cyan-300 rounded-full text-sm hover:bg-cyan-600 hover:border-cyan-600 hover:text-black transition"
+                    >
+                      <LuClipboardCheck className="w-4 h-4 mr-2" />
+                      {copied ? 'Copied!' : 'Copy Link'}
+                    </button>
+                  )}
                 </div>
-              )}
-              {Array.isArray(selected.modalContent.skills) && selected.modalContent.skills.length > 0 && (
-                <div className="my-4">
-                  <div className="flex flex-wrap gap-4 items-center">
-                    {selected.modalContent.skills.map((skill, idx) => {
-                      let iconPath = "";
-                      Object.values(skills).forEach((category) => {
-                        if (skill in category) {
-                          iconPath = skillsIconsBaseURL + (category as Record<string, string>)[skill];
-                        }
-                      });
-                      return (
-                        iconPath && (
-                          <Image
-                            key={idx}
-                            src={iconPath}
-                            alt={skill}
-                            title={skill}
-                            className="h-8 w-8 object-contain hover:scale-110 transition-transform"
-                            unoptimized
-                          />
-                        )
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
-              <div className="space-y-4 text-gray-300">
-                {Array.isArray(selected.modalContent.description)
-                  ? selected.modalContent.description.map((p, idx) => (
-                      <p key={idx} className="text-sm leading-relaxed">{p}</p>
-                    ))
-                  : <p className="text-sm leading-relaxed">{selected.modalContent.description}</p>
-                }
               </div>
-              {selected.title === "View Resume" && (
-                <div className="w-full h-[60vh] mt-6 border border-cyan-500 rounded overflow-hidden shadow-lg">
-                  <iframe
-                    src={resumeURL}
-                    className="w-full h-full"
-                    title="Resume Preview"
-                    style={{ border: 'none' }}
-                  ></iframe>
-                </div>
-              )}
-            </motion.div>
-          </motion.div>
+            )}
+            {/* Modal Links End */}
+            
+            {/* Modal Skills Start */}
+            {Array.isArray(selected.modalContent.skills) && selected.modalContent.skills.length > 0 && (
+              <div className="my-4 flex flex-wrap gap-4 items-center">
+                {selected.modalContent.skills.map((skill, idx) => {
+                  let iconPath = "";
+                  Object.values(skills).forEach((category) => {
+                    if (skill in category) {
+                      iconPath = skillsIconsBaseURL + (category as Record<string, string>)[skill];
+                    }
+                  });
+                  return (
+                    iconPath && (
+                      <img
+                      key={idx}
+                      src={iconPath}
+                      alt={skill}
+                      title={skill}
+                      width={32}
+                      height={32}
+                      className="object-contain hover:scale-110 transition-transform"
+                    />
+                    )
+                  );
+                })}
+              </div>
+            )}
+            {/* Modal Skills End */}
+
+            {/* Modal Content Start */}
+            <div className="space-y-4 text-gray-300">
+              {Array.isArray(selected.modalContent.description)
+                ? selected.modalContent.description.map((p, idx) => (
+                    <p key={idx} className="text-sm leading-relaxed">{p}</p>
+                  ))
+                : <p className="text-sm leading-relaxed">{selected.modalContent.description}</p>
+              }
+            </div>
+            {/* Modal Content End */}
+
+            {/* Resume View Logic Start */}
+            {selected.title === "View Resume" && (
+              <div className="w-full h-[60vh] mt-6 border border-cyan-500 rounded overflow-hidden shadow-lg">
+                <iframe
+                  src={resumeURL}
+                  className="w-full h-full"
+                  title="Resume Preview"
+                  style={{ border: 'none' }}
+                ></iframe>
+              </div>
+            )}
+            {/* Resume View Logic End */}
+          </div>
         )}
-      </AnimatePresence>
+      </Modal>
+      {/* Open Modal End */}
+
+      {/* Skills Header Start */}
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className={`text-3xl md:text-5xl text-cyan-300 mt-30 text-center ${courier.className}`}
-      >
+        >
         My Skills
       </motion.h2>
+      {/* Skills Header End */}
+
+      {/* Skills Header End */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -213,26 +199,25 @@ export default function ProjectsPage() {
         className="mt-12 space-y-12"
       >
         {Object.entries(skills).map(([category, skillMap]) => (
-          <div key={category}>
+          <div key={category} className="mb-12">
             <h3 className="text-xl text-cyan-300 mb-4">{category}</h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            <Carousel>
               {Object.entries(skillMap).map(([skillName, iconPath]) => (
                 <div
                   key={skillName}
-                  className="flex flex-col items-center justify-center border border-cyan-300 bg-[#1a1a1a] p-4 rounded-xl transition transform hover:-translate-y-1 hover:shadow-lg hover:border-cyan-600"
+                  className="w-28 sm:w-40 lg:w-36 h-auto shrink-0 flex flex-col items-center justify-center border border-cyan-300 bg-[#1a1a1a] rounded-xl p-4 transition hover:-translate-y-1 hover:shadow-lg hover:border-cyan-600"
                 >
-                  <Image
+                  <img
                     src={skillsIconsBaseURL + iconPath}
                     alt={skillName}
                     width={40}
                     height={40}
                     className="mb-2"
-                    unoptimized
                   />
                   <span className="text-sm text-gray-300 text-center">{skillName}</span>
                 </div>
               ))}
-            </div>
+            </Carousel>
           </div>
         ))}
       </motion.div>

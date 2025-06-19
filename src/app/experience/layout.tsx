@@ -1,3 +1,4 @@
+// Layout component for the Experience page
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
