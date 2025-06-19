@@ -1,25 +1,18 @@
 'use client';
+import { LuCornerDownLeft, LuX, LuLink as LinkIcon, LuDownload, LuClipboardCheck } from 'react-icons/lu';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CornerDownLeft, X, Link as LinkIcon, Download, ClipboardCheck } from 'lucide-react';
-import { useRouter } from 'next/navigation';
-import { Courier_Prime } from "next/font/google";
-import { useState, useRef, useEffect } from 'react';
-import 'swiper/css';
-import 'swiper/css/free-mode';
-import Image from 'next/image';
 import projects, { resumeURL } from '@/data/projects';
+import { useState, useRef, useEffect } from 'react';
+import { Courier_Prime } from "next/font/google";
 import { getAssetUrl } from '@/utils/basePath';
+import { useRouter } from 'next/navigation';
+import skills from '@/data/skills';
+import Image from 'next/image';
+import 'swiper/css/free-mode';
+import 'swiper/css';
 
 const courier = Courier_Prime({ subsets: ["latin"], weight: ["400", "700"] });
 const skillsIconsBaseURL = getAssetUrl('skills_icons');
-
-const skills = {
-  "Core Programming Languages": {"Python": "/python.svg", "C": "/c.svg", "C++": "/cpp.svg", "JavaScript": "/javascript.svg", "TypeScript": "/typescript.svg", "Java": "/java.svg", "HTML/CSS": "/html.svg"},
-  "Software & Web Development": {"React/React Native": "/react.svg", "Next.js": "/next.svg", "QtPython": "/qtpython.svg", "Flask": "/flask.svg", "Spring Boot": "/springboot.svg", "SQLite": "/sqlite.svg", "Docker": "/docker.svg", "Firebase": "/firebase.svg", "Vercel": "/vercel.svg", "Figma": "/figma.svg", "Cross-Platform Apps": "/crossplatform.svg", "Responsive Design": "/responsive.svg", "REST APIs": "/rest.svg", "Progressive Web Apps (PWA)": "/pwa.svg", "Tailwind CSS": "/tailwind.svg"},
-  "Embedded Systems & Hardware": {"ESP32": "/esp32.svg", "Raspberry Pi": "/raspberrypi.svg", "Circuit Design": "/circuit.svg", "MQTT": "/mqtt.svg", "Protocol Debugging": "/protocol.svg", "GStreamer": "/gstreamer.svg"},
-  "Cybersecurity & Systems": {"Pentesting Fundamentals": "/pentesting.svg", "WebRTC": "/webrtc.svg", "Network Protocol Analysis": "/network.svg", "CTFs (Sigpwny, CypherCon)": "/sigpwny.svg", "Hashcat": "/hashcat.svg", "Linux": "/linux.svg"},
-  "AI & Tooling": {"LangChain + OpenAI": "/langchain.svg", "YOLO": "/yolo.svg", "TensorFlow": "/tensorflow.svg", "PyTorch": "/pytorch.svg", "Pandas": "/pandas.svg"},
-};
 
 export default function ProjectsPage() {
   const router = useRouter();
@@ -66,7 +59,7 @@ export default function ProjectsPage() {
         className="absolute mt-5 top-4 left-4 flex items-center text-cyan-300 hover:text-cyan-600"
         aria-label="Go back"
       >
-        <CornerDownLeft className="w-5 h-5 mr-1" />
+        <LuCornerDownLeft className="w-5 h-5 mr-1" />
         Home
       </button>
 
@@ -123,7 +116,7 @@ export default function ProjectsPage() {
                 onClick={() => setOpen(false)}
                 aria-label="Close modal"
               >
-                <X className="w-5 h-5" />
+                <LuX className="w-5 h-5" />
               </button>
               <h2 className={`text-2xl font-bold text-cyan-300 mb-4 ${courier.className}`}>{selected.modalContent.title}</h2>
               {Array.isArray(selected.modalContent.links) && selected.modalContent.links.length > 0 && (
@@ -138,7 +131,7 @@ export default function ProjectsPage() {
                         className="inline-flex items-center px-4 py-2 border border-cyan-300 text-cyan-300 rounded-full text-sm hover:bg-cyan-600 hover:border-cyan-600 hover:text-black transition"
                       >
                         {link.title.includes('Download') ? (
-                          <Download className="w-4 h-4 mr-2" />
+                          <LuDownload className="w-4 h-4 mr-2" />
                         ) : (
                           <LinkIcon className="w-4 h-4 mr-2" />
                         )}
@@ -150,7 +143,7 @@ export default function ProjectsPage() {
                         onClick={() => handleCopy(window.location.origin + resumeURL)}
                         className="inline-flex items-center px-4 py-2 border border-cyan-300 text-cyan-300 rounded-full text-sm hover:bg-cyan-600 hover:border-cyan-600 hover:text-black transition"
                       >
-                        <ClipboardCheck className="w-4 h-4 mr-2" />
+                        <LuClipboardCheck className="w-4 h-4 mr-2" />
                         {copied ? 'Copied!' : 'Copy Link'}
                       </button>
                     )}

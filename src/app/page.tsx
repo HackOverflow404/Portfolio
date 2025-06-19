@@ -1,10 +1,10 @@
 'use client';
-import Link from 'next/link';
-import Head from "next/head";
-import { motion } from "framer-motion";
 import { Typewriter } from 'react-simple-typewriter';
 import { Courier_Prime } from "next/font/google";
 import Background from "@/components/background";
+import { motion } from "framer-motion";
+import Head from "next/head";
+import Link from 'next/link';
 
 const courier = Courier_Prime({ subsets: ["latin"], weight: ["400", "700"] });
 

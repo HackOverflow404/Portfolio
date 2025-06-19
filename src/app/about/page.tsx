@@ -1,10 +1,14 @@
 'use client';
-import { motion } from 'framer-motion';
-import { CornerDownLeft } from 'lucide-react';
-import { useRouter } from 'next/navigation';
 import { Courier_Prime } from "next/font/google";
-import Image from 'next/image';
 import { getAssetUrl } from '@/utils/basePath';
+import { LuCornerDownLeft } from 'react-icons/lu';
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { IoCall } from "react-icons/io5";
+import { MdEmail } from "react-icons/md";
+import { useRouter } from 'next/navigation';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const courier = Courier_Prime({ subsets: ["latin"], weight: ["400", "700"] });
 
@@ -18,7 +22,7 @@ export default function AboutPage() {
         className="absolute mt-5 top-4 left-4 flex items-center text-cyan-300 hover:text-cyan-600"
         aria-label="Go back"
       >
-        <CornerDownLeft className="w-5 h-5 mr-1" />
+        <LuCornerDownLeft className="w-5 h-5 mr-1" />
         Home
       </button>
       <motion.h2 
@@ -51,6 +55,44 @@ export default function AboutPage() {
         transition={{ delay: 0.2 }}
         className="space-y-6 text-gray-300 text-lg"
       >
+        <section
+          id="Contact-Info"
+          className="mb-12 flex flex-wrap justify-center gap-6 text-cyan-300"
+        >
+          <Link
+            href="mailto:medhansh2005@gmail.com"
+            className="flex items-center gap-2 hover:text-cyan-500 transition-colors duration-200 border border-transparent hover:border-cyan-700 px-4 py-2 rounded-md"
+          >
+            <MdEmail className="w-5 h-5" />
+            Email
+          </Link>
+          <Link
+            href="tel:+12179042064"
+            className="flex items-center gap-2 hover:text-cyan-500 transition-colors duration-200 border border-transparent hover:border-cyan-700 px-4 py-2 rounded-md"
+          >
+            <IoCall className="w-5 h-5" />
+            Phone
+          </Link>
+          <Link
+            href="https://linkedin.com/in/medhansh-garg/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 hover:text-cyan-500 transition-colors duration-200 border border-transparent hover:border-cyan-700 px-4 py-2 rounded-md"
+          >
+            <FaLinkedin className="w-5 h-5" />
+            LinkedIn
+          </Link>
+          <Link
+            href="https://github.com/HackOverflow404"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 hover:text-cyan-500 transition-colors duration-200 border border-transparent hover:border-cyan-700 px-4 py-2 rounded-md"
+          >
+            <FaGithub className="w-5 h-5" />
+            GitHub
+          </Link>
+        </section>
+
         <section id="Who-I-Am">
           <h3 className={`text-2xl font-semibold text-cyan-300 mb-2 ${courier.className}`}>Who I Am</h3>
           <p>
