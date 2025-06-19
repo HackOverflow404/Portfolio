@@ -1,4 +1,5 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 
 const nextConfig = {
   output: 'export',
@@ -7,4 +8,4 @@ const nextConfig = {
   images: { unoptimized: true }
 };
 
-module.exports = nextConfig;
+export default nextConfig;
