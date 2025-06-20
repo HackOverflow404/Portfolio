@@ -39,6 +39,30 @@ const projects: ProjectEntry[] = [
     }
   },
   {
+    title: "Automated Résumé Fetch & Deploy",
+    description: "Node.js script that pulls my Google-Docs résumé via a GCP Service Account and redeploys my portfolio site in one command.",
+    modalContent: {
+      title: "Automated Résumé Fetch & Deployment Pipeline",
+      skills: [
+        "Node.js",
+        "Google Cloud Platform",
+        "Git",
+        "Shell Scripting"
+      ],
+      description: [
+        "Keeping an online résumé current often means juggling downloads, manual file moves, and redeployments. I wanted that workflow boiled down to a single command. This project delivers exactly that.",
+        "The script authenticates with a Google Cloud Service Account, exports my résumé Google Doc as a PDF, and writes it to two key locations: a `job_docs` archive and the `public/` directory of my Next.js portfolio.",
+        "Once the new PDF is in place, it triggers a production build, stages the updated asset, commits with a conventional-chore message, and pushes straight to GitHub—instantly kicking off the site’s CI pipeline.",
+        "A small bash alias—`rupd`—wraps everything, so from any terminal I can run one command and know my résumé and portfolio are synchronized within minutes.",
+        "Under the hood it combines Google’s `drive.files.export` streaming endpoint, Node’s `stream/promises` utilities for back-pressure-safe writes, and a guarded `execSync` chain for the Git operations. Robust error handling keeps the process transparent and fail-safe."
+      ],
+      images: [],
+      links: [
+        { title: "GitHub Repo", url: "https://github.com/HackOverflow404/Resume-Fetcher" }
+      ]
+    }
+  },
+  {
     title: "Reverse Engineering a Legacy Laptop",
     description: "Disassembled an Acer Aspire 4736G and working to repurpose components such as battery, fan, LCD screen, keyboard, trackpad, and fingerprint reader.",
     modalContent: {
