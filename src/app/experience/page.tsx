@@ -205,7 +205,7 @@ export default function ProjectsPage() {
               {Object.entries(skillMap).map(([skillName, iconPath]) => (
                 <div
                   key={skillName}
-                  className="w-28 sm:w-40 lg:w-36 h-auto shrink-0 flex flex-col items-center justify-center border border-cyan-300 bg-[#1a1a1a] rounded-xl p-4 transition hover:-translate-y-1 hover:shadow-lg hover:border-cyan-600"
+                  className="w-28 sm:w-40 lg:w-36 h-auto mt-1 shrink-0 flex flex-col items-center justify-center border border-cyan-300 bg-[#1a1a1a] rounded-xl p-4 transition hover:-translate-y-1 hover:shadow-lg hover:border-cyan-600"
                 >
                   <img
                     src={skillsIconsBaseURL + iconPath}
