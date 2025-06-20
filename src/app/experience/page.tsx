@@ -191,7 +191,7 @@ export default function ProjectsPage() {
       </motion.h2>
       {/* Skills Header End */}
 
-      {/* Skills Header End */}
+      {/* Skills Carousel Start */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -221,6 +221,7 @@ export default function ProjectsPage() {
           </div>
         ))}
       </motion.div>
+      {/* Skills Carousel End */}
     </main>
   );
 }
