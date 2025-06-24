@@ -40,6 +40,4 @@ If you'd like to connect, feel free to reach out via:
 
 ## TODO
 - Add certifications section
-- Add fetch-resume project and more to experience page
-- Add images to experience page
 - Add any missing experience or skills
