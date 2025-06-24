@@ -43,10 +43,10 @@ export default function AboutPage() {
         className="flex justify-center mb-12"
       >
         <picture>
-          <source srcSet={getAssetUrl("Medhansh_Garg.avif")} type="image/avif" />
-          <source srcSet={getAssetUrl("Medhansh_Garg.webp")} type="image/webp" />
+          <source srcSet={getAssetUrl("images/Medhansh_Garg.avif")} type="image/avif" />
+          <source srcSet={getAssetUrl("images/Medhansh_Garg.webp")} type="image/webp" />
           <img
-            src={getAssetUrl("Medhansh_Garg.png")}
+            src={getAssetUrl("images/Medhansh_Garg.png")}
             alt="Medhansh Garg"
             width="200"
             height="200"

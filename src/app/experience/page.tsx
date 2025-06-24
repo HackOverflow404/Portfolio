@@ -2,17 +2,18 @@
 'use client';
 import { LuCornerDownLeft, LuX, LuLink as LinkIcon, LuDownload, LuClipboardCheck } from 'react-icons/lu';
 import { motion } from 'framer-motion';
-import projects, { resumeURL } from '@/data/projects';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Courier_Prime } from "next/font/google";
 import { getAssetUrl } from '@/utils/basePath';
 import { useRouter } from 'next/navigation';
+import dynamic from 'next/dynamic';
 import skills from '@/data/skills';
-import Modal from '@/components/Modal';
-import Carousel from "@/components/Carousel";
+import projects, { resumeURL, projectImagesBaseURL } from '@/data/projects';
+const Modal = dynamic(() => import('@/components/Modal'), { ssr: false });
+const Carousel = dynamic(() => import('@/components/Carousel'), { ssr: false });
 
 const courier = Courier_Prime({ subsets: ["latin"], weight: ["400", "700"] });
-const skillsIconsBaseURL = getAssetUrl('skills_icons');
+const skillsIconsBaseURL = getAssetUrl('skills_icons/');
 
 export default function ProjectsPage() {
   type Project = typeof projects[number];
@@ -140,6 +141,7 @@ export default function ProjectsPage() {
                       key={idx}
                       src={iconPath}
                       alt={skill}
+                      loading="lazy"
                       title={skill}
                       width={32}
                       height={32}
@@ -152,6 +154,55 @@ export default function ProjectsPage() {
             )}
             {/* Modal Skills End */}
 
+            {/* Images Gallery */}
+            {selected.modalContent.images && (
+              <div className="space-y-6 my-4">
+                {Array.isArray(selected.modalContent.images) && selected.modalContent.images.length > 0 && (
+                  <Carousel>
+                    {selected.modalContent.images.map((imgUrl, idx) => (
+                      <img
+                        key={idx}
+                        src={projectImagesBaseURL + imgUrl}
+                        alt={`Project Screenshot ${idx + 1}`}
+                        loading="lazy"
+                        className="w-full h-60 rounded-lg border border-cyan-500 shadow-md object-contain"
+                      />
+                    ))}
+                  </Carousel>
+                )}
+              </div>
+            )}
+
+            {/* Embedded Content */}
+            {selected.modalContent.embed && (
+              <div className="my-4 space-y-6">
+                {Array.isArray(selected.modalContent.embed) && selected.modalContent.embed.length > 0 && (
+                  <div className="space-y-6">
+                    {selected.modalContent.embed.map((url, idx) => {
+                      const isYouTube = url.includes("youtube.com") || url.includes("youtu.be");
+                      return (
+                        <div key={idx} className="w-full aspect-video border border-cyan-500 rounded shadow-lg overflow-hidden">
+                          <iframe
+                            src={
+                              isYouTube
+                                ? url.replace("watch?v=", "embed/").replace("youtu.be/", "youtube.com/embed/")
+                                : url
+                            }
+                            title={`Embedded Content ${idx + 1}`}
+                            className="w-full h-full"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                            loading="lazy"
+                            style={{ border: 'none' }}
+                          />
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            )}
+            
             {/* Modal Content Start */}
             <div className="space-y-4 text-gray-300">
               {Array.isArray(selected.modalContent.description)
@@ -210,6 +261,7 @@ export default function ProjectsPage() {
                   <img
                     src={skillsIconsBaseURL + iconPath}
                     alt={skillName}
+                    loading="lazy"
                     width={40}
                     height={40}
                     className="mb-2"
