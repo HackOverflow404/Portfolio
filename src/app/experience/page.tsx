@@ -1,19 +1,19 @@
 // Page component for the Experience page
-'use client';
-import { LuCornerDownLeft, LuX, LuLink as LinkIcon, LuDownload, LuClipboardCheck } from 'react-icons/lu';
-import { motion } from 'framer-motion';
-import { useState } from 'react';
+"use client";
+import { LuCornerDownLeft, LuX, LuLink as LinkIcon, LuDownload, LuClipboardCheck } from "react-icons/lu";
+import { motion } from "framer-motion";
+import { useState } from "react";
 import { Courier_Prime } from "next/font/google";
-import { getAssetUrl } from '@/utils/basePath';
-import { useRouter } from 'next/navigation';
-import dynamic from 'next/dynamic';
-import skills from '@/data/skills';
-import projects, { resumeURL, projectImagesBaseURL } from '@/data/projects';
-const Modal = dynamic(() => import('@/components/Modal'), { ssr: false });
-const Carousel = dynamic(() => import('@/components/Carousel'), { ssr: false });
+import { getAssetUrl } from "@/utils/basePath";
+import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
+import skills from "@/data/skills";
+import projects, { resumeURL, projectImagesBaseURL } from "@/data/projects";
+const Modal = dynamic(() => import("@/components/Modal"), { ssr: false });
+const Carousel = dynamic(() => import("@/components/Carousel"), { ssr: false });
 
 const courier = Courier_Prime({ subsets: ["latin"], weight: ["400", "700"] });
-const skillsIconsBaseURL = getAssetUrl('skills_icons/');
+const skillsIconsBaseURL = getAssetUrl("skills_icons/");
 
 export default function ProjectsPage() {
   type Project = typeof projects[number];
@@ -40,6 +40,7 @@ export default function ProjectsPage() {
         <LuCornerDownLeft className="w-5 h-5 mr-1" /> Home
       </button>
 
+      <section id="Experience">
       {/* Header Start */}
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
@@ -103,7 +104,7 @@ export default function ProjectsPage() {
                       rel="noopener noreferrer"
                       className="inline-flex items-center px-4 py-2 border border-cyan-300 text-cyan-300 rounded-full text-sm hover:bg-cyan-600 hover:border-cyan-600 hover:text-black transition"
                     >
-                      {link.title.includes('Download') ? (
+                      {link.title.includes("Download") ? (
                         <LuDownload className="w-4 h-4 mr-2" />
                       ) : (
                         <LinkIcon className="w-4 h-4 mr-2" />
@@ -117,7 +118,7 @@ export default function ProjectsPage() {
                       className="inline-flex items-center px-4 py-2 border border-cyan-300 text-cyan-300 rounded-full text-sm hover:bg-cyan-600 hover:border-cyan-600 hover:text-black transition"
                     >
                       <LuClipboardCheck className="w-4 h-4 mr-2" />
-                      {copied ? 'Copied!' : 'Copy Link'}
+                      {copied ? "Copied!" : "Copy Link"}
                     </button>
                   )}
                 </div>
@@ -154,7 +155,7 @@ export default function ProjectsPage() {
             )}
             {/* Modal Skills End */}
 
-            {/* Images Gallery */}
+            {/* Modal Image Gallery Start */}
             {selected.modalContent.images && (
               <div className="space-y-6 my-4">
                 {Array.isArray(selected.modalContent.images) && selected.modalContent.images.length > 0 && (
@@ -172,8 +173,9 @@ export default function ProjectsPage() {
                 )}
               </div>
             )}
+            {/* Modal Image Gallery End */}
 
-            {/* Embedded Content */}
+            {/* Modal Embedded Content Start */}
             {selected.modalContent.embed && (
               <div className="my-4 space-y-6">
                 {Array.isArray(selected.modalContent.embed) && selected.modalContent.embed.length > 0 && (
@@ -193,7 +195,7 @@ export default function ProjectsPage() {
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
                             loading="lazy"
-                            style={{ border: 'none' }}
+                            style={{ border: "none" }}
                           />
                         </div>
                       );
@@ -202,6 +204,7 @@ export default function ProjectsPage() {
                 )}
               </div>
             )}
+            {/* Modal Embedded Content End */}
             
             {/* Modal Content Start */}
             <div className="space-y-4 text-gray-300">
@@ -221,7 +224,7 @@ export default function ProjectsPage() {
                   src={resumeURL}
                   className="w-full h-full"
                   title="Resume Preview"
-                  style={{ border: 'none' }}
+                  style={{ border: "none" }}
                 ></iframe>
               </div>
             )}
@@ -230,50 +233,53 @@ export default function ProjectsPage() {
         )}
       </Modal>
       {/* Open Modal End */}
+      </section>
 
-      {/* Skills Header Start */}
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className={`text-3xl md:text-5xl text-cyan-300 mt-30 text-center ${courier.className}`}
+      <section id="Skills">
+        {/* Skills Header Start */}
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className={`text-3xl md:text-5xl text-cyan-300 mt-30 text-center ${courier.className}`}
+          >
+          My Skills
+        </motion.h2>
+        {/* Skills Header End */}
+
+        {/* Skills Carousel Start */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="mt-12 space-y-12"
         >
-        My Skills
-      </motion.h2>
-      {/* Skills Header End */}
-
-      {/* Skills Carousel Start */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.2 }}
-        className="mt-12 space-y-12"
-      >
-        {Object.entries(skills).map(([category, skillMap]) => (
-          <div key={category} className="mb-12">
-            <h3 className="text-xl text-cyan-300 mb-4">{category}</h3>
-            <Carousel>
-              {Object.entries(skillMap).map(([skillName, iconPath]) => (
-                <div
-                  key={skillName}
-                  className="w-28 sm:w-40 lg:w-36 h-auto mt-1 shrink-0 flex flex-col items-center justify-center border border-cyan-300 bg-[#1a1a1a] rounded-xl p-4 transition hover:-translate-y-1 hover:shadow-lg hover:border-cyan-600"
-                >
-                  <img
-                    src={skillsIconsBaseURL + iconPath}
-                    alt={skillName}
-                    loading="lazy"
-                    width={40}
-                    height={40}
-                    className="mb-2"
-                  />
-                  <span className="text-sm text-gray-300 text-center">{skillName}</span>
-                </div>
-              ))}
-            </Carousel>
-          </div>
-        ))}
-      </motion.div>
-      {/* Skills Carousel End */}
+          {Object.entries(skills).map(([category, skillMap]) => (
+            <div key={category} className="mb-12">
+              <h3 className="text-xl text-cyan-300 mb-4">{category}</h3>
+              <Carousel>
+                {Object.entries(skillMap).map(([skillName, iconPath]) => (
+                  <div
+                    key={skillName}
+                    className="w-28 sm:w-40 lg:w-36 h-auto mt-1 shrink-0 flex flex-col items-center justify-center border border-cyan-300 bg-[#1a1a1a] rounded-xl p-4 transition hover:-translate-y-1 hover:shadow-lg hover:border-cyan-600"
+                  >
+                    <img
+                      src={skillsIconsBaseURL + iconPath}
+                      alt={skillName}
+                      loading="lazy"
+                      width={40}
+                      height={40}
+                      className="mb-2"
+                    />
+                    <span className="text-sm text-gray-300 text-center">{skillName}</span>
+                  </div>
+                ))}
+              </Carousel>
+            </div>
+          ))}
+        </motion.div>
+        {/* Skills Carousel End */}
+      </section>
     </main>
   );
 }

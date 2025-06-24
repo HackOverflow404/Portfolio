@@ -1,10 +1,10 @@
-'use client';
-import { Typewriter } from 'react-simple-typewriter';
+"use client";
+import { Typewriter } from "react-simple-typewriter";
 import { Courier_Prime } from "next/font/google";
 import Background from "@/components/background";
 import { motion } from "framer-motion";
 import Head from "next/head";
-import Link from 'next/link';
+import Link from "next/link";
 
 const courier = Courier_Prime({ subsets: ["latin"], weight: ["400", "700"] });
 
@@ -22,7 +22,7 @@ export default function Home() {
         transition={{ duration: 0.8 }}
         className={`text-6xl md:text-6xl text-center text-cyan-300 z-10 ${courier.className}`}
       >
-        &lt;Hi, I’m Medhansh Garg&gt;
+        &lt;Hi, I'm Medhansh Garg&gt;
       </motion.h1>
 
       <p className="mt-6 text-center text-gray-300 text-xl max-w-2xl z-10">
