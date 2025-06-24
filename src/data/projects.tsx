@@ -1,6 +1,7 @@
 import { getAssetUrl } from '@/utils/basePath';
 
 export const resumeURL = getAssetUrl('Resume.pdf');
+export const projectImagesBaseURL = getAssetUrl('images/projects/');
 
 type ProjectLink = {
   title: string;
@@ -12,6 +13,7 @@ type ProjectModalContent = {
   description: string[];
   skills?: string[];
   images?: string[];
+  embed?: string[];
   links?: ProjectLink[];
 };
 
@@ -27,11 +29,9 @@ const projects: ProjectEntry[] = [
     description: "View or download my resume directly from here.",
     modalContent: {
       title: "My Resume",
-      skills: [],
       description: [
         "You can preview, download, or share my resume below. If you'd like to get in touch, feel free to connect via the links provided."
       ],
-      images: [],
       links: [
         { title: "Download Resume", url: resumeURL },
         { title: "Shareable Link", url: typeof window !== 'undefined' ? window.location.origin + resumeURL : resumeURL }
@@ -56,7 +56,6 @@ const projects: ProjectEntry[] = [
         "A small bash alias—`rupd`—wraps everything, so from any terminal I can run one command and know my résumé and portfolio are synchronized within minutes.",
         "Under the hood it combines Google’s `drive.files.export` streaming endpoint, Node’s `stream/promises` utilities for back-pressure-safe writes, and a guarded `execSync` chain for the Git operations. Robust error handling keeps the process transparent and fail-safe."
       ],
-      images: [],
       links: [
         { title: "GitHub Repo", url: "https://github.com/HackOverflow404/Resume-Fetcher" }
       ]
@@ -77,7 +76,6 @@ const projects: ProjectEntry[] = [
         "This project is far from over. Every component is a puzzle, a microcosm of engineering principles waiting to be rediscovered. I’m continually learning how signals propagate, how buses negotiate data, and how standards like I²C, LVDS, and USB manifest in real hardware. I’m not just recycling; I’m reverse-engineering, decoding, rebuilding.",
         "In a world obsessed with the new, I’m finding wonder in the old. I'm not just tearing down a machine, I’m reimagining it. Piece by piece, lesson by lesson."
       ],
-      images: [],
     }
   },
   {
@@ -101,7 +99,7 @@ const projects: ProjectEntry[] = [
         "What began as a workaround to a broken webcam has grown into a living laboratory, one that has taught me how modern internet-based communication works and how hard it is to make it just feel easy.",
         "The project is ongoing. The connection bugs will be fixed. But already, RemoteCam has served its purpose, not just to connect devices, but to connect me with the limits of my knowledge, and push me far beyond them."
       ],
-      images: [],
+      images: ["/RemoteCam-1.png", "/RemoteCam-2.png", "/RemoteCam-3.png"],
       links: [{ title: "Github Repo", url: "https://github.com/HackOverflow404/RemoteWebcam" }]
     }
   },
@@ -118,7 +116,7 @@ const projects: ProjectEntry[] = [
         "On the hardware side, I’ve applied principles from my circuit design coursework to help engineer the badge’s PCB layout, gaining practical experience in power delivery management, voltage regulation, and differential signaling. I’ve worked closely with the team to iterate on schematic design, ensuring stable operation across components, and managing trace impedance for reliable high-speed communication.",
         "This badge isn’t just a tool; it’s a living, breathing embodiment of our collective creativity and technical skill. From wireless mesh networking to custom display firmware, the project has given me a holistic view of what it means to engineer an embedded system from scratch, blending hardware, firmware, and innovation in every step. I’m incredibly proud to be part of this team and can’t wait to see the room light up with hundreds of these badges in action, each one a symbol of curiosity, craft, and community.",
       ],
-      images: [],
+      images: ["/Badge-1.png", "/Badge-2.png"],
     }
   },
   {
@@ -133,11 +131,13 @@ const projects: ProjectEntry[] = [
         "So I did.",
         "What began as a workaround quickly became an obsession, a gateway into the world of embedded systems, protocol design, and the architecture of smart homes. I decided to build my own Smart LED controller, one not tethered to a flimsy plastic dongle, but to the internet, to code, to me.",
         "The first prototype was pragmatic: a Raspberry Pi, a trio of MOSFETs, and a set of GPIO pins pulsing with PWM signals to drive the 12V LED strip safely. The Pi, outputting a mere 3.3V, couldn’t drive the LEDs directly, but with carefully wired logic and a healthy respect for electrical isolation, it became the brain of the system. I wrote a Flask application to control the LEDs, served it over the local network, and containerized it with Docker for portable deployment. Within hours, I could control the entire room's ambience from a web browser. No remote needed.",
+        "To make the system feel less like a demo and more like a product, I implemented JSON-based state persistence on the Pi—storing the last-used color, brightness, and mode in a file that was read on boot. Even if the power went out, my lights came back exactly as I left them.",
         "But that wasn’t enough.",
         "The idea of smart home control, true integration, voice control, and automation had always fascinated me. That’s when I stumbled upon MQTT, a lightweight publish/subscribe protocol used widely in IoT ecosystems. I had heard about it in passing, an offhand mention on the Journal Club podcast I listen to while coding, but now, it took center stage.",
         "I dove in.",
         "I replaced the Raspberry Pi as the LED controller with an ESP32, a tiny but mighty microcontroller perfect for embedded networked applications. The Pi transformed into the MQTT broker, a command and control center running DietPi, a minimalist OS that let me turn it into a dedicated Wi-Fi access point. That step, though seemingly minor, was crucial: my apartment’s Wi-Fi, locked down by Octave Management, made connecting IoT devices nearly impossible. By creating my own secure subnetwork, I circumvented that limitation entirely.",
         "Now, the ESP32 subscribed to lighting commands over MQTT. The Raspberry Pi broadcasted those commands. And the Flask interface became just one of many clients that could publish to the topic. I even connected my Amazon Echo Show to the Pi’s access point, enabling voice control of the lights. It worked. And it was beautiful.",
+        "Just like on the Pi, I used JSON on the ESP32 to persist state — writing to flash memory so that every lighting preference, down to the color and fade speed, survived resets and reboots. It wasn’t just responsive; it was reliable.",
         "But technology never stands still, and neither do I.",
         "As I explored further into the landscape of smart home standards, I discovered Matter, a new protocol promising secure, local, and interoperable communication between devices. It wasn’t just a new protocol; it was the future. Apple, Google, and Amazon were all backing it. It was everything I wanted this project to become.",
         "So I tried.",
@@ -145,12 +145,12 @@ const projects: ProjectEntry[] = [
         "And in the end, Matter never worked. Not on my hardware. Not with the time I had. Not yet.",
         "But that failure wasn’t a dead end. It was a forge.",
         "Because even in defeat, I had learned more than I could have imagined. I didn’t just read about protocols, I implemented them. I didn’t just hear about security, I designed for it. I saw firsthand the fragility of modern ecosystems, the hidden cost of interoperability, and the sheer complexity behind something as simple as turning on a light.",
-        "And most importantly, I built something that mattered. Not because it was perfect, but because it was mine, from PWM signals to MQTT packets, from GPIO pinouts to containerized deployments.",
+        "And most importantly, I built something that mattered. Not because it was perfect, but because it was mine—from PWM signals to MQTT packets, from GPIO pinouts to containerized deployments, from JSON state files to custom access points.",
         "A lost remote was never the real problem.",
         "The real problem was that I couldn’t leave a broken system alone.",
         "And the real victory was that I never stopped trying to fix it.",
       ],
-      images: [],
+      images: ["/LED-1.png"],
       links: [{ title: "Github Repo", url: "https://github.com/HackOverflow404/Control-Lights" }]
     }
   },
@@ -166,7 +166,6 @@ const projects: ProjectEntry[] = [
         "In parallel, I explored the generative side of AI by fine-tuning image generation models to provide intuitive route visualizations for drivers. This involved careful prompt engineering and model conditioning, improving the clarity and usability of visual instructions under varying real-world lighting and environmental conditions. Additionally, I contributed to the design of a retrieval-augmented generation (RAG) system, helping the team build internal chatbot tools that could synthesize knowledge from large corpora of proprietary company data. This effort honed my skills in natural language processing, search optimization, and user experience.",
         "Beyond the technical achievements, this internship sharpened my problem-solving mindset, deepened my ability to communicate complex ideas across interdisciplinary teams, and cultivated a strong sense of ownership and adaptability. Working in a fast-paced environment taught me how to prioritize ruthlessly, break down large challenges into tractable tasks, and stay grounded in both user needs and system constraints. It was a formative experience that not only strengthened my foundation in applied AI and systems engineering but also expanded my confidence in contributing meaningfully to impactful, real-world solutions."
       ],
-      images: [],
     } 
   },
   {
@@ -185,8 +184,8 @@ const projects: ProjectEntry[] = [
         "As important as the backend logic was, we knew it wouldn’t matter if the front end failed. And that’s where I learned my first real lessons in mobile app UI/UX design. Designing for emotion is not like designing for functionality. It’s about softness, clarity, ease. We spent hours debating padding, typography, and button placement, not because it looked pretty, but because it felt better. In a high-stress moment, even milliseconds of confusion or visual friction could break the experience. That lesson, that user experience is emotional as much as it is functional, stayed with me long after the Hackathon ended.",
         "Working as part of a team during a Hackathon environment was both intense and invigorating. We had to collaborate fast and trust each other’s instincts, pulling an all-nighter to finish our project racing against the deadline. Dividing up responsibilities, merging our different levels of experience, and maintaining cohesion under time pressure gave me firsthand insight into what real engineering collaboration feels like. I learned how to communicate ideas quickly, respect design constraints, and adapt when plans changed. It wasn’t just about the code, it was about building something real with other people, fast."
       ],
-      images: [],
-      links: [{ title: "Github Repo", url: "https://github.com/HackOverflow404/Uplift" }]
+      embed: ["https://www.youtube.com/watch?v=76T-BBqLBeY"],
+      links: [{ title: "Github Repo", url: "https://github.com/HackOverflow404/Uplift" }, { title: "Youtube Demo", url: "https://www.youtube.com/watch?v=76T-BBqLBeY" }],
     }
   },
   {
@@ -208,7 +207,7 @@ const projects: ProjectEntry[] = [
         "When it was complete, the website wasn’t just a static resource. It was an interactive experience designed to demystify cybersecurity, to make the invisible visible, and to empower users with knowledge they could act on.",
         "Looking back, Cyber Awareness was more than a technical project, it was a statement of intent. A declaration that learning is only useful if it’s shared, that technology should lift people, and that I’m committed not only to building secure systems, but to helping others understand and protect themselves in the digital world.",
       ],
-      images: [],
+      embed: ["https://hackoverflow404.github.io/cyberawareness/"],
       links: [{ title: "Live Website", url: "https://hackoverflow404.github.io/cyberawareness/" }, { title: "Github Repo", url: "https://github.com/HackOverflow404/cyberawareness" }]
     }
   },
@@ -228,9 +227,8 @@ const projects: ProjectEntry[] = [
         "What I loved most about working with SQLite was its simplicity. It allowed me to iterate quickly, write complex join queries, and ensure atomic transactions, without the overhead of managing a full-fledged DBMS. For this context, it struck the perfect balance.",
         "While the resident view prioritized simplicity, the admin dashboard was where the real power lived. I built a separate interface with additional capabilities: viewing all bookings across all courts, manually overriding schedules, and editing options such as time ranges, default booking durations, and the available courts.",
         "This project gave me something no tutorial or classroom ever could: an end-to-end look at what it means to solve a real problem with code. I learned how to gather requirements from non-technical users, how to build scalable APIs, how to connect frontend and backend layers securely, and how to design user interfaces that work not just in theory but in daily life.",
-
       ],
-      images: [],
+      images: ["Booking-1.png", "Booking-2.png"],
     }
   },
   {
@@ -255,7 +253,6 @@ const projects: ProjectEntry[] = [
         "And in the end, I published the paper in the International Journal of Scientific Research in Science and Technology, under the guidance of a professor at Shobhit University. But more importantly, I walked away with the tools to evaluate not just passwords, but the very systems we trust to protect us online.",
         "For me, this wasn’t just about leet speak. It was about building the mindset of a cybersecurity engineer, one who sees the cracks, tests the assumptions, and works relentlessly to understand what most take for granted.",
       ],
-      images: [],
       links: [{ title: "Research Paper", url: "https://www.researchgate.net/publication/365478150_Evaluation_of_Leet_Speak_on_Password_Strength_and_Security" }]
     }
   }
