@@ -100,7 +100,7 @@ const projects: ProjectEntry[] = [
         "The project is ongoing. The connection bugs will be fixed. But already, RemoteCam has served its purpose, not just to connect devices, but to connect me with the limits of my knowledge, and push me far beyond them."
       ],
       images: ["/RemoteCam-1.png", "/RemoteCam-2.png", "/RemoteCam-3.png"],
-      links: [{ title: "Github Repo", url: "https://github.com/HackOverflow404/RemoteWebcam" }]
+      links: [{ title: "Github Repo", url: "https://github.com/HackOverflow404/RemoteWebcam" }, { title: "Live Website", url: "https://remote-webcam-b70ab.web.app/"}]
     }
   },
   {
