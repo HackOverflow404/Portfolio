@@ -53,7 +53,7 @@ const projects: ProjectEntry[] = [
         "Keeping an online résumé current often means juggling downloads, manual file moves, and redeployments. I wanted that workflow boiled down to a single command. This project delivers exactly that.",
         "The script authenticates with a Google Cloud Service Account, exports my résumé Google Doc as a PDF, and writes it to two key locations: a `job_docs` archive and the `public/` directory of my Next.js portfolio.",
         "Once the new PDF is in place, it triggers a production build, stages the updated asset, commits with a conventional-chore message, and pushes straight to GitHub—instantly kicking off the site's CI pipeline.",
-        "A small bash alias—`rupd`—wraps everything, so from any terminal I can run one command and know my résumé and portfolio are synchronized within minutes.",
+        "A small bash alias `rupd` wraps everything, so from anywhere in any terminal I can run one command and know my résumé and portfolio are synchronized within minutes.",
         "Under the hood it combines Google's `drive.files.export` streaming endpoint, Node's `stream/promises` utilities for back-pressure-safe writes, and a guarded `execSync` chain for the Git operations. Robust error handling keeps the process transparent and fail-safe."
       ],
       links: [
