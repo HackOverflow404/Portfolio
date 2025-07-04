@@ -57,6 +57,7 @@ const projects: ProjectEntry[] = [
         "Under the hood it combines Google's `drive.files.export` streaming endpoint, Node's `stream/promises` utilities for back-pressure-safe writes, and a guarded `execSync` chain for the Git operations. Robust error handling keeps the process transparent and fail-safe.",
         "Manually selecting and copy-pasting each section of my résumé into various applications became exhausting, so I built a PyQt5 Resume Viewer. It parses my PDF into a collapsible tree and lets me click any heading or bullet to instantly copy its text to the clipboard, streamlining the entire process."
       ],
+      images: ["/ResumeFetch-1.png"],
       links: [
         { title: "GitHub Repo", url: "https://github.com/HackOverflow404/Resume-Fetcher" }
       ]
