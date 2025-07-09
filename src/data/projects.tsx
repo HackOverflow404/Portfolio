@@ -45,7 +45,6 @@ const projects: ProjectEntry[] = [
       title: "WorkFlowy + Albert: Building the Launcher Workflow I Needed",
       skills: [
         "C++",
-        "Python",
         "Node.js",
         "Shell Scripting",
         "Qt",
