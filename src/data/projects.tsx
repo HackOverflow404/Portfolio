@@ -39,6 +39,39 @@ const projects: ProjectEntry[] = [
     }
   },
   {
+    title: "AlberFlowy: Instant Structured Notes from the Launcher",
+    description: "A custom Albert plugin that interfaces with WorkFlowy's private API for blazing-fast hierarchical note access, creation, editing, and deletion, all from the keyboard.",
+    modalContent: {
+      title: "WorkFlowy + Albert: Building the Launcher Workflow I Needed",
+      skills: [
+        "C++",
+        "Qt",
+        "Albert Launcher SDK",
+        "WorkFlowy API (Reverse Engineered)",
+        "Puppeteer",
+        "Node.js",
+        "Shell Scripting",
+        "Async Process Management",
+        "HTML Parsing",
+        "CLI Tool Integration"
+      ],
+      description: [
+        "I use WorkFlowy every day. It's where I organize ideas, journal thoughts, outline projects, and brainstorm systems. But despite its beautiful hierarchy and power-user keyboard support, the one thing it lacked was instant global access, something I could summon from anywhere on my Linux desktop without touching a browser. I didn't want to 'open WorkFlowy,' I wanted to _access_ WorkFlowy, like muscle memory, with zero friction. That's where Albert came in.",
+        "Albert is a blazing-fast keyboard launcher for Linux, and I'd used it for years to open apps, search files, manage my clipboard, and more. But I realized it could be far more. What if I could turn it into a structured thought portal, allowing me to create, navigate, and manipulate WorkFlowy nodes, all without leaving my terminal mindset?",
+        "There was just one problem: WorkFlowy doesn't offer a public API. So I rolled up my sleeves and went digging.",
+        "I began by analyzing traffic to WorkFlowy's web app, reverse engineering its private endpoints and operation formats by watching network calls, decoding its `operations` payloads, and replaying requests with my own minimal clients. I explored unofficial GitHub repos, many abandoned and no longer working, and stitched together a working CLI using Puppeteer automation and raw HTTP calls. I then wrapped this with Node.js for exportable control, letting me call `workflowy-cli` with arbitrary operations: create nodes, edit text, mark complete, delete, and more.",
+        "But the CLI was only half the battle. To integrate this smoothly with Albert, I dived into its plugin SDK. Written in C++ and powered by Qt, Albert offered a surprisingly deep and elegant extension system, but the documentation was vast and the examples sparse. I took the time to read through existing plugin repos, parsed signals, slots, timers, and `QProcess` quirks, and architected a fully asynchronous plugin that fetches, caches, and renders my WorkFlowy tree with every keystroke.",
+        "Each node became a selectable `StandardItem`, complete with route-based navigation (`>` delimited), tab-based autocomplete, strikethroughs for completed items, and contextual actions like 'Edit', 'Remove', or 'Complete', all from a single keystroke interface. And if a node didn't exist? It would offer to create it on the fly, committing the change in milliseconds, all asynchronously in a separate thread, maximizing smoothness and prioritizing user experience. I tried various features such as fuzzy search, but ultimately decided to not implement it due to poor UX integration",
+        "The plugin is now my daily companion. From anywhere, I can hit a key combo, type a few characters, and instantly jump to any node in my personal knowledge base, or create new thoughts in the right context. No mouse. No app-switching. Just structured thinking at the speed of my keyboard.",
+        "This project isn't just a plugin. It's a fusion of reverse engineering, automation, asynchronous programming, and deep customization of my workflow. It taught me how to bend rigid systems to serve my personal productivity and gave me even more respect for the invisible power of well-written launchers."
+      ],
+      images: ["/AlberFlowy-1.png", "/AlberFlowy-2.png"],
+      links: [
+        { title: "GitHub Repo", url: "https://github.com/HackOverflow404/albert-workflowy-plugin" }
+      ]
+    }
+  },
+  {
     title: "Automated Résumé Fetch & Deploy",
     description: "Node.js script that pulls my Google-Docs résumé via a GCP Service Account and redeploys my portfolio site in one command.",
     modalContent: {
@@ -220,7 +253,7 @@ const projects: ProjectEntry[] = [
       title: "Court Booking System: Building a Full-Stack Solution for Community Coordination",
       skills: ["HTML/CSS", "JavaScript", "Java", "React/React Native", "Spring Boot", "SQLite", "REST APIs", "Responsive Design"],
       description: [
-        "Every solution begins with a friction point. In my neighborhood, where I spent my 10th through 12th grade years, it was the tennis, basketball, and badminton courts, each with their own paper logbooks and silent frustrations. I ran into it myself whenever I tried to book a tennis court after school or on weekend mornings: double bookings, no-shows, and miscommunication were common, not out of negligence but because the system simply wasn’t built to scale with the people using it. I saw an opportunity: not just to digitize a process, but to reimagine what coordination could feel like when technology works as it should, seamlessly, quietly, and purposefully.",
+        "Every solution begins with a friction point. In my neighborhood, where I spent my 10th through 12th grade years, it was the tennis, basketball, and badminton courts, each with their own paper logbooks and silent frustrations. I ran into it myself whenever I tried to book a tennis court after school or on weekend mornings: double bookings, no-shows, and miscommunication were common, not out of negligence but because the system simply wasn't built to scale with the people using it. I saw an opportunity: not just to digitize a process, but to reimagine what coordination could feel like when technology works as it should, seamlessly, quietly, and purposefully.",
         "That's how I began building the Court Booking System: a full-stack application designed specifically for apartment complexes to manage their shared sports facilities. I wanted it to be more than just functional, I wanted it to feel intuitive, transparent, and empowering for both residents and administrators.",
         "This was a real problem, with real stakeholders: neighbors, building managers, and families with weekend routines hinging on court availability. That context shaped every decision. I chose React for the frontend, not just because of its speed and component-based architecture, but because I wanted to build something reactive in the truest sense, interfaces that respond to user actions immediately and meaningfully.",
         "The UI was designed with clarity in mind: calendar-based booking views, time-slot selectors, real-time updates, and seamless user information handling. State management was handled through useState and useEffect hooks for lightweight responsiveness, while Axios powered live asynchronous communication with the backend REST API.",
