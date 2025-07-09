@@ -45,15 +45,12 @@ const projects: ProjectEntry[] = [
       title: "WorkFlowy + Albert: Building the Launcher Workflow I Needed",
       skills: [
         "C++",
-        "Qt",
-        "Albert Launcher SDK",
-        "WorkFlowy API (Reverse Engineered)",
-        "Puppeteer",
+        "Python",
         "Node.js",
         "Shell Scripting",
-        "Async Process Management",
-        "HTML Parsing",
-        "CLI Tool Integration"
+        "Qt",
+        "Linux",
+        "Reverse Engineering"
       ],
       description: [
         "I use WorkFlowy every day. It's where I organize ideas, journal thoughts, outline projects, and brainstorm systems. But despite its beautiful hierarchy and power-user keyboard support, the one thing it lacked was instant global access, something I could summon from anywhere on my Linux desktop without touching a browser. I didn't want to 'open WorkFlowy,' I wanted to _access_ WorkFlowy, like muscle memory, with zero friction. That's where Albert came in.",
@@ -118,7 +115,7 @@ const projects: ProjectEntry[] = [
     description: "A cross-platform webcam and microphone streaming app built using WebRTC and Firebase signaling, with a mobile PWA frontend and a QtPython + GStreamer desktop client.",
     modalContent: {
       title: "RemoteCam: Engineering Seamless Communication",
-      skills: ["Python", "TypeScript", "HTML/CSS", "React/React Native", "Next.js", "QtPython", "Firebase", "PWA", "Cross-Platform Apps", "Responsive UI", "WebRTC", "Linux", "Network Protocol Analysis", "GStreamer"],
+      skills: ["Python", "TypeScript", "HTML/CSS", "React/React Native", "Next.js", "QtPython", "Firebase", "PWA", "Cross-Platform Apps", "Responsive UI", "WebRTC", "Linux", "Network Analysis", "GStreamer"],
       description: [
         "The project began with a frustration familiar to many: my laptop's built-in webcam and microphone had become unusable for video calls, the video was laggy and grainy, the audio drowned in static and background noise. The simple solution would have been to buy a new webcam or plug in a headset with a built-in mic. But I had something better, an iPhone with world-class imaging and sound hardware. Rather than buying another device, I saw a challenge: could I turn the phone I already carried into a fully functional wireless webcam and microphone for my Ubuntu laptop?",
         "At the same time, I was deeply curious about how devices communicate in real time over the internet, a fascination with WebSockets and protocols used in systems like FaceTime and Zoom. I didn't just want a solution. I wanted to build the solution. And I wanted it to teach me everything I didn't yet know.",
@@ -159,7 +156,7 @@ const projects: ProjectEntry[] = [
     description: "Flask app on Raspberry Pi for smartphone-based LED control. Used MQTT, Docker, and integrated the Matter protocol for smart home automation.",
     modalContent: {
       title: "Smart LED Strip Controller",
-      skills: ["Python", "HTML/CSS", "Flask", "Docker", "ESP32", "Raspberry Pi", "Circuit Design", "MQTT", "Network Protocol Analysis"],
+      skills: ["Python", "HTML/CSS", "Flask", "Docker", "ESP32", "Raspberry Pi", "Circuit Design", "MQTT", "Network Analysis"],
       description: [
         "It started, as many things in college do, with something small, a lost remote.",
         "In the chaos of my freshman year move-out, the slender plastic controller for my beloved LED strip vanished. Without it, the strip, a cascade of colors once glowing beneath my bed frame, was reduced to nothing more than decorative wire. I could've ordered a replacement. I could've moved on. But that would've meant ignoring the itch. The challenge. The whisper of possibility that said: what if I could build something better?",
