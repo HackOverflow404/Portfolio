@@ -63,7 +63,7 @@ const projects: ProjectEntry[] = [
       ],
       images: ["/AlberFlowy-1.png", "/AlberFlowy-2.png"],
       links: [
-        { title: "GitHub Repo", url: "https://github.com/HackOverflow404/albert-workflowy-plugin" }
+        { title: "GitHub Repo", url: "https://github.com/HackOverflow404/AlberFlowy" }
       ]
     }
   },
