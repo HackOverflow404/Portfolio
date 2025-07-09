@@ -32,7 +32,7 @@ export default function AboutPage() {
         initial={{ opacity: 0, y: 20 }} 
         animate={{ opacity: 1, y: 0 }} 
         transition={{ duration: 0.5 }}
-        className={`text-3xl md:text-5xl text-cyan-300 mb-6 text-center ${courier.className}`}
+        className={`text-3xl md:text-5xl text-cyan-300 mb-12 text-center ${courier.className}`}
         id="About-Me"
       >
         About Me
@@ -41,7 +41,7 @@ export default function AboutPage() {
         initial={{ opacity: 0, y: 20 }} 
         animate={{ opacity: 1, y: 0 }} 
         transition={{ duration: 0.5 }}
-        className="flex justify-center mb-12"
+        className="flex justify-center my-12"
       >
         <picture>
           <source srcSet={getAssetUrl("images/Medhansh_Garg.avif")} type="image/avif" />
@@ -49,8 +49,8 @@ export default function AboutPage() {
           <img
             src={getAssetUrl("images/Medhansh_Garg.png")}
             alt="Medhansh Garg"
-            width="200"
-            height="200"
+            width="400"
+            height="400"
             loading="lazy"
             decoding="async"
           />
@@ -63,11 +63,11 @@ export default function AboutPage() {
         initial={{ opacity: 0 }} 
         animate={{ opacity: 1 }} 
         transition={{ delay: 0.2 }}
-        className="space-y-6 text-gray-300 text-lg"
+        className="text-gray-300 text-lg my-12"
       >
         <section
           id="Contact-Info"
-          className="mb-12 flex flex-wrap justify-center gap-6 text-cyan-300"
+          className="flex flex-wrap justify-center gap-6 text-cyan-300"
         >
           <Link
             href="mailto:medhansh2005@gmail.com"
@@ -111,7 +111,7 @@ export default function AboutPage() {
         initial={{ opacity: 0 }} 
         animate={{ opacity: 1 }} 
         transition={{ delay: 0.2 }}
-        className="space-y-6 text-gray-300 text-lg"
+        className="space-y-6 text-gray-300 text-lg my-6"
       >
         <section id="Who-I-Am">
           <h3 className={`text-2xl font-semibold text-cyan-300 mb-2 ${courier.className}`}>Who I Am</h3>
