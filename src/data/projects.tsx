@@ -25,15 +25,15 @@ type ProjectEntry = {
 
 const projects: ProjectEntry[] = [
   {
-    title: "View Resume",
-    description: "View or download my resume directly from here.",
+    title: "View Résumé",
+    description: "View or download my résumé directly from here.",
     modalContent: {
-      title: "My Resume",
+      title: "My Résumé",
       description: [
-        "You can preview, download, or share my resume below. If you'd like to get in touch, feel free to connect via the links provided."
+        "You can preview, download, or share my résumé below. If you'd like to get in touch, feel free to connect via the links provided."
       ],
       links: [
-        { title: "Download Resume", url: resumeURL },
+        { title: "Download Résumé", url: resumeURL },
         { title: "Shareable Link", url: typeof window !== "undefined" ? window.location.origin + resumeURL : resumeURL }
       ]
     }
@@ -84,7 +84,7 @@ const projects: ProjectEntry[] = [
         "Once the new PDF is in place, it triggers a production build, stages the updated asset, commits with a conventional-chore message, and pushes straight to GitHub, instantly kicking off the site's CI pipeline.",
         "A small bash alias `rupd` wraps everything, so from anywhere in any terminal I can run one command and know my résumé and portfolio are synchronized within minutes.",
         "Under the hood it combines Google's `drive.files.export` streaming endpoint, Node's `stream/promises` utilities for back-pressure-safe writes, and a guarded `execSync` chain for the Git operations. Robust error handling keeps the process transparent and fail-safe.",
-        "Manually selecting and copy-pasting each section of my résumé into various applications became exhausting, so I built a PyQt5 Resume Viewer. It parses my PDF into a collapsible tree and lets me click any heading or bullet to instantly copy its text to the clipboard, streamlining the entire process."
+        "Manually selecting and copy-pasting each section of my résumé into various applications became exhausting, so I built a PyQt5 Résumé Viewer. It parses my PDF into a collapsible tree and lets me click any heading or bullet to instantly copy its text to the clipboard, streamlining the entire process."
       ],
       images: ["/ResumeFetch-1.png"],
       links: [
