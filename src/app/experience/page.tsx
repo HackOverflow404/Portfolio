@@ -112,7 +112,7 @@ export default function ProjectsPage() {
                       {link.title}
                     </a>
                   ))}
-                  {selected.title === "View Resume" && (
+                  {selected.title === "View Résumé" && (
                     <button
                       onClick={() => handleCopy(window.location.origin + resumeURL)}
                       className="inline-flex items-center px-4 py-2 border border-cyan-300 text-cyan-300 rounded-full text-sm hover:bg-cyan-600 hover:border-cyan-600 hover:text-black transition"
@@ -218,12 +218,12 @@ export default function ProjectsPage() {
             {/* Modal Content End */}
 
             {/* Resume View Logic Start */}
-            {selected.title === "View Resume" && (
+            {selected.title === "View Résumé" && (
               <div className="w-full h-[60vh] mt-6 border border-cyan-500 rounded overflow-hidden shadow-lg">
                 <iframe
                   src={resumeURL}
                   className="w-full h-full"
-                  title="Resume Preview"
+                  title="Résumé Preview"
                   style={{ border: "none" }}
                 ></iframe>
               </div>
