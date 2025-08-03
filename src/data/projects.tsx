@@ -63,7 +63,8 @@ const projects: ProjectEntry[] = [
       ],
       images: ["/AlberFlowy-1.png", "/AlberFlowy-2.png"],
       links: [
-        { title: "GitHub Repo", url: "https://github.com/HackOverflow404/AlberFlowy" }
+        { title: "GitHub Repo", url: "https://github.com/HackOverflow404/AlberFlowy" },
+        { title: "Install Page", url: "https://hackoverflow404.github.io/AlberFlowy/" },
       ]
     }
   },
