@@ -2,34 +2,34 @@ import React, { useEffect } from 'react'
 import "./background.css"
 
 export default function Background() {
-  useEffect(() => {
-    const particlesContainer = document.getElementById('particles-container');
-    document.addEventListener('mousemove', (e) => {
-      const mouseX = (e.clientX / window.innerWidth) * 100;
-      const mouseY = (e.clientY / window.innerHeight) * 100;
+  // useEffect(() => {
+  //   const particlesContainer = document.getElementById('particles-container');
+  //   document.addEventListener('mousemove', (e) => {
+  //     const mouseX = (e.clientX / window.innerWidth) * 100;
+  //     const mouseY = (e.clientY / window.innerHeight) * 100;
 
-      const particle = document.createElement('div');
-      particle.className = 'particle';
-      const size = Math.random() * 4 + 2;
-      particle.style.width = `${size}px`;
-      particle.style.height = `${size}px`;
-      particle.style.left = `${mouseX}%`;
-      particle.style.top = `${mouseY}%`;
-      particle.style.opacity = '0.6';
+  //     const particle = document.createElement('div');
+  //     particle.className = 'particle';
+  //     const size = Math.random() * 4 + 2;
+  //     particle.style.width = `${size}px`;
+  //     particle.style.height = `${size}px`;
+  //     particle.style.left = `${mouseX}%`;
+  //     particle.style.top = `${mouseY}%`;
+  //     particle.style.opacity = '0.6';
 
-      particlesContainer?.appendChild(particle);
+  //     particlesContainer?.appendChild(particle);
 
-      setTimeout(() => {
-        particle.style.transition = 'all 2s ease-out';
-        particle.style.left = `${mouseX + (Math.random() * 10 - 5)}%`;
-        particle.style.top = `${mouseY + (Math.random() * 10 - 5)}%`;
-        particle.style.opacity = '0';
-        setTimeout(() => {
-          particle.remove();
-        }, 2000);
-      }, 10);
-    });
-  }, []);
+  //     setTimeout(() => {
+  //       particle.style.transition = 'all 2s ease-out';
+  //       particle.style.left = `${mouseX + (Math.random() * 10 - 5)}%`;
+  //       particle.style.top = `${mouseY + (Math.random() * 10 - 5)}%`;
+  //       particle.style.opacity = '0';
+  //       setTimeout(() => {
+  //         particle.remove();
+  //       }, 2000);
+  //     }, 10);
+  //   });
+  // }, []);
 
   return (
     <div className="absolute inset-0 w-screen h-screen overflow-hidden z-0">
