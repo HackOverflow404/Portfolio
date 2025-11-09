@@ -9,6 +9,7 @@ import { MdEmail } from "react-icons/md";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import TargetCursor from "@/components/TargetCursor";
 
 const courier = Courier_Prime({ subsets: ["latin"], weight: ["400", "700"] });
 
@@ -16,11 +17,17 @@ export default function AboutPage() {
   const router = useRouter();
 
   return (
-    <main className="px-6 py-20 max-w-5xl mx-auto relative">
+    <main className="px-6 py-20 max-w-5xl mx-auto relative cursor-none">
+      <TargetCursor
+        spinDuration={5}
+        hideDefaultCursor={true}
+        parallaxOn={true}
+      />
+
       {/* Back button to navigate to home */}
       <button
         onClick={() => router.push("/")}
-        className="absolute mt-5 top-4 left-4 flex items-center text-cyan-300 hover:text-cyan-600"
+        className="cursor-target cursor-none absolute mt-5 top-4 left-4 flex items-center text-cyan-300 hover:text-cyan-600"
         aria-label="Go back"
       >
         <LuCornerDownLeft className="w-5 h-5 mr-1" />
@@ -71,14 +78,14 @@ export default function AboutPage() {
         >
           <Link
             href="mailto:medhansh2005@gmail.com"
-            className="flex items-center gap-2 hover:text-cyan-500 transition-colors duration-200 border border-transparent hover:border-cyan-700 px-4 py-2 rounded-md"
+            className="cursor-target cursor-none flex items-center gap-2 hover:text-cyan-500 transition-colors duration-200 border border-transparent hover:border-cyan-700 px-4 py-2 rounded-md"
           >
             <MdEmail className="w-5 h-5" />
             Email
           </Link>
           <Link
             href="tel:+12179042064"
-            className="flex items-center gap-2 hover:text-cyan-500 transition-colors duration-200 border border-transparent hover:border-cyan-700 px-4 py-2 rounded-md"
+            className="cursor-target cursor-none flex items-center gap-2 hover:text-cyan-500 transition-colors duration-200 border border-transparent hover:border-cyan-700 px-4 py-2 rounded-md"
           >
             <IoCall className="w-5 h-5" />
             Phone
@@ -87,7 +94,7 @@ export default function AboutPage() {
             href="https://linkedin.com/in/medhansh-garg/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 hover:text-cyan-500 transition-colors duration-200 border border-transparent hover:border-cyan-700 px-4 py-2 rounded-md"
+            className="cursor-target cursor-none flex items-center gap-2 hover:text-cyan-500 transition-colors duration-200 border border-transparent hover:border-cyan-700 px-4 py-2 rounded-md"
           >
             <FaLinkedin className="w-5 h-5" />
             LinkedIn
@@ -96,7 +103,7 @@ export default function AboutPage() {
             href="https://github.com/HackOverflow404"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 hover:text-cyan-500 transition-colors duration-200 border border-transparent hover:border-cyan-700 px-4 py-2 rounded-md"
+            className="cursor-target cursor-none flex items-center gap-2 hover:text-cyan-500 transition-colors duration-200 border border-transparent hover:border-cyan-700 px-4 py-2 rounded-md"
           >
             <FaGithub className="w-5 h-5" />
             GitHub

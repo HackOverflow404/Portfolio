@@ -19,6 +19,7 @@
     "embla-carousel-react": "^8.6.0",
     "embla-carousel-wheel-gestures": "^8.0.2",
     "framer-motion": "^12.16.0",
+    "gsap": "^3.13.0",
     "next": "15.3.3",
     "next-goatcounter": "^1.0.6",
     "react": "^19.0.0",

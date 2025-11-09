@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import skills from "@/data/skills";
 import projects, { resumeURL, projectImagesBaseURL } from "@/data/projects";
+import TargetCursor from "@/components/TargetCursor";
 const Modal = dynamic(() => import("@/components/Modal"), { ssr: false });
 const Carousel = dynamic(() => import("@/components/Carousel"), { ssr: false });
 
@@ -30,11 +31,16 @@ export default function ProjectsPage() {
   };
 
   return (
-    <main className="px-6 py-20 max-w-5xl mx-auto relative">
+    <main className="px-6 py-20 max-w-5xl mx-auto relative cursor-none">
+      <TargetCursor
+        spinDuration={5}
+        hideDefaultCursor={true}
+        parallaxOn={true}
+      />
       {/* Back button to navigate to home */}
       <button
         onClick={() => router.push("/")}
-        className="absolute mt-5 top-4 left-4 flex items-center text-cyan-300 hover:text-cyan-600"
+        className="cursor-target cursor-none absolute mt-5 top-4 left-4 flex items-center text-cyan-300 hover:text-cyan-600"
         aria-label="Go back"
       >
         <LuCornerDownLeft className="w-5 h-5 mr-1" /> Home
@@ -63,7 +69,7 @@ export default function ProjectsPage() {
         {projects.map((project, i) => (
           <div
             key={i}
-            className="border border-cyan-300 p-6 rounded-xl shadow-md bg-[#1a1a1a] hover:cursor-pointer hover:scale-[1.01] transition"
+            className="cursor-target cursor-none border border-cyan-300 p-6 rounded-xl shadow-md bg-[#1a1a1a] hover:scale-[1.01] transition"
             onClick={() => {
               setSelected(project);
               setOpen(true);
@@ -82,11 +88,11 @@ export default function ProjectsPage() {
           <div className="relative">
             {/* Modal Header Start */}
             <button
-              className="absolute top-4 right-4 text-cyan-300 hover:text-cyan-500"
+              className="cursor-target cursor-none absolute top-4 right-4 text-cyan-300 hover:text-cyan-500"
               onClick={() => setOpen(false)}
               aria-label="Close modal"
             >
-              <LuX className="w-5 h-5" />
+              <LuX className="cursor-target cursor-none w-5 h-5" />
             </button>
 
             <h2 className={`text-2xl font-bold text-cyan-300 mb-4 ${courier.className}`}>{selected.modalContent.title}</h2>
@@ -102,7 +108,7 @@ export default function ProjectsPage() {
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center px-4 py-2 border border-cyan-300 text-cyan-300 rounded-full text-sm hover:bg-cyan-600 hover:border-cyan-600 hover:text-black transition"
+                      className="cursor-target cursor-none inline-flex items-center px-4 py-2 border border-cyan-300 text-cyan-300 rounded-full text-sm hover:bg-cyan-600 hover:border-cyan-600 hover:text-black transition"
                     >
                       {link.title.includes("Download") ? (
                         <LuDownload className="w-4 h-4 mr-2" />
@@ -146,7 +152,7 @@ export default function ProjectsPage() {
                       title={skill}
                       width={32}
                       height={32}
-                      className="object-contain hover:scale-110 transition-transform"
+                      className="cursor-target cursor-none object-contain hover:scale-110 transition-transform"
                     />
                     )
                   );
@@ -183,7 +189,7 @@ export default function ProjectsPage() {
                     {selected.modalContent.embed.map((url, idx) => {
                       const isYouTube = url.includes("youtube.com") || url.includes("youtu.be");
                       return (
-                        <div key={idx} className="w-full aspect-video border border-cyan-500 rounded shadow-lg overflow-hidden">
+                        <div key={idx} className="cursor-target cursor-none w-full aspect-video border border-cyan-500 rounded shadow-lg overflow-hidden">
                           <iframe
                             src={
                               isYouTube
@@ -219,7 +225,7 @@ export default function ProjectsPage() {
 
             {/* Resume View Logic Start */}
             {selected.title === "View Résumé" && (
-              <div className="w-full h-[60vh] mt-6 border border-cyan-500 rounded overflow-hidden shadow-lg">
+              <div className="cursor-target cursor-none w-full h-[60vh] mt-6 border border-cyan-500 rounded overflow-hidden shadow-lg">
                 <iframe
                   src={resumeURL}
                   className="w-full h-full"
@@ -261,7 +267,7 @@ export default function ProjectsPage() {
                 {Object.entries(skillMap).map(([skillName, iconPath]) => (
                   <div
                     key={skillName}
-                    className="w-28 sm:w-40 lg:w-36 h-auto mt-1 shrink-0 flex flex-col items-center justify-center border border-cyan-300 bg-[#1a1a1a] rounded-xl p-4 transition hover:-translate-y-1 hover:shadow-lg hover:border-cyan-600"
+                    className="cursor-target cursor-none w-28 sm:w-40 lg:w-36 h-auto mt-1 shrink-0 flex flex-col items-center justify-center border border-cyan-300 bg-[#1a1a1a] rounded-xl p-4 transition hover:-translate-y-1 hover:shadow-lg hover:border-cyan-600"
                   >
                     <img
                       src={skillsIconsBaseURL + iconPath}
