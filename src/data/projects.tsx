@@ -45,6 +45,30 @@ const projects: ProjectEntry[] = [
     },
   },
   {
+    title: "Research Paper on Biometric Authentication and Cybersecurity in the Digital Age",
+    description:
+      "Published review paper analyzing biometric authentication as a modern alternative to passwords and tokens, with a focus on digital risk management, privacy, usability, and online banking security.",
+    modalContent: {
+      title: "Biometric Authentication and Cybersecurity in the Digital Age",
+      skills: ["Pentesting Fundamentals"],
+      description: [
+          "I wrote this paper because I kept seeing the same contradiction everywhere: society was rapidly digitizing, but authentication still depended heavily on methods that break down under real human behavior. Password fatigue, weak reset flows, and theft are not edge cases anymore, they are the default failure modes when millions of people live inside online systems.",
+          "The question I wanted to answer was not “are biometrics cool”, but “are biometrics actually a responsible step forward.” I wanted to understand where biometric authentication genuinely improves security and user experience, and where it introduces new risks that people tend to ignore until it is too late.",
+          "Writing it forced me to think in tradeoffs instead of slogans. I structured the review around practical evaluation factors the paper explicitly focuses on: cost ownership, usability, scalability, security, and privacy. That framework kept me honest, because biometrics do not get to win on security while losing on everything else.",
+          "One of the most important parts of the writing process was drawing a clean line between physical biometrics and behavioral biometrics. Physical biometrics felt like the most defensible category because they rely on physiological identifiers. Behavioral biometrics raised a harder problem, especially once I considered how artificial intelligence changes the threat model and makes certain behavioral signals less reliable.",
+          "I also spent time grounding the paper in real-world governance concerns instead of treating biometrics as purely technical. The privacy discussion mattered to me because biometric data is not something you can casually rotate. That pushed me to emphasize secure handling practices the paper discusses, like template or hash-based approaches rather than storing the biometric itself, along with broader expectations around user awareness, consent, and transparency.",
+          "To keep it connected to high-stakes reality, I looked specifically at online banking security and what authentication has to accomplish in that environment. That is where the paper's conclusion became very practical: biometrics can be valuable on their own, but a layered approach that combines biometrics with OTP is presented as a stronger direction for cybersecurity and digital risk management.",
+          "Overall, writing this paper was an exercise in turning a fast-moving, hype-heavy topic into a structured, defensible viewpoint. It is a review paper, but for me it was also a way to build better security instincts: weigh adoption, privacy, and failure modes at the same time, and still arrive at a recommendation that is usable in the real world.",
+      ],
+      links: [
+        {
+          title: "Research Paper",
+          url: "https://www.medcrave.com/articles/det/30276/Biometric-authentication-and-cybersecurity-in-the-digital-age",
+        },
+      ],
+    },
+  },
+  {
     title:
       "Spotify Controller: Repurposing Legacy Hardware as a Now-Playing Dashboard",
     description:
