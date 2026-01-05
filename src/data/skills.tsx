@@ -14,8 +14,8 @@ const skills: Skills = {
 
 export default skills;
 
-// Core Programming Languages: Python, C, C, JavaScript, TypeScript, Java, HTMLCSS
-// Software & Web Development: ReactReact Native, Next.js, Qt, Flask, Spring Boot, SQLite, Node.js, Docker, Firebase, Google Cloud Platform, Vercel, Figma, Tailwind CSS, Git, Cross-Platform Apps, Responsive Design, REST APIs, Progressive Web Apps (PWA
+// Core Programming Languages: Python, C, C++, JavaScript, TypeScript, Java, HTMLCSS
+// Software & Web Development: React, React Native, Next.js, Qt, Flask, Spring Boot, SQLite, Node.js, Docker, Firebase, Google Cloud Platform, Vercel, Figma, Tailwind CSS, Git, Cross-Platform Apps, Responsive Design, REST APIs, Progressive Web Apps (PWA
 // Embedded Systems & Hardware: ESP32, Raspberry Pi, Circuit Design, MQTT, Protocol Debugging, GStreamer
 // Cybersecurity & Systems: Pentesting Fundamentals, Reverse Engineering, WebRTC, Network Analysis, CTFs (Sigpwny, CypherCon), Hashcat, Frida, Burp Suite, Nmap, Linux, Shell Scripting
 // AI & Tooling: LangChain + OpenAI, YOLO, TensorFlow, PyTorch, Pandas
