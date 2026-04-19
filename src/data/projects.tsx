@@ -23,6 +23,24 @@ type ProjectEntry = {
   modalContent: ProjectModalContent;
 };
 
+/*
+ * Projects to add:
+ * - Home lab setup with raspberry pi
+ *   - Set up samba with 2TB hard drive
+ *   - Set up HA with docker and portainer
+ * - Care Health Insurance
+ * - MicroTech
+ *   - EOH Lead + HackerFab
+ * - CS 124 Honors
+ * - Jailbroke Echo Show
+ * - Made Spotify Dashboard user facing
+ * - Remote Webcam is officially working
+ * - Update Resume fetcher
+ * - Making automated door locker
+ *   - Using MQTT and Pi and ESP
+ */
+
+
 const projects: ProjectEntry[] = [
   {
     title: "View Résumé",
@@ -45,6 +63,42 @@ const projects: ProjectEntry[] = [
     },
   },
   {
+    title: "CS 124 Honors Web Platform: Full-Stack Leadership at UIUC",
+    description:
+      "Leading a team of 11 developers to build and maintain the CS 124 Honors course platform at UIUC — featuring UIUC SSO authentication, five-tier role-based access, a staff task management dashboard, and a custom TOTP attendance system.",
+    modalContent: {
+      title: "Building and Leading the CS 124 Honors Platform at UIUC",
+      skills: [
+        "React",
+        "Next.js",
+        "JavaScript",
+        "TypeScript",
+        "Tailwind CSS",
+        "REST APIs",
+        "Vercel",
+        "Git",
+        "Responsive Design",
+      ],
+      description: [
+        "When I stepped into the role of Lead Web Developer for CS 124 Honors at UIUC, the course already had a website. But 'had a website' and 'had a great website' are two very different things. The platform was slow, had no authentication layer, no internal tooling for staff, and no real infrastructure for the kind of coordination a course like this demands. My job wasn't just to maintain it — it was to rethink it.",
+        "The first thing I tackled was raw performance. A Google Lighthouse score of 76 is functional, but it's not something you're proud of. I audited the site top to bottom, identifying bloated assets, unoptimized images, and blocking render paths. Through systematic image optimization and lazy loading strategies, I pushed that score to 99, not as a vanity metric, but because every millisecond of load time is a student waiting, and a course platform should feel instant.",
+        "But performance was only the beginning. The bigger challenge was identity and access. CS 124 Honors operates within UIUC's ecosystem, meaning students and staff already have institutional identities through the university's Shibboleth Identity Provider. I integrated the platform directly with UIUC's SSO system, building an authentication flow where users are redirected through Shibboleth, and on return, issued a JWT that the application uses to establish and manage their session. No separate account creation, no password management; just your NetID, and you're in.",
+        "That authentication layer became the backbone of something far more complex: a five-tier role-based access control system. The platform distinguishes between five distinct roles (Course Lead, Head Project Manager, Project Manager, Web Developer, and Student), each with their own routing permissions and dashboard view. Rather than showing everyone the same interface and simply hiding buttons, I built dedicated experiences per role, so every user lands exactly where they need to be and sees only what's relevant to them.",
+        "For staff, that meant building a fully featured task management dashboard. Staff members can create tasks, assign them to other staff or students, set deadlines, and track completion status, all in one place. What used to require back-and-forth Slack messages or shared spreadsheets is now a structured workflow. The goal was to reduce coordination friction and give the team a single source of truth for what needs doing and who's doing it.",
+        "One of the features I'm most proud of is the attendance system. Staff can create course events directly through the platform, and students check in by submitting a time-sensitive OTP, a one-time password that refreshes every 30 seconds, built entirely from scratch without relying on a third-party TOTP library. I implemented the underlying time-based token logic myself, tying it to each event so that only students present during the active window can successfully mark attendance. It's a small detail with a big impact: it's fraud-resistant, frictionless, and removes the administrative overhead of manual attendance tracking entirely.",
+        "Beyond the technical work, this role is fundamentally about leadership. I manage a team of 11 developers, delegating feature work, reviewing pull requests, running weekly meetings, unblocking teammates, and making architectural decisions that keep the codebase maintainable as the team grows and rotates. Every semester brings new contributors, which means onboarding, documentation, and making sure the system is legible to someone seeing it for the first time.",
+        "The CS 124 Honors platform is a living system, one that a large course depends on every single day. Building it has been as much an exercise in engineering judgment and people management as it has been in writing code. And watching it go from a sluggish, static page to a responsive, role-aware, institution-integrated platform that the entire course runs through is something I'm genuinely proud of.",
+      ],
+      images: ["/CS124H-1.png"],
+      links: [
+        {
+          title: "CS 124 Honors Website",
+          url: "https://honors.cs124.org",
+        },
+      ],
+    },
+  },
+  {
     title: "Research Paper on Biometric Authentication and Cybersecurity in the Digital Age",
     description:
       "Published review paper analyzing biometric authentication as a modern alternative to passwords and tokens, with a focus on digital risk management, privacy, usability, and online banking security.",
@@ -52,13 +106,13 @@ const projects: ProjectEntry[] = [
       title: "Biometric Authentication and Cybersecurity in the Digital Age",
       skills: ["Pentesting Fundamentals"],
       description: [
-          "I wrote this paper because I kept seeing the same contradiction everywhere: society was rapidly digitizing, but authentication still depended heavily on methods that break down under real human behavior. Password fatigue, weak reset flows, and theft are not edge cases anymore, they are the default failure modes when millions of people live inside online systems.",
-          "The question I wanted to answer was not “are biometrics cool”, but “are biometrics actually a responsible step forward.” I wanted to understand where biometric authentication genuinely improves security and user experience, and where it introduces new risks that people tend to ignore until it is too late.",
-          "Writing it forced me to think in tradeoffs instead of slogans. I structured the review around practical evaluation factors the paper explicitly focuses on: cost ownership, usability, scalability, security, and privacy. That framework kept me honest, because biometrics do not get to win on security while losing on everything else.",
-          "One of the most important parts of the writing process was drawing a clean line between physical biometrics and behavioral biometrics. Physical biometrics felt like the most defensible category because they rely on physiological identifiers. Behavioral biometrics raised a harder problem, especially once I considered how artificial intelligence changes the threat model and makes certain behavioral signals less reliable.",
-          "I also spent time grounding the paper in real-world governance concerns instead of treating biometrics as purely technical. The privacy discussion mattered to me because biometric data is not something you can casually rotate. That pushed me to emphasize secure handling practices the paper discusses, like template or hash-based approaches rather than storing the biometric itself, along with broader expectations around user awareness, consent, and transparency.",
-          "To keep it connected to high-stakes reality, I looked specifically at online banking security and what authentication has to accomplish in that environment. That is where the paper's conclusion became very practical: biometrics can be valuable on their own, but a layered approach that combines biometrics with OTP is presented as a stronger direction for cybersecurity and digital risk management.",
-          "Overall, writing this paper was an exercise in turning a fast-moving, hype-heavy topic into a structured, defensible viewpoint. It is a review paper, but for me it was also a way to build better security instincts: weigh adoption, privacy, and failure modes at the same time, and still arrive at a recommendation that is usable in the real world.",
+        "I wrote this paper because I kept seeing the same contradiction everywhere: society was rapidly digitizing, but authentication still depended heavily on methods that break down under real human behavior. Password fatigue, weak reset flows, and theft are not edge cases anymore, they are the default failure modes when millions of people live inside online systems.",
+        "The question I wanted to answer was not “are biometrics cool”, but “are biometrics actually a responsible step forward.” I wanted to understand where biometric authentication genuinely improves security and user experience, and where it introduces new risks that people tend to ignore until it is too late.",
+        "Writing it forced me to think in tradeoffs instead of slogans. I structured the review around practical evaluation factors the paper explicitly focuses on: cost ownership, usability, scalability, security, and privacy. That framework kept me honest, because biometrics do not get to win on security while losing on everything else.",
+        "One of the most important parts of the writing process was drawing a clean line between physical biometrics and behavioral biometrics. Physical biometrics felt like the most defensible category because they rely on physiological identifiers. Behavioral biometrics raised a harder problem, especially once I considered how artificial intelligence changes the threat model and makes certain behavioral signals less reliable.",
+        "I also spent time grounding the paper in real-world governance concerns instead of treating biometrics as purely technical. The privacy discussion mattered to me because biometric data is not something you can casually rotate. That pushed me to emphasize secure handling practices the paper discusses, like template or hash-based approaches rather than storing the biometric itself, along with broader expectations around user awareness, consent, and transparency.",
+        "To keep it connected to high-stakes reality, I looked specifically at online banking security and what authentication has to accomplish in that environment. That is where the paper's conclusion became very practical: biometrics can be valuable on their own, but a layered approach that combines biometrics with OTP is presented as a stronger direction for cybersecurity and digital risk management.",
+        "Overall, writing this paper was an exercise in turning a fast-moving, hype-heavy topic into a structured, defensible viewpoint. It is a review paper, but for me it was also a way to build better security instincts: weigh adoption, privacy, and failure modes at the same time, and still arrive at a recommendation that is usable in the real world.",
       ],
       links: [
         {
