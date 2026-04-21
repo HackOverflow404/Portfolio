@@ -65,7 +65,7 @@ const projects: ProjectEntry[] = [
   {
     title: "CS 124 Honors Web Platform: Full-Stack Leadership at UIUC",
     description:
-      "Leading a team of 11 developers to build and maintain the CS 124 Honors course platform at UIUC — featuring UIUC SSO authentication, five-tier role-based access, a staff task management dashboard, and a custom TOTP attendance system.",
+      "Leading a team of 11 developers to build and maintain the CS 124 Honors course platform at UIUC - featuring UIUC SSO authentication, five-tier role-based access, a staff task management dashboard, and a custom TOTP attendance system.",
     modalContent: {
       title: "Building and Leading the CS 124 Honors Platform at UIUC",
       skills: [
@@ -94,6 +94,10 @@ const projects: ProjectEntry[] = [
         {
           title: "CS 124 Honors Website",
           url: "https://honors.cs124.org",
+        },
+        {
+          title: "CS 124 Honors Dev Website",
+          url: "https://cs124h-dev-site.vercel.app/",
         },
       ],
     },
@@ -484,7 +488,7 @@ const projects: ProjectEntry[] = [
         "For the backend, I turned to Spring Boot, a powerful Java-based framework that allowed me to build a secure, scalable REST API with precision. The architecture followed REST principles cleanly: endpoints for creating, retrieving, modifying, and deleting bookings; user role checks; and time-conflict validation logic.",
         "I chose SQLite for the database, a file-based relational DB that was lightweight, easy to deploy, and perfectly suited for a system without high concurrency demands. The schema was built to reflect real-world relationships: Users, Bookings, Courts, and TimeSlots.",
         "One key architectural decision that dramatically improved both performance and usability was how I handled booking availability. Instead of pre-populating and storing every possible time slot, I dynamically generated available slots in real-time based on admin-defined constraints like opening hours and booking durations. When a user requested slots for a particular court and date, the system calculated the valid options and filtered out those already booked. This approach reduced unnecessary storage, made updates instantaneous, and kept the user experience fluid and responsive.",
-        "To make the booking process feel complete and reliable, I also implemented automated email confirmations. Whenever a user successfully made a booking, they were sent a detailed confirmation email containing the court, time slot, and date—ensuring peace of mind and reducing the likelihood of miscommunication or forgotten reservations.",
+        "To make the booking process feel complete and reliable, I also implemented automated email confirmations. Whenever a user successfully made a booking, they were sent a detailed confirmation email containing the court, time slot, and date-ensuring peace of mind and reducing the likelihood of miscommunication or forgotten reservations.",
         "What I loved most about working with SQLite was its simplicity. It allowed me to iterate quickly, write complex join queries, and ensure atomic transactions without the overhead of managing a full-fledged DBMS. For this context, it struck the perfect balance.",
         "While the resident view prioritized simplicity, the admin dashboard held the real power. I built a separate interface with additional capabilities: viewing all bookings across every court, manually overriding schedules, and editing options such as time ranges, default booking durations, and available courts.",
         "This project gave me something no tutorial or classroom ever could: an end-to-end look at what it means to solve a real problem with code. I learned how to gather requirements from non-technical users, build scalable APIs, connect frontend and backend layers securely, and design user interfaces that work not just in theory but in daily life.",

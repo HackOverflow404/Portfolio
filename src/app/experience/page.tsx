@@ -5,7 +5,8 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Courier_Prime } from "next/font/google";
 import { getAssetUrl } from "@/utils/basePath";
-import { useRouter } from "next/navigation";
+import { unstable_ViewTransition as ViewTransition } from "react";
+import Link from "next/link";
 import dynamic from "next/dynamic";
 import skills from "@/data/skills";
 import projects, { resumeURL, projectImagesBaseURL } from "@/data/projects";
@@ -18,7 +19,6 @@ const skillsIconsBaseURL = getAssetUrl("skills_icons/");
 
 export default function ProjectsPage() {
   type Project = typeof projects[number];
-  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<Project | null>(null);
   const [copied, setCopied] = useState(false);
@@ -38,37 +38,39 @@ export default function ProjectsPage() {
         parallaxOn={true}
       />
       {/* Back button to navigate to home */}
-      <button
-        onClick={() => router.push("/")}
-        className="cursor-target cursor-none absolute mt-5 top-4 left-4 flex items-center text-cyan-300 hover:text-cyan-600"
-        aria-label="Go back"
-      >
-        <LuCornerDownLeft className="w-5 h-5 mr-1" /> Home
-      </button>
+      <ViewTransition name="experience-btn">
+        <Link
+          href="/"
+className="cursor-target cursor-none absolute mt-5 top-4 left-4 flex items-center text-cyan-300 hover:text-cyan-600"
+          aria-label="Go back"
+        >
+          <LuCornerDownLeft className="w-5 h-5 mr-1" /> Home
+        </Link>
+      </ViewTransition>
 
       <section id="Experience">
       {/* Header Start */}
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className={`text-3xl md:text-5xl text-cyan-300 mb-12 text-center ${courier.className}`}
-      >
-        My Experience
-      </motion.h2>
+      <ViewTransition name="page-heading" share="heading-morph">
+        <h2
+          className={`text-3xl md:text-5xl text-cyan-300 mb-12 text-center ${courier.className}`}
+        >
+          My Experience
+        </h2>
+      </ViewTransition>
       {/* Header End */}
       
       {/* Closed Modal Start */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.2 }}
-        className="grid md:grid-cols-2 gap-8"
-      >
-        {/* For every project, render a modal div */}
+      <div className="grid md:grid-cols-2 gap-8">
         {projects.map((project, i) => (
-          <div
+          <motion.div
             key={i}
+            initial={{ opacity: 0, y: 28, scale: 0.95, filter: "blur(8px)" }}
+            animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+            transition={{
+              duration: 0.7,
+              delay: 0.1 + i * 0.07,
+              ease: [0.25, 0.46, 0.45, 0.94],
+            }}
             className="cursor-target cursor-none border border-cyan-300 p-6 rounded-xl shadow-md bg-[#1a1a1a] hover:scale-[1.01] transition"
             onClick={() => {
               setSelected(project);
@@ -77,9 +79,9 @@ export default function ProjectsPage() {
           >
             <h3 className="text-xl font-bold text-cyan-300 mb-2">{project.title}</h3>
             <p className="text-gray-400 text-sm">{project.description}</p>
-          </div>
+          </motion.div>
         ))}
-      </motion.div>
+      </div>
       {/* Closed Modal End */}
       
       {/* Open Modal Start */}
@@ -244,9 +246,10 @@ export default function ProjectsPage() {
       <section id="Skills">
         {/* Skills Header Start */}
         <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0, y: 28, filter: "blur(8px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
           className={`text-3xl md:text-5xl text-cyan-300 mt-30 text-center ${courier.className}`}
           >
           My Skills
@@ -254,14 +257,20 @@ export default function ProjectsPage() {
         {/* Skills Header End */}
 
         {/* Skills Carousel Start */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="mt-12 space-y-12"
-        >
-          {Object.entries(skills).map(([category, skillMap]) => (
-            <div key={category} className="mb-12">
+        <div className="mt-12 space-y-12">
+          {Object.entries(skills).map(([category, skillMap], i) => (
+            <motion.div
+              key={category}
+              initial={{ opacity: 0, y: 28, filter: "blur(8px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{
+                duration: 0.7,
+                delay: i * 0.08,
+                ease: [0.25, 0.46, 0.45, 0.94],
+              }}
+              className="mb-12"
+            >
               <h3 className="text-xl text-cyan-300 mb-4">{category}</h3>
               <Carousel>
                 {Object.entries(skillMap).map(([skillName, iconPath]) => (
@@ -281,9 +290,9 @@ export default function ProjectsPage() {
                   </div>
                 ))}
               </Carousel>
-            </div>
+            </motion.div>
           ))}
-        </motion.div>
+        </div>
         {/* Skills Carousel End */}
       </section>
     </main>

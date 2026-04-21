@@ -1,8 +1,8 @@
 "use client";
+import { unstable_ViewTransition as ViewTransition } from "react";
 import { Typewriter } from "react-simple-typewriter";
 import { Courier_Prime } from "next/font/google";
 import Background from "@/components/background";
-import { motion } from "framer-motion";
 import Head from "next/head";
 import Link from "next/link";
 import TargetCursor from "@/components/TargetCursor";
@@ -25,14 +25,13 @@ export default function Home() {
         parallaxOn={true}
       />
 
-      <motion.h1
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className={`text-6xl md:text-6xl text-center text-cyan-300 z-10 ${courier.className}`}
-      >
-        &lt;Hi, I'm Medhansh Garg&gt;
-      </motion.h1>
+      <ViewTransition name="page-heading" share="heading-morph">
+        <h1
+          className={`text-6xl md:text-6xl text-center text-cyan-300 z-10 ${courier.className}`}
+        >
+          &lt;Hi, I'm Medhansh Garg&gt;
+        </h1>
+      </ViewTransition>
 
       <div className="mt-6 text-center text-gray-300 text-xl max-w-2xl z-10 relative justify-center">
         {/* Invisible placeholder text that reserves vertical space */}
@@ -53,18 +52,22 @@ export default function Home() {
       </div>
 
       <div className="mt-8 flex space-x-4 z-10">
-        <Link
-          href="/about"
-          className="cursor-target cursor-none bg-cyan-300 hover:bg-cyan-600 text-black px-4 py-2 rounded-xl"
-        >
-          About Me
-        </Link>
-        <Link
-          href="/experience"
-          className="cursor-target cursor-none border border-cyan-300 text-cyan-300 px-4 py-2 rounded-xl"
-        >
-          My Experience
-        </Link>
+        <ViewTransition name="about-btn">
+          <Link
+            href="/about"
+            className="cursor-target cursor-none bg-cyan-300 hover:bg-cyan-600 text-black px-4 py-2 rounded-xl"
+          >
+            About Me
+          </Link>
+        </ViewTransition>
+        <ViewTransition name="experience-btn">
+          <Link
+            href="/experience"
+            className="cursor-target cursor-none border border-cyan-300 text-cyan-300 px-4 py-2 rounded-xl"
+          >
+            My Experience
+          </Link>
+        </ViewTransition>
       </div>
     </main>
   );
