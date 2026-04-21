@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Courier_Prime } from "next/font/google";
 import { getAssetUrl } from "@/utils/basePath";
-import { unstable_ViewTransition as ViewTransition } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import skills from "@/data/skills";
@@ -38,25 +37,21 @@ export default function ProjectsPage() {
         parallaxOn={true}
       />
       {/* Back button to navigate to home */}
-      <ViewTransition name="experience-btn">
-        <Link
-          href="/"
-className="cursor-target cursor-none absolute mt-5 top-4 left-4 flex items-center text-cyan-300 hover:text-cyan-600"
-          aria-label="Go back"
-        >
-          <LuCornerDownLeft className="w-5 h-5 mr-1" /> Home
-        </Link>
-      </ViewTransition>
+      <Link
+        href="/"
+        className="cursor-target cursor-none absolute mt-5 top-4 left-4 flex items-center text-cyan-300 hover:text-cyan-600"
+        aria-label="Go back"
+      >
+        <LuCornerDownLeft className="w-5 h-5 mr-1" /> Home
+      </Link>
 
       <section id="Experience">
       {/* Header Start */}
-      <ViewTransition name="page-heading" share="heading-morph">
-        <h2
-          className={`text-3xl md:text-5xl text-cyan-300 mb-12 text-center ${courier.className}`}
-        >
-          My Experience
-        </h2>
-      </ViewTransition>
+      <h2
+        className={`text-3xl md:text-5xl text-cyan-300 mb-12 text-center ${courier.className}`}
+      >
+        My Experience
+      </h2>
       {/* Header End */}
       
       {/* Closed Modal Start */}
