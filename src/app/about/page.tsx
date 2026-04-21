@@ -6,7 +6,6 @@ import { LuCornerDownLeft } from "react-icons/lu";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { IoCall } from "react-icons/io5";
 import { MdEmail } from "react-icons/md";
-import { unstable_ViewTransition as ViewTransition } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import TargetCursor from "@/components/TargetCursor";
@@ -79,26 +78,22 @@ export default function AboutPage() {
       />
 
       {/* Back button to navigate to home */}
-      <ViewTransition name="about-btn">
-        <Link
-          href="/"
-          className="cursor-target cursor-none absolute mt-5 top-4 left-4 flex items-center text-cyan-300 hover:text-cyan-600"
-          aria-label="Go back"
-        >
-          <LuCornerDownLeft className="w-5 h-5 mr-1" />
-          Home
-        </Link>
-      </ViewTransition>
+      <Link
+        href="/"
+        className="cursor-target cursor-none absolute mt-5 top-4 left-4 flex items-center text-cyan-300 hover:text-cyan-600"
+        aria-label="Go back"
+      >
+        <LuCornerDownLeft className="w-5 h-5 mr-1" />
+        Home
+      </Link>
 
       {/* Header Start */}
-      <ViewTransition name="page-heading" share="heading-morph">
-        <h2
-          className={`text-3xl md:text-5xl text-cyan-300 mb-12 text-center ${courier.className}`}
-          id="About-Me"
-        >
-          About Me
-        </h2>
-      </ViewTransition>
+      <h2
+        className={`text-3xl md:text-5xl text-cyan-300 mb-12 text-center ${courier.className}`}
+        id="About-Me"
+      >
+        About Me
+      </h2>
 
       {/* Photo - scale-in reveal */}
       <motion.div
