@@ -205,6 +205,30 @@ const projects: ProjectEntry[] = [
     },
   },
   {
+    title: "Care Health Insurance",
+    description:
+      "Cybersecurity Intern — Applied academic knowledge in a real-world enterprise security environment.",
+    modalContent: {
+      title: "Cybersecurity Intern at Care Health Insurance",
+      skills: [
+        "Nmap",
+        "Burp Suite",
+        "Frida",
+        "JADX",
+        "QEMU",
+        "Network Analysis",
+        "Pentesting Fundamentals",
+        "Reverse Engineering",
+        "Linux",
+      ],
+      description: [
+        "Before this internship, cybersecurity was something I understood in theory. I had taken the courses, worked through the labs, and learned the tools. But there's a difference between running Nmap against a practice environment and running it against infrastructure that real people depend on. This internship was where that gap closed.",
+        "A lot of what I did early on felt like a translation exercise. The concepts I had studied, network reconnaissance, vulnerability assessment, traffic analysis, were all there, just now with actual stakes. I was scanning real systems, analyzing real traffic in Wireshark, and writing findings that would inform real decisions about the security of their user portal. It made everything I had learned feel suddenly more concrete.",
+        "The more interesting growth happened with tools I hadn't touched before. Burp Suite became a daily driver for intercepting and inspecting web application traffic on the portal, helping me spot misconfigurations and probe for vulnerabilities in a way that no classroom exercise had prepared me for. I also got my first serious exposure to mobile security through Frida and JADX, using dynamic instrumentation and static analysis to dig into how their app behaved under the hood. To make that work, I spun up Android virtual machines in QEMU, giving me a controlled, reproducible environment to instrument and decompile the app without touching a physical device. It was a different kind of thinking, patient, methodical, and deeply satisfying when something clicked.",
+      ],
+    },
+  },
+  {
     title: "Automated Résumé Fetch & Deploy",
     description:
       "Node.js script that pulls my Google-Docs résumé via a GCP Service Account and redeploys my portfolio site in one command.",
