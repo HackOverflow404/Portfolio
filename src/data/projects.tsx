@@ -205,9 +205,9 @@ const projects: ProjectEntry[] = [
     },
   },
   {
-    title: "Care Health Insurance",
+    title: "Internship at Care Health Insurance",
     description:
-      "Cybersecurity Intern — Applied academic knowledge in a real-world enterprise security environment.",
+      "Cybersecurity Intern - Applied academic knowledge in a real-world enterprise security environment.",
     modalContent: {
       title: "Cybersecurity Intern at Care Health Insurance",
       skills: [
