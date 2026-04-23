@@ -1,24 +1,16 @@
 "use client";
-import { startTransition, unstable_ViewTransition as ViewTransition } from "react";
-import { useRouter } from "next/navigation";
 import { Typewriter } from "react-simple-typewriter";
 import { Courier_Prime } from "next/font/google";
 import Background from "@/components/background";
 import Head from "next/head";
+import Link from "next/link";
 import TargetCursor from "@/components/TargetCursor";
 
 const courier = Courier_Prime({ subsets: ["latin"], weight: ["400", "700"] });
 
 export default function Home() {
-  const router = useRouter();
   const bioText =
     "I'm a computer engineer passionate about cybersecurity, software engineering, and shaping the future of intelligent, secure tech.";
-
-  const navigate = (href: string) => {
-    startTransition(() => {
-      router.push(href);
-    });
-  };
 
   return (
     <main className="h-[100dvh] overflow-hidden flex flex-col justify-center items-center px-6 relative cursor-none">
@@ -32,13 +24,11 @@ export default function Home() {
         parallaxOn={true}
       />
 
-      <ViewTransition name="page-header">
-        <h1
-          className={`text-6xl md:text-6xl text-center text-cyan-300 z-10 ${courier.className}`}
-        >
-          &lt;Hi, I'm Medhansh Garg&gt;
-        </h1>
-      </ViewTransition>
+      <h1
+        className={`text-6xl md:text-6xl text-center text-cyan-300 z-10 ${courier.className}`}
+      >
+        &lt;Hi, I'm Medhansh Garg&gt;
+      </h1>
 
       <div className="mt-6 text-center text-gray-300 text-xl max-w-2xl z-10 relative justify-center">
         {/* Invisible placeholder text that reserves vertical space */}
@@ -59,22 +49,18 @@ export default function Home() {
       </div>
 
       <div className="mt-8 flex space-x-4 z-10">
-        <ViewTransition name="about-nav">
-          <button
-            onClick={() => navigate("/about")}
-            className="cursor-target cursor-none bg-cyan-300 hover:bg-cyan-600 text-black px-4 py-2 rounded-xl"
-          >
-            About Me
-          </button>
-        </ViewTransition>
-        <ViewTransition name="experience-nav">
-          <button
-            onClick={() => navigate("/experience")}
-            className="cursor-target cursor-none border border-cyan-300 text-cyan-300 px-4 py-2 rounded-xl"
-          >
-            My Experience
-          </button>
-        </ViewTransition>
+        <Link
+          href="/about"
+          className="cursor-target cursor-none bg-cyan-300 hover:bg-cyan-600 text-black px-4 py-2 rounded-xl"
+        >
+          About Me
+        </Link>
+        <Link
+          href="/experience"
+          className="cursor-target cursor-none border border-cyan-300 text-cyan-300 px-4 py-2 rounded-xl"
+        >
+          My Experience
+        </Link>
       </div>
     </main>
   );
