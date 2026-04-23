@@ -1,7 +1,6 @@
 // Page component for the Experience page
 "use client";
-import { startTransition, unstable_ViewTransition as ViewTransition } from "react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { LuCornerDownLeft, LuX, LuLink as LinkIcon, LuDownload, LuClipboardCheck } from "react-icons/lu";
 import { motion } from "framer-motion";
 import { useState } from "react";
@@ -18,7 +17,6 @@ const courier = Courier_Prime({ subsets: ["latin"], weight: ["400", "700"] });
 const skillsIconsBaseURL = getAssetUrl("skills_icons/");
 
 export default function ProjectsPage() {
-  const router = useRouter();
   type Project = typeof projects[number];
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<Project | null>(null);
@@ -39,25 +37,21 @@ export default function ProjectsPage() {
         parallaxOn={true}
       />
       {/* Back button to navigate to home */}
-      <ViewTransition name="experience-nav">
-        <button
-          onClick={() => startTransition(() => router.push("/"))}
-          className="cursor-target cursor-none absolute mt-5 top-4 left-4 flex items-center text-cyan-300 hover:text-cyan-600"
-          aria-label="Go back"
-        >
-          <LuCornerDownLeft className="w-5 h-5 mr-1" /> Home
-        </button>
-      </ViewTransition>
+      <Link
+        href="/"
+        className="cursor-target cursor-none absolute mt-5 top-4 left-4 flex items-center text-cyan-300 hover:text-cyan-600"
+        aria-label="Go back"
+      >
+        <LuCornerDownLeft className="w-5 h-5 mr-1" /> Home
+      </Link>
 
       <section id="Experience">
       {/* Header Start */}
-      <ViewTransition name="page-header">
-        <h2
-          className={`text-3xl md:text-5xl text-cyan-300 mb-12 text-center ${courier.className}`}
-        >
-          My Experience
-        </h2>
-      </ViewTransition>
+      <h2
+        className={`text-3xl md:text-5xl text-cyan-300 mb-12 text-center ${courier.className}`}
+      >
+        My Experience
+      </h2>
       {/* Header End */}
       
       {/* Closed Modal Start */}

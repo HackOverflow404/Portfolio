@@ -1,7 +1,5 @@
 // Page component for the About page
 "use client";
-import { startTransition, unstable_ViewTransition as ViewTransition } from "react";
-import { useRouter } from "next/navigation";
 import { Courier_Prime } from "next/font/google";
 import { getAssetUrl } from "@/utils/basePath";
 import { LuCornerDownLeft } from "react-icons/lu";
@@ -64,7 +62,6 @@ const sectionVariants = {
 };
 
 export default function AboutPage() {
-  const router = useRouter();
   const contactLinks = [
     { href: "mailto:medhansh2005@gmail.com", icon: <MdEmail className="w-5 h-5" />, label: "Email" },
     { href: "tel:+12179042064", icon: <IoCall className="w-5 h-5" />, label: "Phone" },
@@ -81,26 +78,22 @@ export default function AboutPage() {
       />
 
       {/* Back button to navigate to home */}
-      <ViewTransition name="about-nav">
-        <button
-          onClick={() => startTransition(() => router.push("/"))}
-          className="cursor-target cursor-none absolute mt-5 top-4 left-4 flex items-center text-cyan-300 hover:text-cyan-600"
-          aria-label="Go back"
-        >
-          <LuCornerDownLeft className="w-5 h-5 mr-1" />
-          Home
-        </button>
-      </ViewTransition>
+      <Link
+        href="/"
+        className="cursor-target cursor-none absolute mt-5 top-4 left-4 flex items-center text-cyan-300 hover:text-cyan-600"
+        aria-label="Go back"
+      >
+        <LuCornerDownLeft className="w-5 h-5 mr-1" />
+        Home
+      </Link>
 
       {/* Header Start */}
-      <ViewTransition name="page-header">
-        <h2
-          className={`text-3xl md:text-5xl text-cyan-300 mb-12 text-center ${courier.className}`}
-          id="About-Me"
-        >
-          About Me
-        </h2>
-      </ViewTransition>
+      <h2
+        className={`text-3xl md:text-5xl text-cyan-300 mb-12 text-center ${courier.className}`}
+        id="About-Me"
+      >
+        About Me
+      </h2>
 
       {/* Photo - scale-in reveal */}
       <motion.div
