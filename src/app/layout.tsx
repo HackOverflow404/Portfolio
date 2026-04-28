@@ -20,7 +20,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       {/* <script data-goatcounter="https://hackoverflow.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script> */}
       <GCScript siteUrl={"https://hackoverflow.goatcounter.com/count"} />
-      <body className={`bg-[#0f0f0f] scroll-smooth text-white ${inter.className}`}>{children}</body>
+      <body className={`bg-[#0f0f0f] scroll-smooth text-white ${inter.className}`}>
+        {children}
+      </body>
     </html>
   );
 }
