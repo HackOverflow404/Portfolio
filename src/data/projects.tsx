@@ -29,7 +29,6 @@ type ProjectEntry = {
  * - Add shell into webassembly
  * - See if I can add images to main modal card
  * - Add click electric pulse animations
- * - Add LaTeX to skills and resume fetcher
  */
 
 
