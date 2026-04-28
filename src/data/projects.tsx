@@ -93,6 +93,10 @@ const projects: ProjectEntry[] = [
         "Designing the exhibit meant thinking constantly about the range of people who would walk up to each station. Every stage had to be intuitive enough for a ten-year-old, engaging enough for a university student, and technically grounded enough that a professor would find something interesting in it. Getting that balance right across four distinct demos, all built and wired from scratch, was a constraint that shaped every design decision we made.",
         "Leading this project taught me things that coursework doesn't really cover. Technically, I got deeper into embedded systems and circuit design than I had before, but the bigger lessons were about people and process. I learned how to give ownership to teammates without losing visibility, how to course-correct without micromanaging, and how to make decisions under time pressure when the perfect answer isn't available. Watching something I had planned on a whiteboard turn into a physical exhibit that hundreds of people genuinely enjoyed was one of the most satisfying experiences I've had at UIUC.",
       ],
+      images: [
+        "/EOH-1.png",
+        "/EOH-2.png",
+      ],
     },
   },
   {
