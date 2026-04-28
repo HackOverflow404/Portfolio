@@ -24,18 +24,22 @@ type ProjectEntry = {
 };
 
 /*
+ * Things to do:
+ * - Add sound effects
+ * - Add shell into webassembly
+ * - See if I can add images to main modal card
+ * - Add click electric pulse animations
+ * - Add LaTeX to skills and resume fetcher
+ */
+
+
+/*
  * Projects to add:
  * - Home lab setup with raspberry pi
  *   - Set up samba with 2TB hard drive
  *   - Set up HA with docker and portainer
- * - Care Health Insurance
- * - MicroTech
- *   - EOH Lead + HackerFab
- * - CS 124 Honors
  * - Jailbroke Echo Show
- * - Made Spotify Dashboard user facing
  * - Remote Webcam is officially working
- * - Update Resume fetcher
  * - Making automated door locker
  *   - Using MQTT and Pi and ESP
  */
@@ -63,12 +67,78 @@ const projects: ProjectEntry[] = [
     },
   },
   {
+    title: "MicroTech EOH Lead",
+    description:
+      "Led MicroTech's exhibit at EOH, the largest student-run STEM fair in the US, designing 4 interactive stages to teach MEMS technology through a Le Louvre Heist theme.",
+    modalContent: {
+      title: "Teaching MEMS Through a Museum Heist",
+      skills: [
+        "Scope & Priority Management",
+        "Empathy-Driven Design",
+        "Creative Thinking",
+        "Collaboration & Teamwork",
+        "Leadership & Team Management",
+        "Communication & Explanation",
+        "ESP32",
+        "Circuit Design",
+        "C++",
+      ],
+      description: [
+        "Engineering Open House is the largest student-run STEM fair in the United States, held annually at UIUC and drawing thousands of visitors ranging from elementary schoolers to professors. As EOH Lead for MicroTech, my job was to take what we do, working with MEMS devices, and make it genuinely engaging for all of them at once. That's a harder design problem than it sounds.",
+        "MEMS, or Micro-Electro-Mechanical Systems, are the tiny sensors and actuators embedded in almost every modern device: the accelerometer in your phone, the pressure sensor in your car, the gyroscope in a drone. They're fascinating technology, but explaining them to a mixed audience of kids, parents, and engineers requires more than a poster board. We needed something people could touch, fail at, and laugh about. So we themed the entire exhibit around pulling off a heist at the Le Louvre.",
+        "Leading the project meant a lot more than coming up with the concept. I was responsible for breaking the vision down into concrete workstreams, figuring out which stages needed which skills, and assigning members accordingly. Some people owned the circuit design for a stage end to end, others focused on 3D modeling and physical construction, and others handled firmware. My job was to make sure all of those pieces were moving in parallel and would actually fit together by EOH weekend. That meant running check-ins, unblocking people when hardware didn't behave, making scope calls when something was taking too long, and keeping the overall timeline honest.",
+        "The exhibit had four stages, each one smuggling a different MEMS concept into an interactive challenge. In the first stage, visitors had to pick a lock. We built a cross-section of a lock using dowels as pins, each tipped with a magnet. Visitors tested different tools near a reed switch, our stand-in for a magnetometer, a MEMS sensor that measures magnetic field strength. Only the magnetic tool would trigger the reed switch and light a green LED, and once they found the right one, they used it to pull each pin and crack the lock open.",
+        "Stage two was a logic gate maze. Eight switches wired through OR, AND, NOT, and XOR gate combinations controlled a grid of LEDs representing a museum floor plan. Only the correct sequence of flipped switches would illuminate the path to the diamond. It was intended as a hands-on introduction to digital logic, but it turned out to be surprisingly tricky even for the engineers in the crowd.",
+        "Stage three was the heist itself. A 3D printed pedestal held a pink jewel balanced on three pressure sensors feeding into an ESP32. The moment the jewel was lifted, a one-second countdown began. If a substitute jewel of equal weight wasn't placed back in time, a red LED started flashing and the alarms were tripped. The pressure sensor at the heart of it is a classic MEMS device, and watching visitors scramble to make the swap in time made the concept land in a way that no explanation could.",
+        "The final stage was the getaway. We repurposed a music foot pedal to act as a gas pedal, with an ESP32 reading its angle and mapping it to both a motor visualizing a spinning wheel and a servo-driven 3D printed speedometer on a dashboard. The whole thing simulated a tachometer, another MEMS sensor, and gave visitors something viscerally satisfying to stomp on after the tension of the previous stages.",
+        "Designing the exhibit meant thinking constantly about the range of people who would walk up to each station. Every stage had to be intuitive enough for a ten-year-old, engaging enough for a university student, and technically grounded enough that a professor would find something interesting in it. Getting that balance right across four distinct demos, all built and wired from scratch, was a constraint that shaped every design decision we made.",
+        "Leading this project taught me things that coursework doesn't really cover. Technically, I got deeper into embedded systems and circuit design than I had before, but the bigger lessons were about people and process. I learned how to give ownership to teammates without losing visibility, how to course-correct without micromanaging, and how to make decisions under time pressure when the perfect answer isn't available. Watching something I had planned on a whiteboard turn into a physical exhibit that hundreds of people genuinely enjoyed was one of the most satisfying experiences I've had at UIUC.",
+      ],
+    },
+  },
+  {
+    title: "HackerFab: Student-Built Semiconductor Fab",
+    description:
+      "Building a student-run photolithography patterning machine, automating a precision wafer stage with stepper motors and grblHAL.",
+    modalContent: {
+      title: "HackerFab: Fabricating Semiconductors from Scratch",
+      skills: [
+        "Collaboration & Teamwork",
+        "Circuit Design",
+        "Python",
+        "c++",
+      ],
+      description: [
+        "Photolithography is the process at the heart of semiconductor fabrication, where light is used to transfer a pattern onto a silicon wafer. It's how every modern chip starts its life. HackerFab is UIUC's attempt to build that process from the ground up, operating under MicroTech, a UIUC registered student organization pushing the boundaries of what student-built hardware can do. Inspired by CMU's pioneering student fab team, the project is organized across four teams, and I work on the Automation and Mechanical team, the group responsible for turning a manually operated rig into a precise, programmable machine.",
+        "We started simple: a manually controlled precision stage that could move a silicon wafer beneath a UV projector, with a camera to monitor alignment and see the patterning. It worked, but manual control meant inconsistency, and inconsistency in lithography means bad patterns. We knew early on that automation was the goal.",
+        "Before we could automate anything though, we rethought the physical setup entirely. The original horizontal configuration required adhesive to keep the wafer fixed to the stage, which introduced its own variables. We rebuilt the rig vertically, suspending the UV projector and camera from a aluminum frame and letting gravity do the work of holding the wafer flat against the stage. It was a surprisingly impactful change, removing one source of error before we had even written a line of motor control code.",
+        "Then came the motors. We attached stepper motors to the precision stage and started working through our options for driving them. We tested an Arduino with a CNC shield, and then a SKR Mini E3 V3.0, before landing on the SKR Pico V1.0. The deciding factor was grblHAL support: it gave us a well-documented, tunable motion control foundation that we could actually reason about and configure precisely. Getting the tuning right took iteration, but the control it gave us over the stage movement was worth it.",
+        "With the hardware sorted, we adapted CMU's existing software stack to interface with our specific setup, bridging their motion control logic to our board configuration and coordinate system. The stage can now move autonomously and repeatably across the full surface of the wafer, something that simply wasn't possible before.",
+        "From here, the work shifts toward the lithography itself. The next milestones are designing actual patterns to expose onto the wafer and rigorously benchmarking our positional precision, finding out exactly how accurate our automated stage really is and what that means for the feature sizes we can reliably produce.",
+      ],
+      images: [
+        "/HackerFab-1.png",
+        "/HackerFab-2.png",
+      ],
+      links: [
+        {
+          title: "MicroTech Website",
+          url: "https://microtech.web.illinois.edu/",
+        },
+      ],
+    },
+  },
+  {
     title: "CS 124 Honors Web Platform: Full-Stack Leadership at UIUC",
     description:
       "Leading a team of 11 developers to build and maintain the CS 124 Honors course platform at UIUC - featuring UIUC SSO authentication, five-tier role-based access, a staff task management dashboard, and a custom TOTP attendance system.",
     modalContent: {
       title: "Building and Leading the CS 124 Honors Platform at UIUC",
       skills: [
+        "Scope & Priority Management",
+        "Empathy-Driven Design",
+        "Leadership & Team Management",
+        "Collaboration & Teamwork",
         "React",
         "Next.js",
         "JavaScript",
@@ -89,7 +159,7 @@ const projects: ProjectEntry[] = [
         "Beyond the technical work, this role is fundamentally about leadership. I manage a team of 11 developers, delegating feature work, reviewing pull requests, running weekly meetings, unblocking teammates, and making architectural decisions that keep the codebase maintainable as the team grows and rotates. Every semester brings new contributors, which means onboarding, documentation, and making sure the system is legible to someone seeing it for the first time.",
         "The CS 124 Honors platform is a living system, one that a large course depends on every single day. Building it has been as much an exercise in engineering judgment and people management as it has been in writing code. And watching it go from a sluggish, static page to a responsive, role-aware, institution-integrated platform that the entire course runs through is something I'm genuinely proud of.",
       ],
-      images: ["/CS124H-1.png"],
+      embed: ["https://honors.cs124.org"],
       links: [
         {
           title: "CS 124 Honors Website",
@@ -108,7 +178,11 @@ const projects: ProjectEntry[] = [
       "Published review paper analyzing biometric authentication as a modern alternative to passwords and tokens, with a focus on digital risk management, privacy, usability, and online banking security.",
     modalContent: {
       title: "Biometric Authentication and Cybersecurity in the Digital Age",
-      skills: ["Pentesting Fundamentals"],
+      skills: [
+        "Research & Analytical Thinking",
+        "Communication & Explanation",
+        "Pentesting Fundamentals",
+      ],
       description: [
         "I wrote this paper because I kept seeing the same contradiction everywhere: society was rapidly digitizing, but authentication still depended heavily on methods that break down under real human behavior. Password fatigue, weak reset flows, and theft are not edge cases anymore, they are the default failure modes when millions of people live inside online systems.",
         "The question I wanted to answer was not “are biometrics cool”, but “are biometrics actually a responsible step forward.” I wanted to understand where biometric authentication genuinely improves security and user experience, and where it introduces new risks that people tend to ignore until it is too late.",
@@ -135,6 +209,8 @@ const projects: ProjectEntry[] = [
       title:
         "Spotify Controller: Repurposing Legacy Hardware as a Now-Playing Dashboard",
       skills: [
+        "Self-Directed Ownership",
+        "Creative Thinking",
         "JavaScript",
         "HTMLCSS",
         "Vercel",
@@ -153,6 +229,7 @@ const projects: ProjectEntry[] = [
         "A highlight of this controller is synced lyrics. It leverages an LRC library for time-aligned lyrics with an automatic scroll and highlighting, plus a plain lyrics fallback from external lyric services. If the primary source is missing a song's lyrics, the fallback ensures the dashboard still shows textual context rather than blank space.",
         "The app also uses the Media Session API so the Pi's media keys and hardware controls integrate naturally with the web UI, even though there's no traditional OS desktop visible.",
         "What makes this project more than a web app on a screen is the intentional minimalism, it's designed for one purpose only: to live on my wall and reflect what I'm listening to in real time. The hardware engineering, reverse-engineering of display protocols, kiosk setup with X11/Chromium, and the custom web UI all come together to make a polished, device-agnostic Spotify companion.",
+        "Since the initial build, the dashboard has grown beyond a personal tool. I implemented Spotify OAuth so any Spotify user can authenticate with their own account and use the dashboard directly, turning a single-purpose personal display into a fully hosted, publicly accessible web app.",
       ],
       images: ["/SpotifyController-1.png", "/SpotifyController-2.png"],
       links: [
@@ -174,6 +251,10 @@ const projects: ProjectEntry[] = [
     modalContent: {
       title: "WorkFlowy + Albert: Building the Launcher Workflow I Needed",
       skills: [
+        "Scope & Priority Management",
+        "Self-Directed Ownership",
+        "Research & Analytical Thinking",
+        "Creative Thinking",
         "C++",
         "Node.js",
         "Shell Scripting",
@@ -211,6 +292,7 @@ const projects: ProjectEntry[] = [
     modalContent: {
       title: "Cybersecurity Intern at Care Health Insurance",
       skills: [
+        "Research & Analytical Thinking",
         "Nmap",
         "Burp Suite",
         "Frida",
@@ -234,13 +316,21 @@ const projects: ProjectEntry[] = [
       "Node.js script that pulls my Google-Docs résumé via a GCP Service Account and redeploys my portfolio site in one command.",
     modalContent: {
       title: "Automated Résumé Fetch & Deployment Pipeline",
-      skills: ["Node.js", "Google Cloud Platform", "Git", "Shell Scripting"],
+      skills: [
+        "Self-Directed Ownership",
+        "Node.js",
+        "Google Cloud Platform",
+        "Git",
+        "Shell Scripting",
+        "PyQt5",
+        "LaTeX",
+      ],
       description: [
         "Keeping an online résumé current often means juggling downloads, manual file moves, and redeployments. I wanted that workflow boiled down to a single command. This project delivers exactly that.",
-        "The script authenticates with a Google Cloud Service Account, exports my résumé Google Doc as a PDF, and writes it to two key locations: a `job_docs` archive and the `public/` directory of my Next.js portfolio.",
+        "The original version authenticated with a Google Cloud Service Account, exported my résumé Google Doc as a PDF, and pushed it straight to my portfolio. It worked, but as my résumé grew more complex, Google Docs started getting in the way. I migrated to LaTeX for full control over formatting and layout, which meant rethinking the fetcher entirely.",
+        "The updated script pulls the compiled PDF directly from my local LaTeX git repository, parses its new format, and writes it to two key locations: a `job_docs` archive and the `public/` directory of my Next.js portfolio.",
         "Once the new PDF is in place, it triggers a production build, stages the updated asset, commits with a conventional-chore message, and pushes straight to GitHub, instantly kicking off the site's CI pipeline.",
         "A small bash alias `rupd` wraps everything, so from anywhere in any terminal I can run one command and know my résumé and portfolio are synchronized within minutes.",
-        "Under the hood it combines Google's `drive.files.export` streaming endpoint, Node's `stream/promises` utilities for back-pressure-safe writes, and a guarded `execSync` chain for the Git operations. Robust error handling keeps the process transparent and fail-safe.",
         "Manually selecting and copy-pasting each section of my résumé into various applications became exhausting, so I built a PyQt5 Résumé Viewer. It parses my PDF into a collapsible tree and lets me click any heading or bullet to instantly copy its text to the clipboard, streamlining the entire process.",
       ],
       images: ["/ResumeFetch-1.png"],
@@ -259,6 +349,8 @@ const projects: ProjectEntry[] = [
     modalContent: {
       title: "Anatomy of a Machine: The Legacy Laptop Project",
       skills: [
+        "Self-Directed Ownership",
+        "Creative Thinking",
         "Raspberry Pi",
         "Circuit Design",
         "Protocol Debugging",
@@ -282,6 +374,8 @@ const projects: ProjectEntry[] = [
     modalContent: {
       title: "RemoteCam: Engineering Seamless Communication",
       skills: [
+        "Self-Directed Ownership",
+        "Research & Analytical Thinking",
         "Python",
         "TypeScript",
         "HTML/CSS",
@@ -295,6 +389,7 @@ const projects: ProjectEntry[] = [
         "WebRTC",
         "Linux",
         "Network Analysis",
+        "PyQt5",
         "GStreamer",
       ],
       description: [
@@ -328,7 +423,16 @@ const projects: ProjectEntry[] = [
       "Helped design an ESP32-based DEFCON-style badge. Worked on SAO compatibility and embedded firmware.",
     modalContent: {
       title: "Silicon & Signals: The Sigpwny CTF Badge Build",
-      skills: ["Python", "C", "ESP32", "Circuit Design", "Protocol Debugging"],
+      skills: [
+        "Collaboration & Teamwork",
+        "Python",
+        "C",
+        "ESP32",
+        "Circuit Design",
+        "Protocol Debugging",
+        "MicroPython",
+        "CTFs",
+      ],
       description: [
         "At the University of Illinois Urbana-Champaign, Sigpwny is one of the largest and most active RSOs dedicated to information security and privacy. For someone with a passion for embedded systems, low-level development, and cybersecurity, being part of this organization has been both inspiring and empowering. Through Sigpwny, I've had the opportunity to connect with brilliant minds, engineers, hackers, and innovators, whose knowledge and creativity have continuously pushed me to grow.",
         "One of the most impactful projects I've worked on is the UIUCTF electronic badge, a DEFCON-style hardware badge built for the Capture the Flag competition we host annually. This year, we're designing a space-themed badge powered by an ESP32, packed with features that foster interactivity, connectivity, and a sense of community among participants. The badge is designed to communicate with others using ESP-NOW and ESP-WIFI-MESH, creating a decentralized and resilient communication network among players. This not only enables dynamic interactions between badges but also aligns with the distributed ethos of CTFs and hacker culture.",
@@ -336,7 +440,7 @@ const projects: ProjectEntry[] = [
         "On the hardware side, I've applied principles from my circuit design coursework to help engineer the badge's PCB layout, gaining practical experience in power delivery management, voltage regulation, and differential signaling. I've worked closely with the team to iterate on schematic design, ensuring stable operation across components, and managing trace impedance for reliable high-speed communication.",
         "This badge isn't just a tool; it's a living, breathing embodiment of our collective creativity and technical skill. From wireless mesh networking to custom display firmware, the project has given me a holistic view of what it means to engineer an embedded system from scratch, blending hardware, firmware, and innovation in every step. I'm incredibly proud to be part of this team and can't wait to see the room light up with hundreds of these badges in action, each one a symbol of curiosity, craft, and community.",
       ],
-      images: ["/Badge-1.png", "/Badge-2.png"],
+      images: ["/Badge-1.png", "/Badge-2.png", "/Badge-3.png", "/Badge-4.png"],
     },
   },
   {
@@ -346,6 +450,9 @@ const projects: ProjectEntry[] = [
     modalContent: {
       title: "Smart LED Strip Controller",
       skills: [
+        "Scope & Priority Management",
+        "Self-Directed Ownership",
+        "Creative Thinking",
         "Python",
         "HTML/CSS",
         "Flask",
@@ -397,9 +504,14 @@ const projects: ProjectEntry[] = [
     modalContent: {
       title: "IoT++: AI Systems for Real-Time Detection and Routing",
       skills: [
+        "Communication & Explanation",
+        "Collaboration & Teamwork",
+        "Scope & Priority Management",
         "Python",
         "Docker",
+        "Kubernetes",
         "GStreamer",
+        "Azure",
         "Yolo",
         "Tensorflow",
         "PyTorch",
@@ -420,6 +532,9 @@ const projects: ProjectEntry[] = [
     modalContent: {
       title: "Uplift: Designing Empathy Through Code",
       skills: [
+        "Empathy-Driven Design",
+        "Communication & Explanation",
+        "Collaboration & Teamwork",
         "JavaScript",
         "TypeScript",
         "React/React Native",
@@ -456,6 +571,8 @@ const projects: ProjectEntry[] = [
     modalContent: {
       title: "CyberSpace: Bridging the Gap Between Complexity and Clarity",
       skills: [
+        "Empathy-Driven Design",
+        "Communication & Explanation",
         "HTML/CSS",
         "JavaScript",
         "Responsive Design",
@@ -495,6 +612,7 @@ const projects: ProjectEntry[] = [
       title:
         "Court Booking System: Building a Full-Stack Solution for Community Coordination",
       skills: [
+        "Empathy-Driven Design",
         "HTML/CSS",
         "JavaScript",
         "Java",
@@ -526,7 +644,13 @@ const projects: ProjectEntry[] = [
       "I wrote a research paper evaluating the use of leet speak in password security under the guidance of a professor at Shobhit University.",
     modalContent: {
       title: "Research Paper on Leet Speak in Password Security",
-      skills: ["Python", "Linux", "Hashcat"],
+      skills: [
+        "Research & Analytical Thinking",
+        "Communication & Explanation",
+        "Python",
+        "Linux",
+        "Hashcat",
+      ],
       description: [
         "Passwords are the front lines of digital security, yet most people use them without truly understanding how they work or how they fail. When I first began researching password strength, I wasn't trying to write a research paper. I was trying to answer a deceptively simple question: Can leet speak, the practice of swapping letters for symbols or numbers, make passwords more secure?",
         "At the time, I had just completed a comprehensive certification in cybersecurity. The field had captivated me. I was fascinated not only by the elegance of well-designed systems but by the fragility of their weakest points. The average internet user juggles dozens of passwords, often recycling, simplifying, and guessing. I wanted to understand what made a password strong, not just by modern metrics, but by the logic of a hacker trying to crack it open.",
