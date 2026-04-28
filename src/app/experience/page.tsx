@@ -45,8 +45,9 @@ export default function ProjectsPage() {
       // ~66px show-more button area + ~120px mt-30 skills section margin + ~60px heading + 34px buffer
       const skillsHint = 280;
       const available = window.innerHeight - absTop - skillsHint;
-      const rows = Math.max(1, Math.floor(available / (cardHeight + gap)));
-      setCollapsedHeight(rows * cardHeight + (rows - 1) * gap);
+      const gridPadding = 4; // p-1 = 4px padding added to grid for hover-scale breathing room
+      const rows = Math.max(1, Math.floor((available - gridPadding) / (cardHeight + gap)));
+      setCollapsedHeight(gridPadding + rows * cardHeight + (rows - 1) * gap);
       setFullHeight(grid.scrollHeight);
     };
 
@@ -89,9 +90,10 @@ export default function ProjectsPage() {
       
       {/* Closed Modal Start */}
       <div className="relative">
+        {/* overflow-hidden lives here so the grid's own overflow is visible,
+            letting hover scale transforms bleed past the grid boundary without clipping */}
         <div
-          ref={gridRef}
-          className="grid md:grid-cols-2 gap-8 overflow-hidden"
+          className="overflow-hidden"
           style={{
             maxHeight:
               collapsedHeight === null
@@ -102,26 +104,29 @@ export default function ProjectsPage() {
             transition: "max-height 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
           }}
         >
-          {projects.map((project, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 28, scale: 0.95, filter: "blur(8px)" }}
-              animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-              transition={{
-                duration: 0.7,
-                delay: 0.1 + i * 0.07,
-                ease: [0.25, 0.46, 0.45, 0.94],
-              }}
-              className="cursor-target cursor-none border border-cyan-300 p-6 rounded-xl shadow-md bg-[#1a1a1a] hover:scale-[1.01] transition"
-              onClick={() => {
-                setSelected(project);
-                setOpen(true);
-              }}
-            >
-              <h3 className="text-xl font-bold text-cyan-300 mb-2">{project.title}</h3>
-              <p className="text-gray-400 text-sm">{project.description}</p>
-            </motion.div>
-          ))}
+          {/* p-1 gives each edge card 4px of room to scale into without hitting the clip boundary */}
+          <div ref={gridRef} className="grid md:grid-cols-2 gap-8 p-1">
+            {projects.map((project, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 28, scale: 0.95, filter: "blur(8px)" }}
+                animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+                transition={{
+                  duration: 0.7,
+                  delay: 0.1 + i * 0.07,
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                }}
+                className="cursor-target cursor-none border border-cyan-300 p-6 rounded-xl shadow-md bg-[#1a1a1a] hover:scale-[1.01] transition"
+                onClick={() => {
+                  setSelected(project);
+                  setOpen(true);
+                }}
+              >
+                <h3 className="text-xl font-bold text-cyan-300 mb-2">{project.title}</h3>
+                <p className="text-gray-400 text-sm">{project.description}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         {/* Gradient fade — only when collapsed */}
@@ -338,7 +343,7 @@ export default function ProjectsPage() {
               className="mb-12"
             >
               <h3 className="text-xl text-cyan-300 mb-4">{category}</h3>
-              <Carousel>
+              <Carousel fadeColor="#0f0f0f">
                 {Object.entries(skillMap).map(([skillName, iconPath]) => (
                   <div
                     key={skillName}
