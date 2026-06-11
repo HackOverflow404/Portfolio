@@ -41,6 +41,8 @@ type ProjectEntry = {
  * - Remote Webcam is officially working
  * - Making automated door locker
  *   - Using MQTT and Pi and ESP
+ * - Add EVP MicroTech
+ * - Add Hopcharge
  */
 
 
