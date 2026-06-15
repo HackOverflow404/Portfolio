@@ -261,8 +261,13 @@ export default function ProjectsPage() {
                   <div className="space-y-6">
                     {selected.modalContent.embed.map((url, idx) => {
                       const isYouTube = url.includes("youtube.com") || url.includes("youtu.be");
+                      const isTerminal = url.includes("ece391") || url.includes("kernel");
                       return (
-                        <div key={idx} className="cursor-target cursor-none w-full aspect-video border border-cyan-500 rounded shadow-lg overflow-hidden">
+                        <div
+                          key={idx}
+                          className={`cursor-target cursor-none w-full border border-cyan-500 rounded shadow-lg overflow-hidden${isTerminal ? "" : " aspect-video"}`}
+                          style={isTerminal ? { height: "420px" } : undefined}
+                        >
                           <iframe
                             src={
                               isYouTube
