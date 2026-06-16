@@ -4,23 +4,23 @@ export const resumeURL = getAssetUrl("Resume.pdf");
 export const projectImagesBaseURL = getAssetUrl("images/projects/");
 
 type ProjectLink = {
-  title: string;
-  url: string;
+	title: string;
+	url: string;
 };
 
 type ProjectModalContent = {
-  title: string;
-  description: string[];
-  skills?: string[];
-  images?: string[];
-  embed?: string[];
-  links?: ProjectLink[];
+	title: string;
+	description: string[];
+	skills?: string[];
+	images?: string[];
+	embed?: string[];
+	links?: ProjectLink[];
 };
 
 type ProjectEntry = {
-  title: string;
-  description: string;
-  modalContent: ProjectModalContent;
+	title: string;
+	description: string;
+	modalContent: ProjectModalContent;
 };
 
 /*
@@ -30,7 +30,6 @@ type ProjectEntry = {
  * - See if I can add images to main modal card
  * - Add click electric pulse animations
  */
-
 
 /*
  * Projects to add:
@@ -45,676 +44,665 @@ type ProjectEntry = {
  * - Add Hopcharge
  */
 
-
 const projects: ProjectEntry[] = [
-  {
-    title: "View Résumé",
-    description: "View or download my résumé directly from here.",
-    modalContent: {
-      title: "My Résumé",
-      description: [
-        "You can preview, download, or share my résumé below. If you'd like to get in touch, feel free to connect via the links provided.",
-      ],
-      links: [
-        { title: "Download Résumé", url: resumeURL },
-        {
-          title: "Shareable Link",
-          url:
-            typeof window !== "undefined"
-              ? window.location.origin + resumeURL
-              : resumeURL,
-        },
-      ],
-    },
-  },
-  {
-    title: "ECE391: RISC-V OS in the Browser",
-    description:
-      "A kernel my team wrote from scratch for UIUC's OS course, now running live in your browser via WebAssembly. It boots a shell, mounts a filesystem over HTTP, and takes keyboard input.",
-    modalContent: {
-      title: "ECE391: A Real Kernel, Running in Your Browser",
-      skills: [
-        "C",
-        "RISC-V Assembly",
-        "Operating Systems",
-        "WebAssembly",
-        "VirtIO",
-        "Filesystems",
-        "Memory Management",
-        "Process Scheduling",
-        "Next.js",
-        "TypeScript",
-        "Emscripten",
-        "xterm.js",
-      ],
-      description: [
-        "ECE 391 is UIUC's Computer Systems Engineering course, and it covers the full stack of abstractions that make modern operating systems work: process scheduling and CPU virtualization, virtual memory and page tables, the system call interface between user programs and the kernel, interrupt-driven I/O, device programming, synchronization primitives, and the file descriptor model. The capstone is a group kernel built from scratch on a real architecture. My team targeted RISC-V64 and implemented all of it over the course of the semester.",
-        "The work included a VirtIO console driver for keyboard and terminal I/O, a VirtIO block device driver to read a filesystem from disk, a custom filesystem called KTFS, page-table-based virtual memory, a process scheduler, a complete system call interface, and a Unix-style shell with multi-stage pipeline support. Each piece required reading the actual hardware spec or protocol document and implementing it precisely. Writing a device driver teaches you something that userspace programming never does: you own every byte of state between the hardware register and the kernel abstraction layer, and there is no library to blame when something goes wrong.",
-        "What I carry forward from the course is less about the specific features we built and more about how to think under concurrency. Synchronization, mutual exclusion, interrupt latency, the ordering constraints that matter when a timer interrupt and a device interrupt can both fire during a scheduler decision: reasoning about those problems carefully is a skill that generalizes to everything. Debugging at the assembly level, reading machine register state to trace a crash, and developing a real mental model of the hardware-software boundary are things you can only learn by doing them.",
-        "After the course ended, I wanted to actually show the kernel running, so I embedded it in the browser. I compiled TinyEMU, a RISC-V emulator by Fabrice Bellard, to WebAssembly using Emscripten. It now boots inside the browser, mounts its filesystem over HTTP, and runs a fully interactive shell through xterm.js. Try it above. Type ls to see the filesystem, cat testfile2 to read a file, or run cat testfile2 | wc | cat to test a three-stage pipeline.",
-      ],
-      embed: ["https://ece-391-kernel-demo.vercel.app"],
-      links: [
-        {
-          title: "GitHub: Kernel Source",
-          url: "https://github.com/HackOverflow404/ece391-kernel-demo",
-        },
-      ],
-    },
-  },
-  {
-    title: "MicroTech EOH Lead",
-    description:
-      "Led MicroTech's exhibit at EOH, the largest student-run STEM fair in the US, designing 4 interactive stages to teach MEMS technology through a Le Louvre Heist theme.",
-    modalContent: {
-      title: "Teaching MEMS Through a Museum Heist",
-      skills: [
-        "Scope & Priority Management",
-        "Empathy-Driven Design",
-        "Creative Thinking",
-        "Collaboration & Teamwork",
-        "Leadership & Team Management",
-        "Communication & Explanation",
-        "ESP32",
-        "Circuit Design",
-        "C++",
-      ],
-      description: [
-        "Engineering Open House is the largest student-run STEM fair in the United States, held annually at UIUC and drawing thousands of visitors ranging from elementary schoolers to professors. As EOH Lead for MicroTech, my job was to take what we do, working with MEMS devices, and make it genuinely engaging for all of them at once. That's a harder design problem than it sounds.",
-        "MEMS, or Micro-Electro-Mechanical Systems, are the tiny sensors and actuators embedded in almost every modern device: the accelerometer in your phone, the pressure sensor in your car, the gyroscope in a drone. They're fascinating technology, but explaining them to a mixed audience of kids, parents, and engineers requires more than a poster board. We needed something people could touch, fail at, and laugh about. So we themed the entire exhibit around pulling off a heist at the Le Louvre.",
-        "Leading the project meant a lot more than coming up with the concept. I was responsible for breaking the vision down into concrete workstreams, figuring out which stages needed which skills, and assigning members accordingly. Some people owned the circuit design for a stage end to end, others focused on 3D modeling and physical construction, and others handled firmware. My job was to make sure all of those pieces were moving in parallel and would actually fit together by EOH weekend. That meant running check-ins, unblocking people when hardware didn't behave, making scope calls when something was taking too long, and keeping the overall timeline honest.",
-        "The exhibit had four stages, each one smuggling a different MEMS concept into an interactive challenge. In the first stage, visitors had to pick a lock. We built a cross-section of a lock using dowels as pins, each tipped with a magnet. Visitors tested different tools near a reed switch, our stand-in for a magnetometer, a MEMS sensor that measures magnetic field strength. Only the magnetic tool would trigger the reed switch and light a green LED, and once they found the right one, they used it to pull each pin and crack the lock open.",
-        "Stage two was a logic gate maze. Eight switches wired through OR, AND, NOT, and XOR gate combinations controlled a grid of LEDs representing a museum floor plan. Only the correct sequence of flipped switches would illuminate the path to the diamond. It was intended as a hands-on introduction to digital logic, but it turned out to be surprisingly tricky even for the engineers in the crowd.",
-        "Stage three was the heist itself. A 3D printed pedestal held a pink jewel balanced on three pressure sensors feeding into an ESP32. The moment the jewel was lifted, a one-second countdown began. If a substitute jewel of equal weight wasn't placed back in time, a red LED started flashing and the alarms were tripped. The pressure sensor at the heart of it is a classic MEMS device, and watching visitors scramble to make the swap in time made the concept land in a way that no explanation could.",
-        "The final stage was the getaway. We repurposed a music foot pedal to act as a gas pedal, with an ESP32 reading its angle and mapping it to both a motor visualizing a spinning wheel and a servo-driven 3D printed speedometer on a dashboard. The whole thing simulated a tachometer, another MEMS sensor, and gave visitors something viscerally satisfying to stomp on after the tension of the previous stages.",
-        "Designing the exhibit meant thinking constantly about the range of people who would walk up to each station. Every stage had to be intuitive enough for a ten-year-old, engaging enough for a university student, and technically grounded enough that a professor would find something interesting in it. Getting that balance right across four distinct demos, all built and wired from scratch, was a constraint that shaped every design decision we made.",
-        "Leading this project taught me things that coursework doesn't really cover. Technically, I got deeper into embedded systems and circuit design than I had before, but the bigger lessons were about people and process. I learned how to give ownership to teammates without losing visibility, how to course-correct without micromanaging, and how to make decisions under time pressure when the perfect answer isn't available. Watching something I had planned on a whiteboard turn into a physical exhibit that hundreds of people genuinely enjoyed was one of the most satisfying experiences I've had at UIUC.",
-      ],
-      images: [
-        "/EOH-1.png",
-        "/EOH-2.png",
-      ],
-    },
-  },
-  {
-    title: "HackerFab: Student-Built Semiconductor Fab",
-    description:
-      "Building a student-run photolithography patterning machine, automating a precision wafer stage with stepper motors and grblHAL.",
-    modalContent: {
-      title: "HackerFab: Fabricating Semiconductors from Scratch",
-      skills: [
-        "Collaboration & Teamwork",
-        "Circuit Design",
-        "Python",
-        "c++",
-      ],
-      description: [
-        "Photolithography is the process at the heart of semiconductor fabrication, where light is used to transfer a pattern onto a silicon wafer. It's how every modern chip starts its life. HackerFab is UIUC's attempt to build that process from the ground up, operating under MicroTech, a UIUC registered student organization pushing the boundaries of what student-built hardware can do. Inspired by CMU's pioneering student fab team, the project is organized across four teams, and I work on the Automation and Mechanical team, the group responsible for turning a manually operated rig into a precise, programmable machine.",
-        "We started simple: a manually controlled precision stage that could move a silicon wafer beneath a UV projector, with a camera to monitor alignment and see the patterning. It worked, but manual control meant inconsistency, and inconsistency in lithography means bad patterns. We knew early on that automation was the goal.",
-        "Before we could automate anything though, we rethought the physical setup entirely. The original horizontal configuration required adhesive to keep the wafer fixed to the stage, which introduced its own variables. We rebuilt the rig vertically, suspending the UV projector and camera from a aluminum frame and letting gravity do the work of holding the wafer flat against the stage. It was a surprisingly impactful change, removing one source of error before we had even written a line of motor control code.",
-        "Then came the motors. We attached stepper motors to the precision stage and started working through our options for driving them. We tested an Arduino with a CNC shield, and then a SKR Mini E3 V3.0, before landing on the SKR Pico V1.0. The deciding factor was grblHAL support: it gave us a well-documented, tunable motion control foundation that we could actually reason about and configure precisely. Getting the tuning right took iteration, but the control it gave us over the stage movement was worth it.",
-        "With the hardware sorted, we adapted CMU's existing software stack to interface with our specific setup, bridging their motion control logic to our board configuration and coordinate system. The stage can now move autonomously and repeatably across the full surface of the wafer, something that simply wasn't possible before.",
-        "From here, the work shifts toward the lithography itself. The next milestones are designing actual patterns to expose onto the wafer and rigorously benchmarking our positional precision, finding out exactly how accurate our automated stage really is and what that means for the feature sizes we can reliably produce.",
-      ],
-      images: [
-        "/HackerFab-1.png",
-        "/HackerFab-2.png",
-      ],
-      links: [
-        {
-          title: "MicroTech Website",
-          url: "https://microtech.web.illinois.edu/",
-        },
-      ],
-    },
-  },
-  {
-    title: "CS 124 Honors Web Platform: Full-Stack Leadership at UIUC",
-    description:
-      "Leading a team of 11 developers to build and maintain the CS 124 Honors course platform at UIUC - featuring UIUC SSO authentication, five-tier role-based access, a staff task management dashboard, and a custom TOTP attendance system.",
-    modalContent: {
-      title: "Building and Leading the CS 124 Honors Platform at UIUC",
-      skills: [
-        "Scope & Priority Management",
-        "Empathy-Driven Design",
-        "Leadership & Team Management",
-        "Collaboration & Teamwork",
-        "React",
-        "Next.js",
-        "JavaScript",
-        "TypeScript",
-        "Tailwind CSS",
-        "REST APIs",
-        "Vercel",
-        "Git",
-        "Responsive Design",
-      ],
-      description: [
-        "When I stepped into the role of Lead Web Developer for CS 124 Honors at UIUC, the course already had a website. But 'had a website' and 'had a great website' are two very different things. The platform was slow, had no authentication layer, no internal tooling for staff, and no real infrastructure for the kind of coordination a course like this demands. My job wasn't just to maintain it, it was to rethink it.",
-        "The first thing I tackled was raw performance. A Google Lighthouse score of 76 is functional, but it's not something you're proud of. I audited the site top to bottom, identifying bloated assets, unoptimized images, and blocking render paths. Through systematic image optimization and lazy loading strategies, I pushed that score to 99, not as a vanity metric, but because every millisecond of load time is a student waiting, and a course platform should feel instant.",
-        "But performance was only the beginning. The bigger challenge was identity and access. CS 124 Honors operates within UIUC's ecosystem, meaning students and staff already have institutional identities through the university's Shibboleth Identity Provider. I integrated the platform directly with UIUC's SSO system, building an authentication flow where users are redirected through Shibboleth, and on return, issued a JWT that the application uses to establish and manage their session. No separate account creation, no password management; just your NetID, and you're in.",
-        "That authentication layer became the backbone of something far more complex: a five-tier role-based access control system. The platform distinguishes between five distinct roles (Course Lead, Head Project Manager, Project Manager, Web Developer, and Student), each with their own routing permissions and dashboard view. Rather than showing everyone the same interface and simply hiding buttons, I built dedicated experiences per role, so every user lands exactly where they need to be and sees only what's relevant to them.",
-        "For staff, that meant building a fully featured task management dashboard. Staff members can create tasks, assign them to other staff or students, set deadlines, and track completion status, all in one place. What used to require back-and-forth Slack messages or shared spreadsheets is now a structured workflow. The goal was to reduce coordination friction and give the team a single source of truth for what needs doing and who's doing it.",
-        "One of the features I'm most proud of is the attendance system. Staff can create course events directly through the platform, and students check in by submitting a time-sensitive OTP, a one-time password that refreshes every 30 seconds, built entirely from scratch without relying on a third-party TOTP library. I implemented the underlying time-based token logic myself, tying it to each event so that only students present during the active window can successfully mark attendance. It's a small detail with a big impact: it's fraud-resistant, frictionless, and removes the administrative overhead of manual attendance tracking entirely.",
-        "Beyond the technical work, this role is fundamentally about leadership. I manage a team of 11 developers, delegating feature work, reviewing pull requests, running weekly meetings, unblocking teammates, and making architectural decisions that keep the codebase maintainable as the team grows and rotates. Every semester brings new contributors, which means onboarding, documentation, and making sure the system is legible to someone seeing it for the first time.",
-        "The CS 124 Honors platform is a living system, one that a large course depends on every single day. Building it has been as much an exercise in engineering judgment and people management as it has been in writing code. And watching it go from a sluggish, static page to a responsive, role-aware, institution-integrated platform that the entire course runs through is something I'm genuinely proud of.",
-      ],
-      embed: ["https://honors.cs124.org"],
-      links: [
-        {
-          title: "CS 124 Honors Website",
-          url: "https://honors.cs124.org",
-        },
-        {
-          title: "CS 124 Honors Dev Website",
-          url: "https://cs124h-dev-site.vercel.app/",
-        },
-      ],
-    },
-  },
-  {
-    title: "Research Paper on Biometric Authentication and Cybersecurity in the Digital Age",
-    description:
-      "Published review paper analyzing biometric authentication as a modern alternative to passwords and tokens, with a focus on digital risk management, privacy, usability, and online banking security.",
-    modalContent: {
-      title: "Biometric Authentication and Cybersecurity in the Digital Age",
-      skills: [
-        "Research & Analytical Thinking",
-        "Communication & Explanation",
-        "Pentesting Fundamentals",
-      ],
-      description: [
-        "I wrote this paper because I kept seeing the same contradiction everywhere: society was rapidly digitizing, but authentication still depended heavily on methods that break down under real human behavior. Password fatigue, weak reset flows, and theft are not edge cases anymore, they are the default failure modes when millions of people live inside online systems.",
-        "The question I wanted to answer was not “are biometrics cool”, but “are biometrics actually a responsible step forward.” I wanted to understand where biometric authentication genuinely improves security and user experience, and where it introduces new risks that people tend to ignore until it is too late.",
-        "Writing it forced me to think in tradeoffs instead of slogans. I structured the review around practical evaluation factors the paper explicitly focuses on: cost ownership, usability, scalability, security, and privacy. That framework kept me honest, because biometrics do not get to win on security while losing on everything else.",
-        "One of the most important parts of the writing process was drawing a clean line between physical biometrics and behavioral biometrics. Physical biometrics felt like the most defensible category because they rely on physiological identifiers. Behavioral biometrics raised a harder problem, especially once I considered how artificial intelligence changes the threat model and makes certain behavioral signals less reliable.",
-        "I also spent time grounding the paper in real-world governance concerns instead of treating biometrics as purely technical. The privacy discussion mattered to me because biometric data is not something you can casually rotate. That pushed me to emphasize secure handling practices the paper discusses, like template or hash-based approaches rather than storing the biometric itself, along with broader expectations around user awareness, consent, and transparency.",
-        "To keep it connected to high-stakes reality, I looked specifically at online banking security and what authentication has to accomplish in that environment. That is where the paper's conclusion became very practical: biometrics can be valuable on their own, but a layered approach that combines biometrics with OTP is presented as a stronger direction for cybersecurity and digital risk management.",
-        "Overall, writing this paper was an exercise in turning a fast-moving, hype-heavy topic into a structured, defensible viewpoint. It is a review paper, but for me it was also a way to build better security instincts: weigh adoption, privacy, and failure modes at the same time, and still arrive at a recommendation that is usable in the real world.",
-      ],
-      links: [
-        {
-          title: "Research Paper",
-          url: "https://www.medcrave.com/articles/det/30276/Biometric-authentication-and-cybersecurity-in-the-digital-age",
-        },
-      ],
-    },
-  },
-  {
-    title:
-      "Spotify Controller: Repurposing Legacy Hardware as a Now-Playing Dashboard",
-    description:
-      "A dedicated wall-mounted Spotify wall art display built by rescuing an old LCD, driven via a Raspberry Pi, and displaying a lightweight web UI with real-time song info and synced lyrics.",
-    modalContent: {
-      title:
-        "Spotify Controller: Repurposing Legacy Hardware as a Now-Playing Dashboard",
-      skills: [
-        "Self-Directed Ownership",
-        "Creative Thinking",
-        "JavaScript",
-        "HTMLCSS",
-        "Vercel",
-        "Responsive Design",
-        "REST APIs",
-        "Raspberry Pi",
-        "Circuit Design",
-        "LVDS",
-        "Linux",
-        "Reverse Engineering",
-      ],
-      description: [
-        "This project sits in the same lineage as my Legacy Laptop work: an old piece of hardware given a second life through careful engineering. After salvaging the Acer Aspire 4736G's LCD panel and mastering how LVDS panels communicate at the signal and timing level, I paired the raw screen with an LVDS controller board and my home server Raspberry Pi to make a purpose-built display.",
-        "Unlike a typical monitor, this setup doesn't run a full desktop. I configured a lean Linux image on the Pi with a minimal X11 session, launching Chromium in kiosk mode so the machine behaves like an appliance: plug it in and it immediately becomes the Spotify dashboard without any user interaction.",
-        "The UI itself is a Next.js single-page app hosted on Vercel and designed to be kiosk-friendly. It talks directly to the Spotify Web API, continuously pulling the currently playing track, album art, artist, device name, and playback state for my account. The interface displays clean now-playing info and includes interactive playback controls like play/pause, next/previous, and volume, all optimized for a static, always-on screen experience.",
-        "A highlight of this controller is synced lyrics. It leverages an LRC library for time-aligned lyrics with an automatic scroll and highlighting, plus a plain lyrics fallback from external lyric services. If the primary source is missing a song's lyrics, the fallback ensures the dashboard still shows textual context rather than blank space.",
-        "The app also uses the Media Session API so the Pi's media keys and hardware controls integrate naturally with the web UI, even though there's no traditional OS desktop visible.",
-        "What makes this project more than a web app on a screen is the intentional minimalism, it's designed for one purpose only: to live on my wall and reflect what I'm listening to in real time. The hardware engineering, reverse-engineering of display protocols, kiosk setup with X11/Chromium, and the custom web UI all come together to make a polished, device-agnostic Spotify companion.",
-        "Since the initial build, the dashboard has grown beyond a personal tool. I implemented Spotify OAuth so any Spotify user can authenticate with their own account and use the dashboard directly, turning a single-purpose personal display into a fully hosted, publicly accessible web app.",
-      ],
-      images: ["/SpotifyController-1.png", "/SpotifyController-2.png"],
-      links: [
-        {
-          title: "GitHub Repo",
-          url: "https://github.com/HackOverflow404/SpotifyWebController",
-        },
-        {
-          title: "Hosted Now-Playing UI",
-          url: "https://spotify-web-controller-chi.vercel.app/",
-        },
-      ],
-    },
-  },
-  {
-    title: "AlberFlowy: Instant Structured Notes from the Launcher",
-    description:
-      "A custom Albert plugin that interfaces with WorkFlowy's private API for blazing-fast hierarchical note access, creation, editing, and deletion, all from the keyboard.",
-    modalContent: {
-      title: "WorkFlowy + Albert: Building the Launcher Workflow I Needed",
-      skills: [
-        "Scope & Priority Management",
-        "Self-Directed Ownership",
-        "Research & Analytical Thinking",
-        "Creative Thinking",
-        "C++",
-        "Node.js",
-        "Shell Scripting",
-        "Qt",
-        "Linux",
-        "Reverse Engineering",
-      ],
-      description: [
-        "I use WorkFlowy every day. It's where I organize ideas, journal thoughts, outline projects, and brainstorm systems. But despite its beautiful hierarchy and power-user keyboard support, the one thing it lacked was instant global access, something I could summon from anywhere on my Linux desktop without touching a browser. I didn't want to 'open WorkFlowy,' I wanted to _access_ WorkFlowy, like muscle memory, with zero friction. That's where Albert came in.",
-        "Albert is a blazing-fast keyboard launcher for Linux, and I'd used it for years to open apps, search files, manage my clipboard, and more. But I realized it could be far more. What if I could turn it into a structured thought portal, allowing me to create, navigate, and manipulate WorkFlowy nodes, all without leaving my terminal mindset?",
-        "There was just one problem: WorkFlowy doesn't offer a public API. So I rolled up my sleeves and went digging.",
-        "I began by analyzing traffic to WorkFlowy's web app, reverse engineering its private endpoints and operation formats by watching network calls, decoding its `operations` payloads, and replaying requests with my own minimal clients. I explored unofficial GitHub repos, many abandoned and no longer working, and stitched together a working CLI using Puppeteer automation and raw HTTP calls. I then wrapped this with Node.js for exportable control, letting me call `workflowy-cli` with arbitrary operations: create nodes, edit text, mark complete, delete, and more.",
-        "But the CLI was only half the battle. To integrate this smoothly with Albert, I dove into its plugin SDK. Written in C++ and powered by Qt, Albert offered a surprisingly deep and elegant extension system, but the documentation was vast and the examples sparse. I took the time to read through existing plugin repos, parsed signals, slots, timers, and `QProcess` quirks, and architected a fully asynchronous plugin that fetches, caches, and renders my WorkFlowy tree with every keystroke.",
-        "Each node became a selectable `StandardItem`, complete with route-based navigation (`>` delimited), tab-based autocomplete, strikethrough for completed items, and contextual actions like 'Edit', 'Remove', or 'Complete', all from a single keystroke interface. And if a node didn't exist? It would offer to create it on the fly, committing the change in milliseconds, all asynchronously in a separate thread, optimistically updating the cache and later resyncing it, maximizing smoothness and prioritizing user experience. I tried various features such as fuzzy search, but ultimately decided to not implement it due to poor UX integration",
-        "The plugin is now my daily companion. From anywhere, I can hit a key combo, type a few characters, and instantly jump to any node in my personal knowledge base, or create new thoughts in the right context. No mouse. No app-switching. Just structured thinking at the speed of my keyboard.",
-        "This project isn't just a plugin. It's a fusion of reverse engineering, automation, asynchronous programming, and deep customization of my workflow. It taught me how to bend rigid systems to serve my personal productivity and gave me even more respect for the invisible power of well-written launchers.",
-      ],
-      images: ["/AlberFlowy-1.png", "/AlberFlowy-2.png"],
-      links: [
-        {
-          title: "GitHub Repo",
-          url: "https://github.com/HackOverflow404/AlberFlowy",
-        },
-        {
-          title: "Install Page",
-          url: "https://hackoverflow404.github.io/AlberFlowy/",
-        },
-      ],
-    },
-  },
-  {
-    title: "Internship at Care Health Insurance",
-    description:
-      "Cybersecurity Intern - Applied academic knowledge in a real-world enterprise security environment.",
-    modalContent: {
-      title: "Cybersecurity Intern at Care Health Insurance",
-      skills: [
-        "Research & Analytical Thinking",
-        "Nmap",
-        "Burp Suite",
-        "Frida",
-        "JADX",
-        "QEMU",
-        "Network Analysis",
-        "Pentesting Fundamentals",
-        "Reverse Engineering",
-        "Linux",
-      ],
-      description: [
-        "Before this internship, cybersecurity was something I understood in theory. I had taken the courses, worked through the labs, and learned the tools. But there's a difference between running Nmap against a practice environment and running it against infrastructure that real people depend on. This internship was where that gap closed.",
-        "A lot of what I did early on felt like a translation exercise. The concepts I had studied, network reconnaissance, vulnerability assessment, traffic analysis, were all there, just now with actual stakes. I was scanning real systems, analyzing real traffic in Wireshark, and writing findings that would inform real decisions about the security of their user portal. It made everything I had learned feel suddenly more concrete.",
-        "The more interesting growth happened with tools I hadn't touched before. Burp Suite became a daily driver for intercepting and inspecting web application traffic on the portal, helping me spot misconfigurations and probe for vulnerabilities in a way that no classroom exercise had prepared me for. I also got my first serious exposure to mobile security through Frida and JADX, using dynamic instrumentation and static analysis to dig into how their app behaved under the hood. To make that work, I spun up Android virtual machines in QEMU, giving me a controlled, reproducible environment to instrument and decompile the app without touching a physical device. It was a different kind of thinking, patient, methodical, and deeply satisfying when something clicked.",
-      ],
-    },
-  },
-  {
-    title: "Automated Résumé Fetch & Deploy",
-    description:
-      "Node.js script that pulls my Google-Docs résumé via a GCP Service Account and redeploys my portfolio site in one command.",
-    modalContent: {
-      title: "Automated Résumé Fetch & Deployment Pipeline",
-      skills: [
-        "Self-Directed Ownership",
-        "Node.js",
-        "Google Cloud Platform",
-        "Git",
-        "Shell Scripting",
-        "PyQt5",
-        "LaTeX",
-      ],
-      description: [
-        "Keeping an online résumé current often means juggling downloads, manual file moves, and redeployments. I wanted that workflow boiled down to a single command. This project delivers exactly that.",
-        "The original version authenticated with a Google Cloud Service Account, exported my résumé Google Doc as a PDF, and pushed it straight to my portfolio. It worked, but as my résumé grew more complex, Google Docs started getting in the way. I migrated to LaTeX for full control over formatting and layout, which meant rethinking the fetcher entirely.",
-        "The updated script pulls the compiled PDF directly from my local LaTeX git repository, parses its new format, and writes it to two key locations: a `job_docs` archive and the `public/` directory of my Next.js portfolio.",
-        "Once the new PDF is in place, it triggers a production build, stages the updated asset, commits with a conventional-chore message, and pushes straight to GitHub, instantly kicking off the site's CI pipeline.",
-        "A small bash alias `rupd` wraps everything, so from anywhere in any terminal I can run one command and know my résumé and portfolio are synchronized within minutes.",
-        "Manually selecting and copy-pasting each section of my résumé into various applications became exhausting, so I built a PyQt5 Résumé Viewer. It parses my PDF into a collapsible tree and lets me click any heading or bullet to instantly copy its text to the clipboard, streamlining the entire process.",
-      ],
-      images: ["/ResumeFetch-1.png"],
-      links: [
-        {
-          title: "GitHub Repo",
-          url: "https://github.com/HackOverflow404/Resume-Fetcher",
-        },
-      ],
-    },
-  },
-  {
-    title: "Reverse Engineering a Legacy Laptop",
-    description:
-      "Disassembled an Acer Aspire 4736G and working to repurpose components such as battery, fan, LCD screen, keyboard, trackpad, and fingerprint reader.",
-    modalContent: {
-      title: "Anatomy of a Machine: The Legacy Laptop Project",
-      skills: [
-        "Self-Directed Ownership",
-        "Creative Thinking",
-        "Raspberry Pi",
-        "Circuit Design",
-        "Protocol Debugging",
-        "Reverse Engineering",
-      ],
-      description: [
-        "This laptop has been part of our family for nearly two decades, a machine that once ran homework assignments, streamed movies, and powered my first lines of code. Over the years, it evolved alongside me. I transformed it into a home server running Ubuntu, a media center powered by Kodi, a pentesting lab with Kali Linux, and even a fully virtualized home lab using a Type-1 hypervisor. In 11th grade, driven purely by curiosity, I disassembled it down to the last screw, not to repair it, but to understand it. To learn what made it tick.",
-        "Now, with little use for the laptop as a whole, I've returned to it once again, this time with a different mission: to give its parts new life through engineering and invention.",
-        "It began with the fan. I repurposed it as active cooling for my Raspberry Pi, breathing new utility into a component most would discard. I dove deep into circuit schematics I unearthed online, cross-referencing motherboard layouts and datasheets, mapping out traces, testing signals and voltages with a multimeter. One by one, I began decoding the protocols that tied each subsystem together. Through probing and logic, I deduced that the fingerprint sensor communicated over 3V USB, not just a guess, but a calculated inference grounded in electrical behavior and datasheet breadcrumbs.",
-        "Then came the LCD screen. I learned that it uses an LVDS (Low Voltage Differential Signaling) interface, a protocol common in older display hardware. I plan to pair it with a third-party controller board, converting it into a functional external monitor for my Raspberry Pi or a headless server dashboard. It's not plug-and-play, it's research, solder, test, fail, repeat. But that's the joy of it.",
-        "The laptop's stereo speakers also found a second life. Inspired by the operational amplifier circuits I learned to build in my ECE 110 course, I initially used an LM358 to create a basic audio amplifier. It worked, barely. The output was faint, distorted, and underpowered. So I iterated. I upgraded to an LM386-based audio module and wired it to a salvaged 3.5mm headphone jack from a broken pair of earbuds. The result? A compact, self-powered speaker that plays music from my Raspberry Pi with clarity and volume.",
-        "This project is far from over. Every component is a puzzle, a microcosm of engineering principles waiting to be rediscovered. I'm continually learning how signals propagate, how buses negotiate data, and how standards like I²C, LVDS, and USB manifest in real hardware. I'm not just recycling; I'm reverse-engineering, decoding, rebuilding.",
-        "In a world obsessed with the new, I'm finding wonder in the old. I'm not just tearing down a machine, I'm reimagining it. Piece by piece, lesson by lesson.",
-      ],
-    },
-  },
-  {
-    title: "RemoteCam",
-    description:
-      "A cross-platform webcam and microphone streaming app built using WebRTC and Firebase signaling, with a mobile PWA frontend and a QtPython + GStreamer desktop client.",
-    modalContent: {
-      title: "RemoteCam: Engineering Seamless Communication",
-      skills: [
-        "Self-Directed Ownership",
-        "Research & Analytical Thinking",
-        "Python",
-        "TypeScript",
-        "HTML/CSS",
-        "React/React Native",
-        "Next.js",
-        "QtPython",
-        "Firebase",
-        "PWA",
-        "Cross-Platform Apps",
-        "Responsive UI",
-        "WebRTC",
-        "Linux",
-        "Network Analysis",
-        "PyQt5",
-        "GStreamer",
-      ],
-      description: [
-        "The project began with a frustration familiar to many: my laptop's built-in webcam and microphone had become unusable for video calls, the video was laggy and grainy, the audio drowned in static and background noise. The simple solution would have been to buy a new webcam or plug in a headset with a built-in mic. But I had something better, an iPhone with world-class imaging and sound hardware. Rather than buying another device, I saw a challenge: could I turn the phone I already carried into a fully functional wireless webcam and microphone for my Ubuntu laptop?",
-        "At the same time, I was deeply curious about how devices communicate in real time over the internet, a fascination with WebSockets and protocols used in systems like FaceTime and Zoom. I didn't just want a solution. I wanted to build the solution. And I wanted it to teach me everything I didn't yet know.",
-        "Taking inspiration from Apple's Continuity Camera, I envisioned a seamless, cross-platform experience that could securely stream high-quality video and audio from my iPhone to my Linux machine. Thanks to my internship, I already had experience with GStreamer, a powerful media streaming toolkit, and decided to extend those skills further. I would build an end-to-end system: a wireless, real-time camera and mic platform powered by modern web protocols.",
-        "The next step was architectural design. I considered using WebSockets for the communication layer but quickly realized their limitations: they're great for basic messaging but lack the real-time, peer-to-peer efficiency and NAT traversal capabilities I needed. WebRTC, on the other hand, was designed from the ground up for streaming audio, video, and arbitrary data with low latency and high security, and came with built-in support for ICE, STUN, and TURN to negotiate connections through complex networks. WebRTC was the obvious choice.",
-        "I began development with a plan: the desktop client would be written in QtPython with a GStreamer backend, and the mobile app in React Native. I was fluent in both ecosystems, Python for scripting and fast iteration, and React Native for cross-platform mobile UI. But almost immediately, I hit a wall.",
-        "To build a WebRTC-enabled React Native app for iOS, I needed a Mac and an Apple Developer Account. Why? Because Apple requires native code to be compiled with Xcode on macOS, mandates signed apps for device testing, and the react-native-webrtc package uses low-level iOS APIs that Expo Go simply doesn't support. Without access to macOS or a paid developer profile, the project was dead in the water.",
-        "That is, until I discovered Progressive Web Apps (PWAs).",
-        "PWAs bypass Apple's restrictions entirely, while remaining installable and responsive across devices. They offer the cross-platform flexibility I needed, and WebRTC runs natively in Safari and modern browsers. Though PWAs come with trade-offs, no persistent background services, and limited access to certain native features, none of those limitations blocked my goals. This discovery was a turning point.",
-        "I pivoted immediately. I designed a sleek frontend in Next.js for the mobile PWA and paired it with a robust Linux client using GStreamer and PyQt. For signaling, I turned to Firebase, a platform I had used before and trusted for its real-time database and seamless integration with serverless functions. With Firebase Cloud Functions, I locked down signaling security: only functions could read or write to the database, and users could only initiate a connection with a randomly generated, time-limited 5-character session code, adding a layer of authentication and privacy by design.",
-        "Development accelerated, but not without pain. WebRTC, while powerful, is notoriously complex. I encountered every kind of issue: misformatted SDP offers, ICE candidates failing to gather, TURN servers being unreachable, inconsistencies between mobile and desktop codecs, and edge-case connection bugs that refused to explain themselves. I poured over browser debugging consoles, traced media flows through GStreamer logs, and dissected packet behavior in Wireshark, skills honed through past hands-on experience through internships, certifications, and CTFs. I tested and tuned everything from STUN fallback logic to media pipeline latency.",
-        "The connection still fails despite countless hours of debugging, I haven't yet uncovered why. But chasing this vision has been a masterclass in itself. I've gained a deep understanding of WebRTC's internals, the architecture of real-time media systems, secure cloud-based signaling, cross-platform performance challenges, and the subtle behavioral quirks that differ between browsers on iOS and Android. Though the system doesn't work yet, the knowledge I've earned along the way is already invaluable, and I'm committed to solving the puzzle, no matter how long it takes.",
-        "What began as a workaround to a broken webcam has grown into a living laboratory, one that has taught me how modern internet-based communication works and how hard it is to make it just feel easy.",
-        "The project is ongoing. The connection bugs will be fixed. But already, RemoteCam has served its purpose, not just to connect devices, but to connect me with the limits of my knowledge, and push me far beyond them.",
-      ],
-      images: ["/RemoteCam-1.png", "/RemoteCam-2.png", "/RemoteCam-3.png"],
-      links: [
-        {
-          title: "Github Repo",
-          url: "https://github.com/HackOverflow404/RemoteWebcam",
-        },
-        { title: "Live Website", url: "https://remote-webcam-b70ab.web.app/" },
-      ],
-    },
-  },
-  {
-    title: "PCB Badge for CTF at Sigpwny",
-    description:
-      "Helped design an ESP32-based DEFCON-style badge. Worked on SAO compatibility and embedded firmware.",
-    modalContent: {
-      title: "Silicon & Signals: The Sigpwny CTF Badge Build",
-      skills: [
-        "Collaboration & Teamwork",
-        "Python",
-        "C",
-        "ESP32",
-        "Circuit Design",
-        "Protocol Debugging",
-        "MicroPython",
-        "CTFs",
-      ],
-      description: [
-        "At the University of Illinois Urbana-Champaign, Sigpwny is one of the largest and most active RSOs dedicated to information security and privacy. For someone with a passion for embedded systems, low-level development, and cybersecurity, being part of this organization has been both inspiring and empowering. Through Sigpwny, I've had the opportunity to connect with brilliant minds, engineers, hackers, and innovators, whose knowledge and creativity have continuously pushed me to grow.",
-        "One of the most impactful projects I've worked on is the UIUCTF electronic badge, a DEFCON-style hardware badge built for the Capture the Flag competition we host annually. This year, we're designing a space-themed badge powered by an ESP32, packed with features that foster interactivity, connectivity, and a sense of community among participants. The badge is designed to communicate with others using ESP-NOW and ESP-WIFI-MESH, creating a decentralized and resilient communication network among players. This not only enables dynamic interactions between badges but also aligns with the distributed ethos of CTFs and hacker culture.",
-        "As part of the firmware team, I've been responsible for developing the display interface using MicroPython, where I've learned the intricacies of screen rendering, pixel buffers, and color palette optimization at the byte level. Developing within the constraints of MicroPython has challenged me to write highly efficient, memory-aware code that directly interfaces with hardware components over SPI and GPIO.",
-        "On the hardware side, I've applied principles from my circuit design coursework to help engineer the badge's PCB layout, gaining practical experience in power delivery management, voltage regulation, and differential signaling. I've worked closely with the team to iterate on schematic design, ensuring stable operation across components, and managing trace impedance for reliable high-speed communication.",
-        "This badge isn't just a tool; it's a living, breathing embodiment of our collective creativity and technical skill. From wireless mesh networking to custom display firmware, the project has given me a holistic view of what it means to engineer an embedded system from scratch, blending hardware, firmware, and innovation in every step. I'm incredibly proud to be part of this team and can't wait to see the room light up with hundreds of these badges in action, each one a symbol of curiosity, craft, and community.",
-      ],
-      images: ["/Badge-1.png", "/Badge-2.png", "/Badge-3.png", "/Badge-4.png"],
-    },
-  },
-  {
-    title: "Smart LED Strip Controller",
-    description:
-      "Flask app on Raspberry Pi for smartphone-based LED control. Used MQTT, Docker, and integrated the Matter protocol for smart home automation.",
-    modalContent: {
-      title: "Smart LED Strip Controller",
-      skills: [
-        "Scope & Priority Management",
-        "Self-Directed Ownership",
-        "Creative Thinking",
-        "Python",
-        "HTML/CSS",
-        "Flask",
-        "Docker",
-        "ESP32",
-        "Raspberry Pi",
-        "Circuit Design",
-        "MQTT",
-        "Network Analysis",
-      ],
-      description: [
-        "It started, as many things in college do, with something small, a lost remote.",
-        "In the chaos of my freshman year move-out, the slender plastic controller for my beloved LED strip vanished. Without it, the strip, a cascade of colors once glowing beneath my bed frame, was reduced to nothing more than decorative wire. I could've ordered a replacement. I could've moved on. But that would've meant ignoring the itch. The challenge. The whisper of possibility that said: what if I could build something better?",
-        "So I did.",
-        "What began as a workaround quickly became an obsession, a gateway into the world of embedded systems, protocol design, and the architecture of smart homes. I decided to build my own Smart LED controller, one not tethered to a flimsy plastic dongle, but to the internet, to code, to me.",
-        "The first prototype was pragmatic: a Raspberry Pi, a trio of MOSFETs, and a set of GPIO pins pulsing with PWM signals to drive the 12V LED strip safely. The Pi, outputting a mere 3.3V, couldn't drive the LEDs directly, but with carefully wired logic and a healthy respect for electrical isolation, it became the brain of the system. I wrote a Flask application to control the LEDs, served it over the local network, and containerized it with Docker for portable deployment. Within hours, I could control the entire room's ambience from a web browser. No remote needed.",
-        "To make the system feel less like a demo and more like a product, I implemented JSON-based state persistence on the Pi, storing the last-used color, brightness, and mode in a file that was read on boot. Even if the power went out, my lights came back exactly as I left them.",
-        "But that wasn't enough.",
-        "The idea of smart home control, true integration, voice control, and automation had always fascinated me. That's when I stumbled upon MQTT, a lightweight publish/subscribe protocol used widely in IoT ecosystems. I had heard about it in passing, an offhand mention on the Journal Club podcast I listen to while coding, but now, it took center stage.",
-        "I dove in.",
-        "I replaced the Raspberry Pi as the LED controller with an ESP32, a tiny but mighty microcontroller perfect for embedded networked applications. The Pi transformed into the MQTT broker, a command and control center running DietPi, a minimalist OS that let me turn it into a dedicated Wi-Fi access point. That step, though seemingly minor, was crucial: my apartment's Wi-Fi, locked down by Octave Management, made connecting IoT devices nearly impossible. By creating my own secure subnetwork, I circumvented that limitation entirely.",
-        "Now, the ESP32 subscribed to lighting commands over MQTT. The Raspberry Pi broadcasted those commands. And the Flask interface became just one of many clients that could publish to the topic. I even connected my Amazon Echo Show to the Pi's access point, enabling voice control of the lights. It worked. And it was beautiful.",
-        "Just like on the Pi, I used JSON on the ESP32 to persist state, writing to flash memory so that every lighting preference, down to the color and fade speed, survived resets and reboots. It wasn't just responsive; it was reliable.",
-        "But technology never stands still, and neither do I.",
-        "As I explored further into the landscape of smart home standards, I discovered Matter, a new protocol promising secure, local, and interoperable communication between devices. It wasn't just a new protocol; it was the future. Apple, Google, and Amazon were all backing it. It was everything I wanted this project to become.",
-        "So I tried.",
-        "I tried to migrate the project to Matter, to bring my ESP32 into the next generation of smart home ecosystems. I scoured documentation, cloned bleeding-edge repositories, and dove into the underworld of build tools like gn, ninja, and idf.py. But the deeper I went, the more tangled it became. Cross-compiling libraries. Dependency loops. Version mismatches. Unresolved symbols. Cryptic errors from SDKs that seemed allergic to working together. What should have been a new beginning became a recursive maze of dependency hell.",
-        "And in the end, Matter never worked. Not on my hardware. Not with the time I had. Not yet.",
-        "But that failure wasn't a dead end. It was a forge.",
-        "Because even in defeat, I had learned more than I could have imagined. I didn't just read about protocols, I implemented them. I didn't just hear about security, I designed for it. I saw firsthand the fragility of modern ecosystems, the hidden cost of interoperability, and the sheer complexity behind something as simple as turning on a light.",
-        "And most importantly, I built something that mattered. Not because it was perfect, but because it was mine, from PWM signals to MQTT packets, from GPIO pinouts to containerized deployments, from JSON state files to custom access points.",
-        "A lost remote was never the real problem.",
-        "The real problem was that I couldn't leave a broken system alone.",
-        "And the real victory was that I never stopped trying to fix it.",
-      ],
-      images: ["/LED-1.png"],
-      links: [
-        {
-          title: "Github Repo",
-          url: "https://github.com/HackOverflow404/Control-Lights",
-        },
-      ],
-    },
-  },
-  {
-    title: "Internship at IoT++",
-    description:
-      "Developed a vehicle routing prediction system using Random Forests and RNNs. Fine tuned image generation models for route depiction. Optimized YOLO on Orange Pi NPU using GStreamer.",
-    modalContent: {
-      title: "IoT++: AI Systems for Real-Time Detection and Routing",
-      skills: [
-        "Communication & Explanation",
-        "Collaboration & Teamwork",
-        "Scope & Priority Management",
-        "Python",
-        "Docker",
-        "Kubernetes",
-        "GStreamer",
-        "Azure",
-        "Yolo",
-        "Tensorflow",
-        "PyTorch",
-        "Pandas",
-      ],
-      description: [
-        "During my internship, I had the opportunity to work on several cutting-edge projects at the intersection of computer vision, machine learning, edge computing, and cloud infrastructure. One of my core contributions involved enhancing a YOLO-based real-time detection system to identify fire hazards and human presence in industrial environments. I retrained and fine-tuned the model using custom datasets, ultimately achieving a 13x increase in inference speed and a 62% boost in detection accuracy. I integrated the model into a GStreamer-based video processing pipeline tailored for Orange Pi devices with NPUs, which introduced me to the intricacies of hardware acceleration, low-level optimizations, and deployment on constrained edge devices.",
-        "This technical work went hand-in-hand with scalable deployment practices. I containerized the pipeline using Docker, orchestrated services using Kubernetes and Minikube, and managed deployments on Azure, learning how to build resilient, cloud-native systems that could adapt to real-world operational demands. I also collaborated on the development of intelligent traffic routing algorithms by training recurrent neural networks and random forest classifiers to direct vehicles toward weighbridges based on live traffic conditions and equipment throughput, a project that taught me the delicate balance between accuracy, latency, and interpretability in production ML systems.",
-        "In parallel, I explored the generative side of AI by fine-tuning image generation models to provide intuitive route visualizations for drivers. This involved careful prompt engineering and model conditioning, improving the clarity and usability of visual instructions under varying real-world lighting and environmental conditions. Additionally, I contributed to the design of a retrieval-augmented generation (RAG) system, helping the team build internal chatbot tools that could synthesize knowledge from large corpora of proprietary company data. This effort honed my skills in natural language processing, search optimization, and user experience.",
-        "Beyond the technical achievements, this internship sharpened my problem-solving mindset, deepened my ability to communicate complex ideas across interdisciplinary teams, and cultivated a strong sense of ownership and adaptability. Working in a fast-paced environment taught me how to prioritize ruthlessly, break down large challenges into tractable tasks, and stay grounded in both user needs and system constraints. It was a formative experience that not only strengthened my foundation in applied AI and systems engineering but also expanded my confidence in contributing meaningfully to impactful, real-world solutions.",
-      ],
-    },
-  },
-  {
-    title: "Uplift",
-    description:
-      "Hackathon-built cross-platform app using React Native, Tesseract.js for OCR, and LangChain + OpenAI for contextual chat assistance.",
-    modalContent: {
-      title: "Uplift: Designing Empathy Through Code",
-      skills: [
-        "Empathy-Driven Design",
-        "Communication & Explanation",
-        "Collaboration & Teamwork",
-        "JavaScript",
-        "TypeScript",
-        "React/React Native",
-        "LangChain + OpenAI",
-        "Responsive Design",
-      ],
-      description: [
-        "The hum of laptops, the quiet intensity of teammates huddled over sketches and screens, and the race against the ticking hours of a Hackathon, that was the backdrop for one of the most formative development experiences I've had: building Uplift.",
-        "Uplift was born from a simple, human idea: sometimes we want to help someone who's hurting, but we don't know what to say. Whether it's a friend struggling with anxiety, a partner feeling low, or a classmate who just needs encouragement, the words can feel impossible. Our team wanted to build something that would make those moments easier, a tool that could take the weight off the user's shoulders and offer guidance without judgment.",
-        "The concept was straightforward. A user could take a screenshot of a conversation, specify the tone they wanted to convey, comfort, advice, or validation, and receive a list of suggested responses. Behind the scenes, the app would use OCR to extract the message content, analyze the emotional context, and then generate appropriate replies using natural language tools. The idea wasn't to replace human empathy, but to amplify it, to help people find their voice when it mattered most.",
-        "I joined the project with an eagerness to contribute technically, but what I walked away with was far more expansive. This was my first time working with React Native, and I had to ramp up quickly. I came in with experience in React, but mobile app frameworks were new territory. Fortunately, the framework was very similar to React, and I was able to pick it up quickly.",
-        "OCR was another technical challenge. We used Tesseract.js, a JavaScript port of the Tesseract OCR engine, to extract text from screenshots. While Tesseract is powerful, it's also finicky. Lighting conditions, font rendering, and compression artifacts from screenshots often led to noisy or partial extractions. We had to implement preprocessing and smart error handling to ensure the text passed to our language model was clean and contextually intact. We used message colors to identify which user had sent which message to divide the conversation into two sides.",
-        "Once we had clean text, we turned to LangChain and OpenAI to generate the actual suggestions. This was a crash course in prompt engineering and chaining, how to structure input to get the kind of nuanced, emotionally aware replies we envisioned. We experimented with different prompts for different tones, carefully tweaking the few-shot examples to teach the model the difference between advice and empathy, between encouragement and simply being there. This process taught me a lot, not just about how powerful language models can be, but also how delicate and intentional their usage needs to be when the goal is helping someone through a vulnerable moment.",
-        "As important as the backend logic was, we knew it wouldn't matter if the front end failed. And that's where I learned my first real lessons in mobile app UI/UX design. Designing for emotion is not like designing for functionality. It's about softness, clarity, ease. We spent hours debating padding, typography, and button placement, not because it looked pretty, but because it felt better. In a high-stress moment, even milliseconds of confusion or visual friction could break the experience. That lesson, that user experience is emotional as much as it is functional, stayed with me long after the Hackathon ended.",
-        "Working as part of a team during a Hackathon environment was both intense and invigorating. We had to collaborate fast and trust each other's instincts, pulling an all-nighter to finish our project racing against the deadline. Dividing up responsibilities, merging our different levels of experience, and maintaining cohesion under time pressure gave me firsthand insight into what real engineering collaboration feels like. I learned how to communicate ideas quickly, respect design constraints, and adapt when plans changed. It wasn't just about the code, it was about building something real with other people, fast.",
-      ],
-      embed: ["https://www.youtube.com/watch?v=76T-BBqLBeY"],
-      links: [
-        {
-          title: "Github Repo",
-          url: "https://github.com/HackOverflow404/Uplift",
-        },
-        {
-          title: "Youtube Demo",
-          url: "https://www.youtube.com/watch?v=76T-BBqLBeY",
-        },
-      ],
-    },
-  },
-  {
-    title: "Cyber Awareness Website",
-    description:
-      "Responsive cybersecurity education platform with interactive lessons and non-technical explanations. Scored 88/93 in Lighthouse testing.",
-    modalContent: {
-      title: "CyberSpace: Bridging the Gap Between Complexity and Clarity",
-      skills: [
-        "Empathy-Driven Design",
-        "Communication & Explanation",
-        "HTML/CSS",
-        "JavaScript",
-        "Responsive Design",
-        "Pentesting Fundamentals",
-      ],
-      description: [
-        "In the wake of completing my cybersecurity certification, I found myself sitting with a newfound understanding of how vulnerable our digital lives really are. I had learned about everything from phishing attacks to password managers, browser exploits to social engineering, and yet, as I looked around, I realized how little of this knowledge was reaching the people who needed it most. Not the developers or the professionals, but everyday users, students, parents, friends, navigating the internet with little more than instinct and luck.",
-        "That gap between what I had learned and what others understood felt impossible to ignore. So I decided to build something that would bridge it.",
-        "The idea was simple in spirit but ambitious in execution: create a responsive, interactive website that could explain essential cybersecurity concepts to the general public in a way that was engaging, non-intimidating, and, most importantly, practical. I called the project Cyber Awareness.",
-        "This was my first time building an interactive website from scratch, and I deliberately chose not to use any frameworks or libraries. No React. No Bootstrap. Just pure HTML, CSS, and JavaScript. I wanted to understand the fundamentals, how to structure a page from the ground up, how to write clean semantic markup, how to build components with reusability and accessibility in mind, and how to manage interactivity without relying on pre-built abstractions.",
-        "The process began in Figma, where I designed the interface down to the pixel. I sketched out layouts for each lesson, focusing on balance, clarity, and responsiveness. I chose a color palette that evoked security and professionalism without feeling cold or corporate. The layout was mobile-first, ensuring accessibility for users across devices. Each lesson would be presented in a card-based format with expandable sections, inline tooltips, and light animations to make the experience feel alive, not static text on a page.",
-        "Once the designs were finalized, I moved to development. Styling was done entirely with vanilla CSS, using flexbox and media queries to build a fluid, responsive layout. I took care to build components that degraded gracefully and adapted elegantly to screen size changes.",
-        "The real challenge, and joy, came in the JavaScript layer. I wrote custom scripts for interactivity: dynamic navigation, auto-adapting spacing between content, interactive activities, and a lightweight quiz system that could provide instant feedback. I learned how to manage DOM events cleanly, how to debounce inputs, and how to write modular, readable code even in the absence of modern JS frameworks.",
-        "One of my favorite parts of the project was writing the non-technical content itself. Translating complex topics like multi-factor authentication, ransomware, and public-key encryption into everyday language was a rewarding exercise in empathy. It wasn't just about knowing the content, it was about understanding what someone who didn't know needed to hear first. I learned how to layer concepts, how to lead with stories, and how to build a narrative that didn't assume technical literacy but still respected the user's intelligence.",
-        "Through this project, I didn't just apply what I had learned from my certification, I internalized it. Teaching others forced me to think critically about what I knew, and building the platform from scratch gave me a deep respect for the foundational layers of the web.",
-        "When it was complete, the website wasn't just a static resource. It was an interactive experience designed to demystify cybersecurity, to make the invisible visible, and to empower users with knowledge they could act on.",
-        "Looking back, Cyber Awareness was more than a technical project, it was a statement of intent. A declaration that learning is only useful if it's shared, that technology should lift people, and that I'm committed not only to building secure systems, but to helping others understand and protect themselves in the digital world.",
-      ],
-      embed: ["https://hackoverflow404.github.io/cyberawareness/"],
-      links: [
-        {
-          title: "Live Website",
-          url: "https://hackoverflow404.github.io/cyberawareness/",
-        },
-        {
-          title: "Github Repo",
-          url: "https://github.com/HackOverflow404/cyberawareness",
-        },
-      ],
-    },
-  },
-  {
-    title: "Court Booking System",
-    description:
-      "Full-stack app for apartment complexes using React, Spring Boot, and SQLite. Admin dashboard streamlined sports facility scheduling.",
-    modalContent: {
-      title:
-        "Court Booking System: Building a Full-Stack Solution for Community Coordination",
-      skills: [
-        "Empathy-Driven Design",
-        "HTML/CSS",
-        "JavaScript",
-        "Java",
-        "React/React Native",
-        "Spring Boot",
-        "SQLite",
-        "REST APIs",
-        "Responsive Design",
-      ],
-      description: [
-        "Every solution begins with a friction point. In my neighborhood, where I spent my 10th through 12th grade years, it was the tennis, basketball, and badminton courts, each with their own paper logbooks and silent frustrations. I ran into it myself whenever I tried to book a tennis court after school or on weekend mornings: double bookings, no-shows, and miscommunication were common, not out of negligence but because the system simply wasn't built to scale with the people using it. I saw an opportunity: not just to digitize a process, but to reimagine what coordination could feel like when technology works as it should, seamlessly, quietly, and purposefully.",
-        "That's how I began building the Court Booking System: a full-stack application designed specifically for apartment complexes to manage their shared sports facilities. I wanted it to be more than just functional, I wanted it to feel intuitive, transparent, and empowering for both residents and administrators.",
-        "This was a real problem, with real stakeholders: neighbors, building managers, and families with weekend routines hinging on court availability. That context shaped every decision. I chose React for the frontend, not just because of its speed and component-based architecture, but because I wanted to build something reactive in the truest sense, interfaces that respond to user actions immediately and meaningfully.",
-        "The UI was designed with clarity in mind: calendar-based booking views, time-slot selectors, real-time updates, and seamless user information handling. State management was handled through useState and useEffect hooks for lightweight responsiveness, while Axios powered live asynchronous communication with the backend REST API.",
-        "For the backend, I turned to Spring Boot, a powerful Java-based framework that allowed me to build a secure, scalable REST API with precision. The architecture followed REST principles cleanly: endpoints for creating, retrieving, modifying, and deleting bookings; user role checks; and time-conflict validation logic.",
-        "I chose SQLite for the database, a file-based relational DB that was lightweight, easy to deploy, and perfectly suited for a system without high concurrency demands. The schema was built to reflect real-world relationships: Users, Bookings, Courts, and TimeSlots.",
-        "One key architectural decision that dramatically improved both performance and usability was how I handled booking availability. Instead of pre-populating and storing every possible time slot, I dynamically generated available slots in real-time based on admin-defined constraints like opening hours and booking durations. When a user requested slots for a particular court and date, the system calculated the valid options and filtered out those already booked. This approach reduced unnecessary storage, made updates instantaneous, and kept the user experience fluid and responsive.",
-        "To make the booking process feel complete and reliable, I also implemented automated email confirmations. Whenever a user successfully made a booking, they were sent a detailed confirmation email containing the court, time slot, and date-ensuring peace of mind and reducing the likelihood of miscommunication or forgotten reservations.",
-        "What I loved most about working with SQLite was its simplicity. It allowed me to iterate quickly, write complex join queries, and ensure atomic transactions without the overhead of managing a full-fledged DBMS. For this context, it struck the perfect balance.",
-        "While the resident view prioritized simplicity, the admin dashboard held the real power. I built a separate interface with additional capabilities: viewing all bookings across every court, manually overriding schedules, and editing options such as time ranges, default booking durations, and available courts.",
-        "This project gave me something no tutorial or classroom ever could: an end-to-end look at what it means to solve a real problem with code. I learned how to gather requirements from non-technical users, build scalable APIs, connect frontend and backend layers securely, and design user interfaces that work not just in theory but in daily life.",
-      ],
-      images: ["Booking-1.png", "Booking-2.png"],
-    },
-  },
-  {
-    title: "Research Paper on Leet Speak in Password Security",
-    description:
-      "I wrote a research paper evaluating the use of leet speak in password security under the guidance of a professor at Shobhit University.",
-    modalContent: {
-      title: "Research Paper on Leet Speak in Password Security",
-      skills: [
-        "Research & Analytical Thinking",
-        "Communication & Explanation",
-        "Python",
-        "Linux",
-        "Hashcat",
-      ],
-      description: [
-        "Passwords are the front lines of digital security, yet most people use them without truly understanding how they work or how they fail. When I first began researching password strength, I wasn't trying to write a research paper. I was trying to answer a deceptively simple question: Can leet speak, the practice of swapping letters for symbols or numbers, make passwords more secure?",
-        "At the time, I had just completed a comprehensive certification in cybersecurity. The field had captivated me. I was fascinated not only by the elegance of well-designed systems but by the fragility of their weakest points. The average internet user juggles dozens of passwords, often recycling, simplifying, and guessing. I wanted to understand what made a password strong, not just by modern metrics, but by the logic of a hacker trying to crack it open.",
-        'Leet speak intrigued me. Common wisdom suggested it could "trick" password strength meters, allowing users to remember relatively simple words that still passed muster with security protocols. But that confidence seemed too easy. I needed data. I needed proof. So I dove headfirst into original research.',
-        "I began by compiling a large dataset of real-world passwords. Using a filtered version of Daniel Miessler's well-known password list, I eliminated numeric-only entries to focus on passwords that could be realistically converted into leet speak. What followed was a deeply technical process of transformation, simulation, and analysis.",
-        "First, I created a Python script, leet_converter.py, that applied leet substitutions based on a weighted character map. Not every character was replaced; I wanted to simulate real user behavior, where transformations are inconsistent and personal. This script generated a new dataset of “leet-ified” passwords, matching the original set in structure and count.",
-        "Then came the evaluations. Using Dropbox's zxcvbn library, I ran a comprehensive analysis of each password's strength score, capturing a range of metrics from entropy estimation to estimated cracking time. I wasn't satisfied with strength meters alone, though. I wanted to know how these passwords would hold up under real-world attack strategies. So I turned to Hashcat, an industry-standard tool used by professionals (and hackers) to brute-force hashed passwords.",
-        "To do this, I created SHA-1 hashes of each password and configured a brute-force attack against them. It was computationally expensive and time-intensive, but it offered something no password meter could: a ground-truth test against adversarial effort.",
-        "I didn't stop there. I also calculated entropy values, mathematical estimates of password unpredictability, using a custom-built entropy calculator. This provided a theoretical perspective to counterbalance the empirical ones.",
-        "The data revealed something unexpected: leet speak had almost no meaningful impact on actual password security. Yes leet passwords often had higher entropy scores. But entropy, while mathematically elegant, does not fully reflect the realities of cracking algorithms that are trained on common leet patterns. In fact, zxcvbn consistently rated leet passwords lower than their original counterparts. And in the brute-force test using Hashcat, arguably the most realistic simulation of a password being attacked, the difference in crack rate was statistically insignificant. This wasn't just a surprise. It was a revelation.",
-        "Security isn't about illusions. A password that \"feels\" secure isn't always so. Leet speak might fool a meter, but it doesn't fool attackers. Tools like Hashcat have adapted. They understand our tricks because attackers use machine learning, pattern dictionaries, and targeted heuristics. The cat-and-mouse game of cybersecurity continues, but leet speak, once seen as a clever workaround, may now be closer to security theater.",
-        "This research taught me more than just the flaws of leet speak, it taught me how to think like an adversary. It taught me how to break down security systems from the ground up, evaluate them with rigorous methodology, and separate myth from reality.",
-        "It also taught me what research should be: not just a collection of facts, but a journey of inquiry powered by curiosity and validated by computation. I wrote every line of Python myself. I ran every test. I interpreted every result.",
-        "And in the end, I published the paper in the International Journal of Scientific Research in Science and Technology, under the guidance of a professor at Shobhit University. But more importantly, I walked away with the tools to evaluate not just passwords, but the very systems we trust to protect us online.",
-        "For me, this wasn't just about leet speak. It was about building the mindset of a cybersecurity engineer, one who sees the cracks, tests the assumptions, and works relentlessly to understand what most take for granted.",
-      ],
-      links: [
-        {
-          title: "Research Paper",
-          url: "https://www.researchgate.net/publication/365478150_Evaluation_of_Leet_Speak_on_Password_Strength_and_Security",
-        },
-      ],
-    },
-  },
+	{
+		title: "View Résumé",
+		description: "View or download my résumé directly from here.",
+		modalContent: {
+			title: "My Résumé",
+			description: [
+				"You can preview, download, or share my résumé below. If you'd like to get in touch, feel free to connect via the links provided.",
+			],
+			links: [
+				{ title: "Download Résumé", url: resumeURL },
+				{
+					title: "Shareable Link",
+					url:
+						typeof window !== "undefined"
+							? window.location.origin + resumeURL
+							: resumeURL,
+				},
+			],
+		},
+	},
+	{
+		title: "ECE391: RISC-V OS in the Browser",
+		description:
+			"A kernel my team wrote from scratch for UIUC's OS course, now running live in your browser via WebAssembly. It boots a shell, mounts a filesystem over HTTP, and takes keyboard input.",
+		modalContent: {
+			title: "ECE391: A Real Kernel, Running in Your Browser",
+			skills: [
+				"C",
+				"RISC-V Assembly",
+				"Operating Systems",
+				"WebAssembly",
+				"VirtIO",
+				"Filesystems",
+				"Memory Management",
+				"Process Scheduling",
+				"Next.js",
+				"TypeScript",
+				"Emscripten",
+				"xterm.js",
+			],
+			description: [
+				"ECE 391 is UIUC's Computer Systems Engineering course, and it covers the full stack of abstractions that make modern operating systems work: process scheduling and CPU virtualization, virtual memory and page tables, the system call interface between user programs and the kernel, interrupt-driven I/O, device programming, synchronization primitives, and the file descriptor model. The capstone is a group kernel built from scratch on a real architecture. My team targeted RISC-V64 and implemented all of it over the course of the semester.",
+				"The work included a VirtIO console driver for keyboard and terminal I/O, a VirtIO block device driver to read a filesystem from disk, a custom filesystem called KTFS, page-table-based virtual memory, a process scheduler, a complete system call interface, and a Unix-style shell with multi-stage pipeline support. Each piece required reading the actual hardware spec or protocol document and implementing it precisely. Writing a device driver teaches you something that userspace programming never does: you own every byte of state between the hardware register and the kernel abstraction layer, and there is no library to blame when something goes wrong.",
+				"What I carry forward from the course is less about the specific features we built and more about how to think under concurrency. Synchronization, mutual exclusion, interrupt latency, the ordering constraints that matter when a timer interrupt and a device interrupt can both fire during a scheduler decision: reasoning about those problems carefully is a skill that generalizes to everything. Debugging at the assembly level, reading machine register state to trace a crash, and developing a real mental model of the hardware-software boundary are things you can only learn by doing them.",
+				"After the course ended, I wanted to actually show the kernel running, so I embedded it in the browser. I compiled TinyEMU, a RISC-V emulator by Fabrice Bellard, to WebAssembly using Emscripten. It now boots inside the browser, mounts its filesystem over HTTP, and runs a fully interactive shell through xterm.js. Try it above. Type ls to see the filesystem, cat testfile2 to read a file, or run cat testfile2 | wc | cat to test a three-stage pipeline.",
+			],
+			embed: ["https://ece-391-kernel-demo.vercel.app"],
+			links: [
+				{
+					title: "GitHub: Kernel Source",
+					url: "https://github.com/HackOverflow404/ece391-kernel-demo",
+				},
+			],
+		},
+	},
+	{
+		title: "MicroTech EOH Lead",
+		description:
+			"Led MicroTech's exhibit at EOH, the largest student-run STEM fair in the US, designing 4 interactive stages to teach MEMS technology through a Le Louvre Heist theme.",
+		modalContent: {
+			title: "Teaching MEMS Through a Museum Heist",
+			skills: [
+				"Scope & Priority Management",
+				"Empathy-Driven Design",
+				"Creative Thinking",
+				"Collaboration & Teamwork",
+				"Leadership & Team Management",
+				"Communication & Explanation",
+				"ESP32",
+				"Circuit Design",
+				"C++",
+			],
+			description: [
+				"Engineering Open House is the largest student-run STEM fair in the United States, held annually at UIUC and drawing thousands of visitors ranging from elementary schoolers to professors. As EOH Lead for MicroTech, my job was to take what we do, working with MEMS devices, and make it genuinely engaging for all of them at once. That's a harder design problem than it sounds.",
+				"MEMS, or Micro-Electro-Mechanical Systems, are the tiny sensors and actuators embedded in almost every modern device: the accelerometer in your phone, the pressure sensor in your car, the gyroscope in a drone. They're fascinating technology, but explaining them to a mixed audience of kids, parents, and engineers requires more than a poster board. We needed something people could touch, fail at, and laugh about. So we themed the entire exhibit around pulling off a heist at the Le Louvre.",
+				"Leading the project meant a lot more than coming up with the concept. I was responsible for breaking the vision down into concrete workstreams, figuring out which stages needed which skills, and assigning members accordingly. Some people owned the circuit design for a stage end to end, others focused on 3D modeling and physical construction, and others handled firmware. My job was to make sure all of those pieces were moving in parallel and would actually fit together by EOH weekend. That meant running check-ins, unblocking people when hardware didn't behave, making scope calls when something was taking too long, and keeping the overall timeline honest.",
+				"The exhibit had four stages, each one smuggling a different MEMS concept into an interactive challenge. In the first stage, visitors had to pick a lock. We built a cross-section of a lock using dowels as pins, each tipped with a magnet. Visitors tested different tools near a reed switch, our stand-in for a magnetometer, a MEMS sensor that measures magnetic field strength. Only the magnetic tool would trigger the reed switch and light a green LED, and once they found the right one, they used it to pull each pin and crack the lock open.",
+				"Stage two was a logic gate maze. Eight switches wired through OR, AND, NOT, and XOR gate combinations controlled a grid of LEDs representing a museum floor plan. Only the correct sequence of flipped switches would illuminate the path to the diamond. It was intended as a hands-on introduction to digital logic, but it turned out to be surprisingly tricky even for the engineers in the crowd.",
+				"Stage three was the heist itself. A 3D printed pedestal held a pink jewel balanced on three pressure sensors feeding into an ESP32. The moment the jewel was lifted, a one-second countdown began. If a substitute jewel of equal weight wasn't placed back in time, a red LED started flashing and the alarms were tripped. The pressure sensor at the heart of it is a classic MEMS device, and watching visitors scramble to make the swap in time made the concept land in a way that no explanation could.",
+				"The final stage was the getaway. We repurposed a music foot pedal to act as a gas pedal, with an ESP32 reading its angle and mapping it to both a motor visualizing a spinning wheel and a servo-driven 3D printed speedometer on a dashboard. The whole thing simulated a tachometer, another MEMS sensor, and gave visitors something viscerally satisfying to stomp on after the tension of the previous stages.",
+				"Designing the exhibit meant thinking constantly about the range of people who would walk up to each station. Every stage had to be intuitive enough for a ten-year-old, engaging enough for a university student, and technically grounded enough that a professor would find something interesting in it. Getting that balance right across four distinct demos, all built and wired from scratch, was a constraint that shaped every design decision we made.",
+				"Leading this project taught me things that coursework doesn't really cover. Technically, I got deeper into embedded systems and circuit design than I had before, but the bigger lessons were about people and process. I learned how to give ownership to teammates without losing visibility, how to course-correct without micromanaging, and how to make decisions under time pressure when the perfect answer isn't available. Watching something I had planned on a whiteboard turn into a physical exhibit that hundreds of people genuinely enjoyed was one of the most satisfying experiences I've had at UIUC.",
+			],
+			images: ["/EOH-1.png", "/EOH-2.png"],
+		},
+	},
+	{
+		title: "HackerFab: Student-Built Semiconductor Fab",
+		description:
+			"Building a student-run photolithography patterning machine, automating a precision wafer stage with stepper motors and grblHAL.",
+		modalContent: {
+			title: "HackerFab: Fabricating Semiconductors from Scratch",
+			skills: ["Collaboration & Teamwork", "Circuit Design", "Python", "c++"],
+			description: [
+				"Photolithography is the process at the heart of semiconductor fabrication, where light is used to transfer a pattern onto a silicon wafer. It's how every modern chip starts its life. HackerFab is UIUC's attempt to build that process from the ground up, operating under MicroTech, a UIUC registered student organization pushing the boundaries of what student-built hardware can do. Inspired by CMU's pioneering student fab team, the project is organized across four teams, and I work on the Automation and Mechanical team, the group responsible for turning a manually operated rig into a precise, programmable machine.",
+				"We started simple: a manually controlled precision stage that could move a silicon wafer beneath a UV projector, with a camera to monitor alignment and see the patterning. It worked, but manual control meant inconsistency, and inconsistency in lithography means bad patterns. We knew early on that automation was the goal.",
+				"Before we could automate anything though, we rethought the physical setup entirely. The original horizontal configuration required adhesive to keep the wafer fixed to the stage, which introduced its own variables. We rebuilt the rig vertically, suspending the UV projector and camera from a aluminum frame and letting gravity do the work of holding the wafer flat against the stage. It was a surprisingly impactful change, removing one source of error before we had even written a line of motor control code.",
+				"Then came the motors. We attached stepper motors to the precision stage and started working through our options for driving them. We tested an Arduino with a CNC shield, and then a SKR Mini E3 V3.0, before landing on the SKR Pico V1.0. The deciding factor was grblHAL support: it gave us a well-documented, tunable motion control foundation that we could actually reason about and configure precisely. Getting the tuning right took iteration, but the control it gave us over the stage movement was worth it.",
+				"With the hardware sorted, we adapted CMU's existing software stack to interface with our specific setup, bridging their motion control logic to our board configuration and coordinate system. The stage can now move autonomously and repeatably across the full surface of the wafer, something that simply wasn't possible before.",
+				"From here, the work shifts toward the lithography itself. The next milestones are designing actual patterns to expose onto the wafer and rigorously benchmarking our positional precision, finding out exactly how accurate our automated stage really is and what that means for the feature sizes we can reliably produce.",
+			],
+			images: ["/HackerFab-1.png", "/HackerFab-2.png"],
+			links: [
+				{
+					title: "MicroTech Website",
+					url: "https://microtech.web.illinois.edu/",
+				},
+			],
+		},
+	},
+	{
+		title: "CS 124 Honors Web Platform: Full-Stack Leadership at UIUC",
+		description:
+			"Leading a team of 11 developers to build and maintain the CS 124 Honors course platform at UIUC - featuring UIUC SSO authentication, five-tier role-based access, a staff task management dashboard, and a custom TOTP attendance system.",
+		modalContent: {
+			title: "Building and Leading the CS 124 Honors Platform at UIUC",
+			skills: [
+				"Scope & Priority Management",
+				"Empathy-Driven Design",
+				"Leadership & Team Management",
+				"Collaboration & Teamwork",
+				"React",
+				"Next.js",
+				"JavaScript",
+				"TypeScript",
+				"Tailwind CSS",
+				"REST APIs",
+				"Vercel",
+				"Git",
+				"Responsive Design",
+			],
+			description: [
+				"When I stepped into the role of Lead Web Developer for CS 124 Honors at UIUC, the course already had a website. But 'had a website' and 'had a great website' are two very different things. The platform was slow, had no authentication layer, no internal tooling for staff, and no real infrastructure for the kind of coordination a course like this demands. My job wasn't just to maintain it, it was to rethink it.",
+				"The first thing I tackled was raw performance. A Google Lighthouse score of 76 is functional, but it's not something you're proud of. I audited the site top to bottom, identifying bloated assets, unoptimized images, and blocking render paths. Through systematic image optimization and lazy loading strategies, I pushed that score to 99, not as a vanity metric, but because every millisecond of load time is a student waiting, and a course platform should feel instant.",
+				"But performance was only the beginning. The bigger challenge was identity and access. CS 124 Honors operates within UIUC's ecosystem, meaning students and staff already have institutional identities through the university's Shibboleth Identity Provider. I integrated the platform directly with UIUC's SSO system, building an authentication flow where users are redirected through Shibboleth, and on return, issued a JWT that the application uses to establish and manage their session. No separate account creation, no password management; just your NetID, and you're in.",
+				"That authentication layer became the backbone of something far more complex: a five-tier role-based access control system. The platform distinguishes between five distinct roles (Course Lead, Head Project Manager, Project Manager, Web Developer, and Student), each with their own routing permissions and dashboard view. Rather than showing everyone the same interface and simply hiding buttons, I built dedicated experiences per role, so every user lands exactly where they need to be and sees only what's relevant to them.",
+				"For staff, that meant building a fully featured task management dashboard. Staff members can create tasks, assign them to other staff or students, set deadlines, and track completion status, all in one place. What used to require back-and-forth Slack messages or shared spreadsheets is now a structured workflow. The goal was to reduce coordination friction and give the team a single source of truth for what needs doing and who's doing it.",
+				"One of the features I'm most proud of is the attendance system. Staff can create course events directly through the platform, and students check in by submitting a time-sensitive OTP, a one-time password that refreshes every 30 seconds, built entirely from scratch without relying on a third-party TOTP library. I implemented the underlying time-based token logic myself, tying it to each event so that only students present during the active window can successfully mark attendance. It's a small detail with a big impact: it's fraud-resistant, frictionless, and removes the administrative overhead of manual attendance tracking entirely.",
+				"Beyond the technical work, this role is fundamentally about leadership. I manage a team of 11 developers, delegating feature work, reviewing pull requests, running weekly meetings, unblocking teammates, and making architectural decisions that keep the codebase maintainable as the team grows and rotates. Every semester brings new contributors, which means onboarding, documentation, and making sure the system is legible to someone seeing it for the first time.",
+				"The CS 124 Honors platform is a living system, one that a large course depends on every single day. Building it has been as much an exercise in engineering judgment and people management as it has been in writing code. And watching it go from a sluggish, static page to a responsive, role-aware, institution-integrated platform that the entire course runs through is something I'm genuinely proud of.",
+			],
+			embed: ["https://honors.cs124.org"],
+			links: [
+				{
+					title: "CS 124 Honors Website",
+					url: "https://honors.cs124.org",
+				},
+				{
+					title: "CS 124 Honors Dev Website",
+					url: "https://cs124h-dev-site.vercel.app/",
+				},
+			],
+		},
+	},
+	{
+		title:
+			"Research Paper on Biometric Authentication and Cybersecurity in the Digital Age",
+		description:
+			"Published review paper analyzing biometric authentication as a modern alternative to passwords and tokens, with a focus on digital risk management, privacy, usability, and online banking security.",
+		modalContent: {
+			title: "Biometric Authentication and Cybersecurity in the Digital Age",
+			skills: [
+				"Research & Analytical Thinking",
+				"Communication & Explanation",
+				"Pentesting Fundamentals",
+			],
+			description: [
+				"I wrote this paper because I kept seeing the same contradiction everywhere: society was rapidly digitizing, but authentication still depended heavily on methods that break down under real human behavior. Password fatigue, weak reset flows, and theft are not edge cases anymore, they are the default failure modes when millions of people live inside online systems.",
+				"The question I wanted to answer was not “are biometrics cool”, but “are biometrics actually a responsible step forward.” I wanted to understand where biometric authentication genuinely improves security and user experience, and where it introduces new risks that people tend to ignore until it is too late.",
+				"Writing it forced me to think in tradeoffs instead of slogans. I structured the review around practical evaluation factors the paper explicitly focuses on: cost ownership, usability, scalability, security, and privacy. That framework kept me honest, because biometrics do not get to win on security while losing on everything else.",
+				"One of the most important parts of the writing process was drawing a clean line between physical biometrics and behavioral biometrics. Physical biometrics felt like the most defensible category because they rely on physiological identifiers. Behavioral biometrics raised a harder problem, especially once I considered how artificial intelligence changes the threat model and makes certain behavioral signals less reliable.",
+				"I also spent time grounding the paper in real-world governance concerns instead of treating biometrics as purely technical. The privacy discussion mattered to me because biometric data is not something you can casually rotate. That pushed me to emphasize secure handling practices the paper discusses, like template or hash-based approaches rather than storing the biometric itself, along with broader expectations around user awareness, consent, and transparency.",
+				"To keep it connected to high-stakes reality, I looked specifically at online banking security and what authentication has to accomplish in that environment. That is where the paper's conclusion became very practical: biometrics can be valuable on their own, but a layered approach that combines biometrics with OTP is presented as a stronger direction for cybersecurity and digital risk management.",
+				"Overall, writing this paper was an exercise in turning a fast-moving, hype-heavy topic into a structured, defensible viewpoint. It is a review paper, but for me it was also a way to build better security instincts: weigh adoption, privacy, and failure modes at the same time, and still arrive at a recommendation that is usable in the real world.",
+			],
+			links: [
+				{
+					title: "Research Paper",
+					url: "https://www.medcrave.com/articles/det/30276/Biometric-authentication-and-cybersecurity-in-the-digital-age",
+				},
+			],
+		},
+	},
+	{
+		title:
+			"Spotify Controller: Repurposing Legacy Hardware as a Now-Playing Dashboard",
+		description:
+			"A dedicated wall-mounted Spotify wall art display built by rescuing an old LCD, driven via a Raspberry Pi, and displaying a lightweight web UI with real-time song info and synced lyrics.",
+		modalContent: {
+			title:
+				"Spotify Controller: Repurposing Legacy Hardware as a Now-Playing Dashboard",
+			skills: [
+				"Self-Directed Ownership",
+				"Creative Thinking",
+				"JavaScript",
+				"HTMLCSS",
+				"Vercel",
+				"Responsive Design",
+				"REST APIs",
+				"Raspberry Pi",
+				"Circuit Design",
+				"LVDS",
+				"Linux",
+				"Reverse Engineering",
+			],
+			description: [
+				"This project sits in the same lineage as my Legacy Laptop work: an old piece of hardware given a second life through careful engineering. After salvaging the Acer Aspire 4736G's LCD panel and mastering how LVDS panels communicate at the signal and timing level, I paired the raw screen with an LVDS controller board and my home server Raspberry Pi to make a purpose-built display.",
+				"Unlike a typical monitor, this setup doesn't run a full desktop. I configured a lean Linux image on the Pi with a minimal X11 session, launching Chromium in kiosk mode so the machine behaves like an appliance: plug it in and it immediately becomes the Spotify dashboard without any user interaction.",
+				"The UI itself is a Next.js single-page app hosted on Vercel and designed to be kiosk-friendly. It talks directly to the Spotify Web API, continuously pulling the currently playing track, album art, artist, device name, and playback state for my account. The interface displays clean now-playing info and includes interactive playback controls like play/pause, next/previous, and volume, all optimized for a static, always-on screen experience.",
+				"A highlight of this controller is synced lyrics. It leverages an LRC library for time-aligned lyrics with an automatic scroll and highlighting, plus a plain lyrics fallback from external lyric services. If the primary source is missing a song's lyrics, the fallback ensures the dashboard still shows textual context rather than blank space.",
+				"The app also uses the Media Session API so the Pi's media keys and hardware controls integrate naturally with the web UI, even though there's no traditional OS desktop visible.",
+				"What makes this project more than a web app on a screen is the intentional minimalism, it's designed for one purpose only: to live on my wall and reflect what I'm listening to in real time. The hardware engineering, reverse-engineering of display protocols, kiosk setup with X11/Chromium, and the custom web UI all come together to make a polished, device-agnostic Spotify companion.",
+				"Since the initial build, the dashboard has grown beyond a personal tool. I implemented Spotify OAuth so any Spotify user can authenticate with their own account and use the dashboard directly, turning a single-purpose personal display into a fully hosted, publicly accessible web app.",
+			],
+			images: ["/SpotifyController-1.png", "/SpotifyController-2.png"],
+			links: [
+				{
+					title: "GitHub Repo",
+					url: "https://github.com/HackOverflow404/SpotifyWebController",
+				},
+				{
+					title: "Hosted Now-Playing UI",
+					url: "https://spotify-web-controller-chi.vercel.app/",
+				},
+			],
+		},
+	},
+	{
+		title: "AlberFlowy: Instant Structured Notes from the Launcher",
+		description:
+			"A custom Albert plugin that interfaces with WorkFlowy's private API for blazing-fast hierarchical note access, creation, editing, and deletion, all from the keyboard.",
+		modalContent: {
+			title: "WorkFlowy + Albert: Building the Launcher Workflow I Needed",
+			skills: [
+				"Scope & Priority Management",
+				"Self-Directed Ownership",
+				"Research & Analytical Thinking",
+				"Creative Thinking",
+				"C++",
+				"Node.js",
+				"Shell Scripting",
+				"Qt",
+				"Linux",
+				"Reverse Engineering",
+			],
+			description: [
+				"I use WorkFlowy every day. It's where I organize ideas, journal thoughts, outline projects, and brainstorm systems. But despite its beautiful hierarchy and power-user keyboard support, the one thing it lacked was instant global access, something I could summon from anywhere on my Linux desktop without touching a browser. I didn't want to 'open WorkFlowy,' I wanted to _access_ WorkFlowy, like muscle memory, with zero friction. That's where Albert came in.",
+				"Albert is a blazing-fast keyboard launcher for Linux, and I'd used it for years to open apps, search files, manage my clipboard, and more. But I realized it could be far more. What if I could turn it into a structured thought portal, allowing me to create, navigate, and manipulate WorkFlowy nodes, all without leaving my terminal mindset?",
+				"There was just one problem: WorkFlowy doesn't offer a public API. So I rolled up my sleeves and went digging.",
+				"I began by analyzing traffic to WorkFlowy's web app, reverse engineering its private endpoints and operation formats by watching network calls, decoding its `operations` payloads, and replaying requests with my own minimal clients. I explored unofficial GitHub repos, many abandoned and no longer working, and stitched together a working CLI using Puppeteer automation and raw HTTP calls. I then wrapped this with Node.js for exportable control, letting me call `workflowy-cli` with arbitrary operations: create nodes, edit text, mark complete, delete, and more.",
+				"But the CLI was only half the battle. To integrate this smoothly with Albert, I dove into its plugin SDK. Written in C++ and powered by Qt, Albert offered a surprisingly deep and elegant extension system, but the documentation was vast and the examples sparse. I took the time to read through existing plugin repos, parsed signals, slots, timers, and `QProcess` quirks, and architected a fully asynchronous plugin that fetches, caches, and renders my WorkFlowy tree with every keystroke.",
+				"Each node became a selectable `StandardItem`, complete with route-based navigation (`>` delimited), tab-based autocomplete, strikethrough for completed items, and contextual actions like 'Edit', 'Remove', or 'Complete', all from a single keystroke interface. And if a node didn't exist? It would offer to create it on the fly, committing the change in milliseconds, all asynchronously in a separate thread, optimistically updating the cache and later resyncing it, maximizing smoothness and prioritizing user experience. I tried various features such as fuzzy search, but ultimately decided to not implement it due to poor UX integration",
+				"The plugin is now my daily companion. From anywhere, I can hit a key combo, type a few characters, and instantly jump to any node in my personal knowledge base, or create new thoughts in the right context. No mouse. No app-switching. Just structured thinking at the speed of my keyboard.",
+				"This project isn't just a plugin. It's a fusion of reverse engineering, automation, asynchronous programming, and deep customization of my workflow. It taught me how to bend rigid systems to serve my personal productivity and gave me even more respect for the invisible power of well-written launchers.",
+			],
+			images: ["/AlberFlowy-1.png", "/AlberFlowy-2.png"],
+			links: [
+				{
+					title: "GitHub Repo",
+					url: "https://github.com/HackOverflow404/AlberFlowy",
+				},
+				{
+					title: "Install Page",
+					url: "https://hackoverflow404.github.io/AlberFlowy/",
+				},
+			],
+		},
+	},
+	{
+		title: "Internship at Care Health Insurance",
+		description:
+			"Cybersecurity Intern - Applied academic knowledge in a real-world enterprise security environment.",
+		modalContent: {
+			title: "Cybersecurity Intern at Care Health Insurance",
+			skills: [
+				"Research & Analytical Thinking",
+				"Nmap",
+				"Burp Suite",
+				"Frida",
+				"JADX",
+				"QEMU",
+				"Network Analysis",
+				"Pentesting Fundamentals",
+				"Reverse Engineering",
+				"Linux",
+			],
+			description: [
+				"Before this internship, cybersecurity was something I understood in theory. I had taken the courses, worked through the labs, and learned the tools. But there's a difference between running Nmap against a practice environment and running it against infrastructure that real people depend on. This internship was where that gap closed.",
+				"A lot of what I did early on felt like a translation exercise. The concepts I had studied, network reconnaissance, vulnerability assessment, traffic analysis, were all there, just now with actual stakes. I was scanning real systems, analyzing real traffic in Wireshark, and writing findings that would inform real decisions about the security of their user portal. It made everything I had learned feel suddenly more concrete.",
+				"The more interesting growth happened with tools I hadn't touched before. Burp Suite became a daily driver for intercepting and inspecting web application traffic on the portal, helping me spot misconfigurations and probe for vulnerabilities in a way that no classroom exercise had prepared me for. I also got my first serious exposure to mobile security through Frida and JADX, using dynamic instrumentation and static analysis to dig into how their app behaved under the hood. To make that work, I spun up Android virtual machines in QEMU, giving me a controlled, reproducible environment to instrument and decompile the app without touching a physical device. It was a different kind of thinking, patient, methodical, and deeply satisfying when something clicked.",
+			],
+		},
+	},
+	{
+		title: "Automated Résumé Fetch & Deploy",
+		description:
+			"Node.js script that pulls my Google-Docs résumé via a GCP Service Account and redeploys my portfolio site in one command.",
+		modalContent: {
+			title: "Automated Résumé Fetch & Deployment Pipeline",
+			skills: [
+				"Self-Directed Ownership",
+				"Node.js",
+				"Google Cloud Platform",
+				"Git",
+				"Shell Scripting",
+				"PyQt5",
+				"LaTeX",
+			],
+			description: [
+				"Keeping an online résumé current often means juggling downloads, manual file moves, and redeployments. I wanted that workflow boiled down to a single command. This project delivers exactly that.",
+				"The original version authenticated with a Google Cloud Service Account, exported my résumé Google Doc as a PDF, and pushed it straight to my portfolio. It worked, but as my résumé grew more complex, Google Docs started getting in the way. I migrated to LaTeX for full control over formatting and layout, which meant rethinking the fetcher entirely.",
+				"The updated script pulls the compiled PDF directly from my local LaTeX git repository, parses its new format, and writes it to two key locations: a `job_docs` archive and the `public/` directory of my Next.js portfolio.",
+				"Once the new PDF is in place, it triggers a production build, stages the updated asset, commits with a conventional-chore message, and pushes straight to GitHub, instantly kicking off the site's CI pipeline.",
+				"A small bash alias `rupd` wraps everything, so from anywhere in any terminal I can run one command and know my résumé and portfolio are synchronized within minutes.",
+				"Manually selecting and copy-pasting each section of my résumé into various applications became exhausting, so I built a PyQt5 Résumé Viewer. It parses my PDF into a collapsible tree and lets me click any heading or bullet to instantly copy its text to the clipboard, streamlining the entire process.",
+			],
+			images: ["/ResumeFetch-1.png"],
+			links: [
+				{
+					title: "GitHub Repo",
+					url: "https://github.com/HackOverflow404/Resume-Fetcher",
+				},
+			],
+		},
+	},
+	{
+		title: "Reverse Engineering a Legacy Laptop",
+		description:
+			"Disassembled an Acer Aspire 4736G and working to repurpose components such as battery, fan, LCD screen, keyboard, trackpad, and fingerprint reader.",
+		modalContent: {
+			title: "Anatomy of a Machine: The Legacy Laptop Project",
+			skills: [
+				"Self-Directed Ownership",
+				"Creative Thinking",
+				"Raspberry Pi",
+				"Circuit Design",
+				"Protocol Debugging",
+				"Reverse Engineering",
+			],
+			description: [
+				"This laptop has been part of our family for nearly two decades, a machine that once ran homework assignments, streamed movies, and powered my first lines of code. Over the years, it evolved alongside me. I transformed it into a home server running Ubuntu, a media center powered by Kodi, a pentesting lab with Kali Linux, and even a fully virtualized home lab using a Type-1 hypervisor. In 11th grade, driven purely by curiosity, I disassembled it down to the last screw, not to repair it, but to understand it. To learn what made it tick.",
+				"Now, with little use for the laptop as a whole, I've returned to it once again, this time with a different mission: to give its parts new life through engineering and invention.",
+				"It began with the fan. I repurposed it as active cooling for my Raspberry Pi, breathing new utility into a component most would discard. I dove deep into circuit schematics I unearthed online, cross-referencing motherboard layouts and datasheets, mapping out traces, testing signals and voltages with a multimeter. One by one, I began decoding the protocols that tied each subsystem together. Through probing and logic, I deduced that the fingerprint sensor communicated over 3V USB, not just a guess, but a calculated inference grounded in electrical behavior and datasheet breadcrumbs.",
+				"Then came the LCD screen. I learned that it uses an LVDS (Low Voltage Differential Signaling) interface, a protocol common in older display hardware. I plan to pair it with a third-party controller board, converting it into a functional external monitor for my Raspberry Pi or a headless server dashboard. It's not plug-and-play, it's research, solder, test, fail, repeat. But that's the joy of it.",
+				"The laptop's stereo speakers also found a second life. Inspired by the operational amplifier circuits I learned to build in my ECE 110 course, I initially used an LM358 to create a basic audio amplifier. It worked, barely. The output was faint, distorted, and underpowered. So I iterated. I upgraded to an LM386-based audio module and wired it to a salvaged 3.5mm headphone jack from a broken pair of earbuds. The result? A compact, self-powered speaker that plays music from my Raspberry Pi with clarity and volume.",
+				"This project is far from over. Every component is a puzzle, a microcosm of engineering principles waiting to be rediscovered. I'm continually learning how signals propagate, how buses negotiate data, and how standards like I²C, LVDS, and USB manifest in real hardware. I'm not just recycling; I'm reverse-engineering, decoding, rebuilding.",
+				"In a world obsessed with the new, I'm finding wonder in the old. I'm not just tearing down a machine, I'm reimagining it. Piece by piece, lesson by lesson.",
+			],
+		},
+	},
+	{
+		title: "RemoteCam",
+		description:
+			"A cross-platform webcam and microphone streaming app built using WebRTC and Firebase signaling, with a mobile PWA frontend and a QtPython + GStreamer desktop client.",
+		modalContent: {
+			title: "RemoteCam: Engineering Seamless Communication",
+			skills: [
+				"Self-Directed Ownership",
+				"Research & Analytical Thinking",
+				"Python",
+				"TypeScript",
+				"HTML/CSS",
+				"React/React Native",
+				"Next.js",
+				"QtPython",
+				"Firebase",
+				"PWA",
+				"Cross-Platform Apps",
+				"Responsive UI",
+				"WebRTC",
+				"Linux",
+				"Network Analysis",
+				"PyQt5",
+				"GStreamer",
+			],
+			description: [
+				"The project began with a frustration familiar to many: my laptop's built-in webcam and microphone had become unusable for video calls, the video was laggy and grainy, the audio drowned in static and background noise. The simple solution would have been to buy a new webcam or plug in a headset with a built-in mic. But I had something better, an iPhone with world-class imaging and sound hardware. Rather than buying another device, I saw a challenge: could I turn the phone I already carried into a fully functional wireless webcam and microphone for my Ubuntu laptop?",
+				"At the same time, I was deeply curious about how devices communicate in real time over the internet, a fascination with WebSockets and protocols used in systems like FaceTime and Zoom. I didn't just want a solution. I wanted to build the solution. And I wanted it to teach me everything I didn't yet know.",
+				"Taking inspiration from Apple's Continuity Camera, I envisioned a seamless, cross-platform experience that could securely stream high-quality video and audio from my iPhone to my Linux machine. Thanks to my internship, I already had experience with GStreamer, a powerful media streaming toolkit, and decided to extend those skills further. I would build an end-to-end system: a wireless, real-time camera and mic platform powered by modern web protocols.",
+				"The next step was architectural design. I considered using WebSockets for the communication layer but quickly realized their limitations: they're great for basic messaging but lack the real-time, peer-to-peer efficiency and NAT traversal capabilities I needed. WebRTC, on the other hand, was designed from the ground up for streaming audio, video, and arbitrary data with low latency and high security, and came with built-in support for ICE, STUN, and TURN to negotiate connections through complex networks. WebRTC was the obvious choice.",
+				"I began development with a plan: the desktop client would be written in QtPython with a GStreamer backend, and the mobile app in React Native. I was fluent in both ecosystems, Python for scripting and fast iteration, and React Native for cross-platform mobile UI. But almost immediately, I hit a wall.",
+				"To build a WebRTC-enabled React Native app for iOS, I needed a Mac and an Apple Developer Account. Why? Because Apple requires native code to be compiled with Xcode on macOS, mandates signed apps for device testing, and the react-native-webrtc package uses low-level iOS APIs that Expo Go simply doesn't support. Without access to macOS or a paid developer profile, the project was dead in the water.",
+				"That is, until I discovered Progressive Web Apps (PWAs).",
+				"PWAs bypass Apple's restrictions entirely, while remaining installable and responsive across devices. They offer the cross-platform flexibility I needed, and WebRTC runs natively in Safari and modern browsers. Though PWAs come with trade-offs, no persistent background services, and limited access to certain native features, none of those limitations blocked my goals. This discovery was a turning point.",
+				"I pivoted immediately. I designed a sleek frontend in Next.js for the mobile PWA and paired it with a robust Linux client using GStreamer and PyQt. For signaling, I turned to Firebase, a platform I had used before and trusted for its real-time database and seamless integration with serverless functions. With Firebase Cloud Functions, I locked down signaling security: only functions could read or write to the database, and users could only initiate a connection with a randomly generated, time-limited 5-character session code, adding a layer of authentication and privacy by design.",
+				"Development accelerated, but not without pain. WebRTC, while powerful, is notoriously complex. I encountered every kind of issue: misformatted SDP offers, ICE candidates failing to gather, TURN servers being unreachable, inconsistencies between mobile and desktop codecs, and edge-case connection bugs that refused to explain themselves. I poured over browser debugging consoles, traced media flows through GStreamer logs, and dissected packet behavior in Wireshark, skills honed through past hands-on experience through internships, certifications, and CTFs. I tested and tuned everything from STUN fallback logic to media pipeline latency.",
+				"The connection still fails despite countless hours of debugging, I haven't yet uncovered why. But chasing this vision has been a masterclass in itself. I've gained a deep understanding of WebRTC's internals, the architecture of real-time media systems, secure cloud-based signaling, cross-platform performance challenges, and the subtle behavioral quirks that differ between browsers on iOS and Android. Though the system doesn't work yet, the knowledge I've earned along the way is already invaluable, and I'm committed to solving the puzzle, no matter how long it takes.",
+				"What began as a workaround to a broken webcam has grown into a living laboratory, one that has taught me how modern internet-based communication works and how hard it is to make it just feel easy.",
+				"The project is ongoing. The connection bugs will be fixed. But already, RemoteCam has served its purpose, not just to connect devices, but to connect me with the limits of my knowledge, and push me far beyond them.",
+			],
+			images: ["/RemoteCam-1.png", "/RemoteCam-2.png", "/RemoteCam-3.png"],
+			links: [
+				{
+					title: "Github Repo",
+					url: "https://github.com/HackOverflow404/RemoteWebcam",
+				},
+				{ title: "Live Website", url: "https://remote-webcam-b70ab.web.app/" },
+			],
+		},
+	},
+	{
+		title: "PCB Badge for CTF at Sigpwny",
+		description:
+			"Helped design an ESP32-based DEFCON-style badge. Worked on SAO compatibility and embedded firmware.",
+		modalContent: {
+			title: "Silicon & Signals: The Sigpwny CTF Badge Build",
+			skills: [
+				"Collaboration & Teamwork",
+				"Python",
+				"C",
+				"ESP32",
+				"Circuit Design",
+				"Protocol Debugging",
+				"MicroPython",
+				"CTFs",
+			],
+			description: [
+				"At the University of Illinois Urbana-Champaign, Sigpwny is one of the largest and most active RSOs dedicated to information security and privacy. For someone with a passion for embedded systems, low-level development, and cybersecurity, being part of this organization has been both inspiring and empowering. Through Sigpwny, I've had the opportunity to connect with brilliant minds, engineers, hackers, and innovators, whose knowledge and creativity have continuously pushed me to grow.",
+				"One of the most impactful projects I've worked on is the UIUCTF electronic badge, a DEFCON-style hardware badge built for the Capture the Flag competition we host annually. This year, we're designing a space-themed badge powered by an ESP32, packed with features that foster interactivity, connectivity, and a sense of community among participants. The badge is designed to communicate with others using ESP-NOW and ESP-WIFI-MESH, creating a decentralized and resilient communication network among players. This not only enables dynamic interactions between badges but also aligns with the distributed ethos of CTFs and hacker culture.",
+				"As part of the firmware team, I've been responsible for developing the display interface using MicroPython, where I've learned the intricacies of screen rendering, pixel buffers, and color palette optimization at the byte level. Developing within the constraints of MicroPython has challenged me to write highly efficient, memory-aware code that directly interfaces with hardware components over SPI and GPIO.",
+				"On the hardware side, I've applied principles from my circuit design coursework to help engineer the badge's PCB layout, gaining practical experience in power delivery management, voltage regulation, and differential signaling. I've worked closely with the team to iterate on schematic design, ensuring stable operation across components, and managing trace impedance for reliable high-speed communication.",
+				"This badge isn't just a tool; it's a living, breathing embodiment of our collective creativity and technical skill. From wireless mesh networking to custom display firmware, the project has given me a holistic view of what it means to engineer an embedded system from scratch, blending hardware, firmware, and innovation in every step. I'm incredibly proud to be part of this team and can't wait to see the room light up with hundreds of these badges in action, each one a symbol of curiosity, craft, and community.",
+			],
+			images: ["/Badge-1.png", "/Badge-2.png", "/Badge-3.png", "/Badge-4.png"],
+		},
+	},
+	{
+		title: "Smart LED Strip Controller",
+		description:
+			"Flask app on Raspberry Pi for smartphone-based LED control. Used MQTT, Docker, and integrated the Matter protocol for smart home automation.",
+		modalContent: {
+			title: "Smart LED Strip Controller",
+			skills: [
+				"Scope & Priority Management",
+				"Self-Directed Ownership",
+				"Creative Thinking",
+				"Python",
+				"HTML/CSS",
+				"Flask",
+				"Docker",
+				"ESP32",
+				"Raspberry Pi",
+				"Circuit Design",
+				"MQTT",
+				"Network Analysis",
+			],
+			description: [
+				"It started, as many things in college do, with something small, a lost remote.",
+				"In the chaos of my freshman year move-out, the slender plastic controller for my beloved LED strip vanished. Without it, the strip, a cascade of colors once glowing beneath my bed frame, was reduced to nothing more than decorative wire. I could've ordered a replacement. I could've moved on. But that would've meant ignoring the itch. The challenge. The whisper of possibility that said: what if I could build something better?",
+				"So I did.",
+				"What began as a workaround quickly became an obsession, a gateway into the world of embedded systems, protocol design, and the architecture of smart homes. I decided to build my own Smart LED controller, one not tethered to a flimsy plastic dongle, but to the internet, to code, to me.",
+				"The first prototype was pragmatic: a Raspberry Pi, a trio of MOSFETs, and a set of GPIO pins pulsing with PWM signals to drive the 12V LED strip safely. The Pi, outputting a mere 3.3V, couldn't drive the LEDs directly, but with carefully wired logic and a healthy respect for electrical isolation, it became the brain of the system. I wrote a Flask application to control the LEDs, served it over the local network, and containerized it with Docker for portable deployment. Within hours, I could control the entire room's ambience from a web browser. No remote needed.",
+				"To make the system feel less like a demo and more like a product, I implemented JSON-based state persistence on the Pi, storing the last-used color, brightness, and mode in a file that was read on boot. Even if the power went out, my lights came back exactly as I left them.",
+				"But that wasn't enough.",
+				"The idea of smart home control, true integration, voice control, and automation had always fascinated me. That's when I stumbled upon MQTT, a lightweight publish/subscribe protocol used widely in IoT ecosystems. I had heard about it in passing, an offhand mention on the Journal Club podcast I listen to while coding, but now, it took center stage.",
+				"I dove in.",
+				"I replaced the Raspberry Pi as the LED controller with an ESP32, a tiny but mighty microcontroller perfect for embedded networked applications. The Pi transformed into the MQTT broker, a command and control center running DietPi, a minimalist OS that let me turn it into a dedicated Wi-Fi access point. That step, though seemingly minor, was crucial: my apartment's Wi-Fi, locked down by Octave Management, made connecting IoT devices nearly impossible. By creating my own secure subnetwork, I circumvented that limitation entirely.",
+				"Now, the ESP32 subscribed to lighting commands over MQTT. The Raspberry Pi broadcasted those commands. And the Flask interface became just one of many clients that could publish to the topic. I even connected my Amazon Echo Show to the Pi's access point, enabling voice control of the lights. It worked. And it was beautiful.",
+				"Just like on the Pi, I used JSON on the ESP32 to persist state, writing to flash memory so that every lighting preference, down to the color and fade speed, survived resets and reboots. It wasn't just responsive; it was reliable.",
+				"But technology never stands still, and neither do I.",
+				"As I explored further into the landscape of smart home standards, I discovered Matter, a new protocol promising secure, local, and interoperable communication between devices. It wasn't just a new protocol; it was the future. Apple, Google, and Amazon were all backing it. It was everything I wanted this project to become.",
+				"So I tried.",
+				"I tried to migrate the project to Matter, to bring my ESP32 into the next generation of smart home ecosystems. I scoured documentation, cloned bleeding-edge repositories, and dove into the underworld of build tools like gn, ninja, and idf.py. But the deeper I went, the more tangled it became. Cross-compiling libraries. Dependency loops. Version mismatches. Unresolved symbols. Cryptic errors from SDKs that seemed allergic to working together. What should have been a new beginning became a recursive maze of dependency hell.",
+				"And in the end, Matter never worked. Not on my hardware. Not with the time I had. Not yet.",
+				"But that failure wasn't a dead end. It was a forge.",
+				"Because even in defeat, I had learned more than I could have imagined. I didn't just read about protocols, I implemented them. I didn't just hear about security, I designed for it. I saw firsthand the fragility of modern ecosystems, the hidden cost of interoperability, and the sheer complexity behind something as simple as turning on a light.",
+				"And most importantly, I built something that mattered. Not because it was perfect, but because it was mine, from PWM signals to MQTT packets, from GPIO pinouts to containerized deployments, from JSON state files to custom access points.",
+				"A lost remote was never the real problem.",
+				"The real problem was that I couldn't leave a broken system alone.",
+				"And the real victory was that I never stopped trying to fix it.",
+			],
+			images: ["/LED-1.png"],
+			links: [
+				{
+					title: "Github Repo",
+					url: "https://github.com/HackOverflow404/Control-Lights",
+				},
+			],
+		},
+	},
+	{
+		title: "Internship at IoT++",
+		description:
+			"Developed a vehicle routing prediction system using Random Forests and RNNs. Fine tuned image generation models for route depiction. Optimized YOLO on Orange Pi NPU using GStreamer.",
+		modalContent: {
+			title: "IoT++: AI Systems for Real-Time Detection and Routing",
+			skills: [
+				"Communication & Explanation",
+				"Collaboration & Teamwork",
+				"Scope & Priority Management",
+				"Python",
+				"Docker",
+				"Kubernetes",
+				"GStreamer",
+				"Azure",
+				"Yolo",
+				"Tensorflow",
+				"PyTorch",
+				"Pandas",
+			],
+			description: [
+				"During my internship, I had the opportunity to work on several cutting-edge projects at the intersection of computer vision, machine learning, edge computing, and cloud infrastructure. One of my core contributions involved enhancing a YOLO-based real-time detection system to identify fire hazards and human presence in industrial environments. I retrained and fine-tuned the model using custom datasets, ultimately achieving a 13x increase in inference speed and a 62% boost in detection accuracy. I integrated the model into a GStreamer-based video processing pipeline tailored for Orange Pi devices with NPUs, which introduced me to the intricacies of hardware acceleration, low-level optimizations, and deployment on constrained edge devices.",
+				"This technical work went hand-in-hand with scalable deployment practices. I containerized the pipeline using Docker, orchestrated services using Kubernetes and Minikube, and managed deployments on Azure, learning how to build resilient, cloud-native systems that could adapt to real-world operational demands. I also collaborated on the development of intelligent traffic routing algorithms by training recurrent neural networks and random forest classifiers to direct vehicles toward weighbridges based on live traffic conditions and equipment throughput, a project that taught me the delicate balance between accuracy, latency, and interpretability in production ML systems.",
+				"In parallel, I explored the generative side of AI by fine-tuning image generation models to provide intuitive route visualizations for drivers. This involved careful prompt engineering and model conditioning, improving the clarity and usability of visual instructions under varying real-world lighting and environmental conditions. Additionally, I contributed to the design of a retrieval-augmented generation (RAG) system, helping the team build internal chatbot tools that could synthesize knowledge from large corpora of proprietary company data. This effort honed my skills in natural language processing, search optimization, and user experience.",
+				"Beyond the technical achievements, this internship sharpened my problem-solving mindset, deepened my ability to communicate complex ideas across interdisciplinary teams, and cultivated a strong sense of ownership and adaptability. Working in a fast-paced environment taught me how to prioritize ruthlessly, break down large challenges into tractable tasks, and stay grounded in both user needs and system constraints. It was a formative experience that not only strengthened my foundation in applied AI and systems engineering but also expanded my confidence in contributing meaningfully to impactful, real-world solutions.",
+			],
+		},
+	},
+	{
+		title: "Uplift",
+		description:
+			"Hackathon-built cross-platform app using React Native, Tesseract.js for OCR, and LangChain + OpenAI for contextual chat assistance.",
+		modalContent: {
+			title: "Uplift: Designing Empathy Through Code",
+			skills: [
+				"Empathy-Driven Design",
+				"Communication & Explanation",
+				"Collaboration & Teamwork",
+				"JavaScript",
+				"TypeScript",
+				"React/React Native",
+				"LangChain + OpenAI",
+				"Responsive Design",
+			],
+			description: [
+				"The hum of laptops, the quiet intensity of teammates huddled over sketches and screens, and the race against the ticking hours of a Hackathon, that was the backdrop for one of the most formative development experiences I've had: building Uplift.",
+				"Uplift was born from a simple, human idea: sometimes we want to help someone who's hurting, but we don't know what to say. Whether it's a friend struggling with anxiety, a partner feeling low, or a classmate who just needs encouragement, the words can feel impossible. Our team wanted to build something that would make those moments easier, a tool that could take the weight off the user's shoulders and offer guidance without judgment.",
+				"The concept was straightforward. A user could take a screenshot of a conversation, specify the tone they wanted to convey, comfort, advice, or validation, and receive a list of suggested responses. Behind the scenes, the app would use OCR to extract the message content, analyze the emotional context, and then generate appropriate replies using natural language tools. The idea wasn't to replace human empathy, but to amplify it, to help people find their voice when it mattered most.",
+				"I joined the project with an eagerness to contribute technically, but what I walked away with was far more expansive. This was my first time working with React Native, and I had to ramp up quickly. I came in with experience in React, but mobile app frameworks were new territory. Fortunately, the framework was very similar to React, and I was able to pick it up quickly.",
+				"OCR was another technical challenge. We used Tesseract.js, a JavaScript port of the Tesseract OCR engine, to extract text from screenshots. While Tesseract is powerful, it's also finicky. Lighting conditions, font rendering, and compression artifacts from screenshots often led to noisy or partial extractions. We had to implement preprocessing and smart error handling to ensure the text passed to our language model was clean and contextually intact. We used message colors to identify which user had sent which message to divide the conversation into two sides.",
+				"Once we had clean text, we turned to LangChain and OpenAI to generate the actual suggestions. This was a crash course in prompt engineering and chaining, how to structure input to get the kind of nuanced, emotionally aware replies we envisioned. We experimented with different prompts for different tones, carefully tweaking the few-shot examples to teach the model the difference between advice and empathy, between encouragement and simply being there. This process taught me a lot, not just about how powerful language models can be, but also how delicate and intentional their usage needs to be when the goal is helping someone through a vulnerable moment.",
+				"As important as the backend logic was, we knew it wouldn't matter if the front end failed. And that's where I learned my first real lessons in mobile app UI/UX design. Designing for emotion is not like designing for functionality. It's about softness, clarity, ease. We spent hours debating padding, typography, and button placement, not because it looked pretty, but because it felt better. In a high-stress moment, even milliseconds of confusion or visual friction could break the experience. That lesson, that user experience is emotional as much as it is functional, stayed with me long after the Hackathon ended.",
+				"Working as part of a team during a Hackathon environment was both intense and invigorating. We had to collaborate fast and trust each other's instincts, pulling an all-nighter to finish our project racing against the deadline. Dividing up responsibilities, merging our different levels of experience, and maintaining cohesion under time pressure gave me firsthand insight into what real engineering collaboration feels like. I learned how to communicate ideas quickly, respect design constraints, and adapt when plans changed. It wasn't just about the code, it was about building something real with other people, fast.",
+			],
+			embed: ["https://www.youtube.com/watch?v=76T-BBqLBeY"],
+			links: [
+				{
+					title: "Github Repo",
+					url: "https://github.com/HackOverflow404/Uplift",
+				},
+				{
+					title: "Youtube Demo",
+					url: "https://www.youtube.com/watch?v=76T-BBqLBeY",
+				},
+			],
+		},
+	},
+	{
+		title: "Cyber Awareness Website",
+		description:
+			"Responsive cybersecurity education platform with interactive lessons and non-technical explanations. Scored 88/93 in Lighthouse testing.",
+		modalContent: {
+			title: "CyberSpace: Bridging the Gap Between Complexity and Clarity",
+			skills: [
+				"Empathy-Driven Design",
+				"Communication & Explanation",
+				"HTML/CSS",
+				"JavaScript",
+				"Responsive Design",
+				"Pentesting Fundamentals",
+			],
+			description: [
+				"In the wake of completing my cybersecurity certification, I found myself sitting with a newfound understanding of how vulnerable our digital lives really are. I had learned about everything from phishing attacks to password managers, browser exploits to social engineering, and yet, as I looked around, I realized how little of this knowledge was reaching the people who needed it most. Not the developers or the professionals, but everyday users, students, parents, friends, navigating the internet with little more than instinct and luck.",
+				"That gap between what I had learned and what others understood felt impossible to ignore. So I decided to build something that would bridge it.",
+				"The idea was simple in spirit but ambitious in execution: create a responsive, interactive website that could explain essential cybersecurity concepts to the general public in a way that was engaging, non-intimidating, and, most importantly, practical. I called the project Cyber Awareness.",
+				"This was my first time building an interactive website from scratch, and I deliberately chose not to use any frameworks or libraries. No React. No Bootstrap. Just pure HTML, CSS, and JavaScript. I wanted to understand the fundamentals, how to structure a page from the ground up, how to write clean semantic markup, how to build components with reusability and accessibility in mind, and how to manage interactivity without relying on pre-built abstractions.",
+				"The process began in Figma, where I designed the interface down to the pixel. I sketched out layouts for each lesson, focusing on balance, clarity, and responsiveness. I chose a color palette that evoked security and professionalism without feeling cold or corporate. The layout was mobile-first, ensuring accessibility for users across devices. Each lesson would be presented in a card-based format with expandable sections, inline tooltips, and light animations to make the experience feel alive, not static text on a page.",
+				"Once the designs were finalized, I moved to development. Styling was done entirely with vanilla CSS, using flexbox and media queries to build a fluid, responsive layout. I took care to build components that degraded gracefully and adapted elegantly to screen size changes.",
+				"The real challenge, and joy, came in the JavaScript layer. I wrote custom scripts for interactivity: dynamic navigation, auto-adapting spacing between content, interactive activities, and a lightweight quiz system that could provide instant feedback. I learned how to manage DOM events cleanly, how to debounce inputs, and how to write modular, readable code even in the absence of modern JS frameworks.",
+				"One of my favorite parts of the project was writing the non-technical content itself. Translating complex topics like multi-factor authentication, ransomware, and public-key encryption into everyday language was a rewarding exercise in empathy. It wasn't just about knowing the content, it was about understanding what someone who didn't know needed to hear first. I learned how to layer concepts, how to lead with stories, and how to build a narrative that didn't assume technical literacy but still respected the user's intelligence.",
+				"Through this project, I didn't just apply what I had learned from my certification, I internalized it. Teaching others forced me to think critically about what I knew, and building the platform from scratch gave me a deep respect for the foundational layers of the web.",
+				"When it was complete, the website wasn't just a static resource. It was an interactive experience designed to demystify cybersecurity, to make the invisible visible, and to empower users with knowledge they could act on.",
+				"Looking back, Cyber Awareness was more than a technical project, it was a statement of intent. A declaration that learning is only useful if it's shared, that technology should lift people, and that I'm committed not only to building secure systems, but to helping others understand and protect themselves in the digital world.",
+			],
+			embed: ["https://hackoverflow404.github.io/cyberawareness/"],
+			links: [
+				{
+					title: "Live Website",
+					url: "https://hackoverflow404.github.io/cyberawareness/",
+				},
+				{
+					title: "Github Repo",
+					url: "https://github.com/HackOverflow404/cyberawareness",
+				},
+			],
+		},
+	},
+	{
+		title: "Court Booking System",
+		description:
+			"Full-stack app for apartment complexes using React, Spring Boot, and SQLite. Admin dashboard streamlined sports facility scheduling.",
+		modalContent: {
+			title:
+				"Court Booking System: Building a Full-Stack Solution for Community Coordination",
+			skills: [
+				"Empathy-Driven Design",
+				"HTML/CSS",
+				"JavaScript",
+				"Java",
+				"React/React Native",
+				"Spring Boot",
+				"SQLite",
+				"REST APIs",
+				"Responsive Design",
+			],
+			description: [
+				"Every solution begins with a friction point. In my neighborhood, where I spent my 10th through 12th grade years, it was the tennis, basketball, and badminton courts, each with their own paper logbooks and silent frustrations. I ran into it myself whenever I tried to book a tennis court after school or on weekend mornings: double bookings, no-shows, and miscommunication were common, not out of negligence but because the system simply wasn't built to scale with the people using it. I saw an opportunity: not just to digitize a process, but to reimagine what coordination could feel like when technology works as it should, seamlessly, quietly, and purposefully.",
+				"That's how I began building the Court Booking System: a full-stack application designed specifically for apartment complexes to manage their shared sports facilities. I wanted it to be more than just functional, I wanted it to feel intuitive, transparent, and empowering for both residents and administrators.",
+				"This was a real problem, with real stakeholders: neighbors, building managers, and families with weekend routines hinging on court availability. That context shaped every decision. I chose React for the frontend, not just because of its speed and component-based architecture, but because I wanted to build something reactive in the truest sense, interfaces that respond to user actions immediately and meaningfully.",
+				"The UI was designed with clarity in mind: calendar-based booking views, time-slot selectors, real-time updates, and seamless user information handling. State management was handled through useState and useEffect hooks for lightweight responsiveness, while Axios powered live asynchronous communication with the backend REST API.",
+				"For the backend, I turned to Spring Boot, a powerful Java-based framework that allowed me to build a secure, scalable REST API with precision. The architecture followed REST principles cleanly: endpoints for creating, retrieving, modifying, and deleting bookings; user role checks; and time-conflict validation logic.",
+				"I chose SQLite for the database, a file-based relational DB that was lightweight, easy to deploy, and perfectly suited for a system without high concurrency demands. The schema was built to reflect real-world relationships: Users, Bookings, Courts, and TimeSlots.",
+				"One key architectural decision that dramatically improved both performance and usability was how I handled booking availability. Instead of pre-populating and storing every possible time slot, I dynamically generated available slots in real-time based on admin-defined constraints like opening hours and booking durations. When a user requested slots for a particular court and date, the system calculated the valid options and filtered out those already booked. This approach reduced unnecessary storage, made updates instantaneous, and kept the user experience fluid and responsive.",
+				"To make the booking process feel complete and reliable, I also implemented automated email confirmations. Whenever a user successfully made a booking, they were sent a detailed confirmation email containing the court, time slot, and date-ensuring peace of mind and reducing the likelihood of miscommunication or forgotten reservations.",
+				"What I loved most about working with SQLite was its simplicity. It allowed me to iterate quickly, write complex join queries, and ensure atomic transactions without the overhead of managing a full-fledged DBMS. For this context, it struck the perfect balance.",
+				"While the resident view prioritized simplicity, the admin dashboard held the real power. I built a separate interface with additional capabilities: viewing all bookings across every court, manually overriding schedules, and editing options such as time ranges, default booking durations, and available courts.",
+				"This project gave me something no tutorial or classroom ever could: an end-to-end look at what it means to solve a real problem with code. I learned how to gather requirements from non-technical users, build scalable APIs, connect frontend and backend layers securely, and design user interfaces that work not just in theory but in daily life.",
+			],
+			images: ["Booking-1.png", "Booking-2.png"],
+		},
+	},
+	{
+		title: "Research Paper on Leet Speak in Password Security",
+		description:
+			"I wrote a research paper evaluating the use of leet speak in password security under the guidance of a professor at Shobhit University.",
+		modalContent: {
+			title: "Research Paper on Leet Speak in Password Security",
+			skills: [
+				"Research & Analytical Thinking",
+				"Communication & Explanation",
+				"Python",
+				"Linux",
+				"Hashcat",
+			],
+			description: [
+				"Passwords are the front lines of digital security, yet most people use them without truly understanding how they work or how they fail. When I first began researching password strength, I wasn't trying to write a research paper. I was trying to answer a deceptively simple question: Can leet speak, the practice of swapping letters for symbols or numbers, make passwords more secure?",
+				"At the time, I had just completed a comprehensive certification in cybersecurity. The field had captivated me. I was fascinated not only by the elegance of well-designed systems but by the fragility of their weakest points. The average internet user juggles dozens of passwords, often recycling, simplifying, and guessing. I wanted to understand what made a password strong, not just by modern metrics, but by the logic of a hacker trying to crack it open.",
+				'Leet speak intrigued me. Common wisdom suggested it could "trick" password strength meters, allowing users to remember relatively simple words that still passed muster with security protocols. But that confidence seemed too easy. I needed data. I needed proof. So I dove headfirst into original research.',
+				"I began by compiling a large dataset of real-world passwords. Using a filtered version of Daniel Miessler's well-known password list, I eliminated numeric-only entries to focus on passwords that could be realistically converted into leet speak. What followed was a deeply technical process of transformation, simulation, and analysis.",
+				"First, I created a Python script, leet_converter.py, that applied leet substitutions based on a weighted character map. Not every character was replaced; I wanted to simulate real user behavior, where transformations are inconsistent and personal. This script generated a new dataset of “leet-ified” passwords, matching the original set in structure and count.",
+				"Then came the evaluations. Using Dropbox's zxcvbn library, I ran a comprehensive analysis of each password's strength score, capturing a range of metrics from entropy estimation to estimated cracking time. I wasn't satisfied with strength meters alone, though. I wanted to know how these passwords would hold up under real-world attack strategies. So I turned to Hashcat, an industry-standard tool used by professionals (and hackers) to brute-force hashed passwords.",
+				"To do this, I created SHA-1 hashes of each password and configured a brute-force attack against them. It was computationally expensive and time-intensive, but it offered something no password meter could: a ground-truth test against adversarial effort.",
+				"I didn't stop there. I also calculated entropy values, mathematical estimates of password unpredictability, using a custom-built entropy calculator. This provided a theoretical perspective to counterbalance the empirical ones.",
+				"The data revealed something unexpected: leet speak had almost no meaningful impact on actual password security. Yes leet passwords often had higher entropy scores. But entropy, while mathematically elegant, does not fully reflect the realities of cracking algorithms that are trained on common leet patterns. In fact, zxcvbn consistently rated leet passwords lower than their original counterparts. And in the brute-force test using Hashcat, arguably the most realistic simulation of a password being attacked, the difference in crack rate was statistically insignificant. This wasn't just a surprise. It was a revelation.",
+				"Security isn't about illusions. A password that \"feels\" secure isn't always so. Leet speak might fool a meter, but it doesn't fool attackers. Tools like Hashcat have adapted. They understand our tricks because attackers use machine learning, pattern dictionaries, and targeted heuristics. The cat-and-mouse game of cybersecurity continues, but leet speak, once seen as a clever workaround, may now be closer to security theater.",
+				"This research taught me more than just the flaws of leet speak, it taught me how to think like an adversary. It taught me how to break down security systems from the ground up, evaluate them with rigorous methodology, and separate myth from reality.",
+				"It also taught me what research should be: not just a collection of facts, but a journey of inquiry powered by curiosity and validated by computation. I wrote every line of Python myself. I ran every test. I interpreted every result.",
+				"And in the end, I published the paper in the International Journal of Scientific Research in Science and Technology, under the guidance of a professor at Shobhit University. But more importantly, I walked away with the tools to evaluate not just passwords, but the very systems we trust to protect us online.",
+				"For me, this wasn't just about leet speak. It was about building the mindset of a cybersecurity engineer, one who sees the cracks, tests the assumptions, and works relentlessly to understand what most take for granted.",
+			],
+			links: [
+				{
+					title: "Research Paper",
+					url: "https://www.researchgate.net/publication/365478150_Evaluation_of_Leet_Speak_on_Password_Strength_and_Security",
+				},
+			],
+		},
+	},
 ];
 
 export default projects;
