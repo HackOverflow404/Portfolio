@@ -1,0 +1,22 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" width="512" height="512">
+  <mask id="chip-code-cutout">
+    <rect x="0" y="0" width="512" height="512" fill="#ffffff"/>
+    <polyline points="236,196 176,256 236,316" fill="none" stroke="#000000" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+    <polyline points="276,196 336,256 276,316" fill="none" stroke="#000000" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  </mask>
+  <g mask="url(#chip-code-cutout)">
+    <rect x="205" y="96" width="22" height="64" rx="11" fill="#ffffff"/>
+    <rect x="245" y="96" width="22" height="64" rx="11" fill="#ffffff"/>
+    <rect x="285" y="96" width="22" height="64" rx="11" fill="#ffffff"/>
+    <rect x="205" y="352" width="22" height="64" rx="11" fill="#ffffff"/>
+    <rect x="245" y="352" width="22" height="64" rx="11" fill="#ffffff"/>
+    <rect x="285" y="352" width="22" height="64" rx="11" fill="#ffffff"/>
+    <rect x="96" y="205" width="64" height="22" rx="11" fill="#ffffff"/>
+    <rect x="96" y="245" width="64" height="22" rx="11" fill="#ffffff"/>
+    <rect x="96" y="285" width="64" height="22" rx="11" fill="#ffffff"/>
+    <rect x="352" y="205" width="64" height="22" rx="11" fill="#ffffff"/>
+    <rect x="352" y="245" width="64" height="22" rx="11" fill="#ffffff"/>
+    <rect x="352" y="285" width="64" height="22" rx="11" fill="#ffffff"/>
+    <rect x="140" y="140" width="232" height="232" rx="42" fill="#ffffff"/>
+  </g>
+</svg>
