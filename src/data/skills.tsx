@@ -66,7 +66,8 @@ const skills: Skills = {
 		Nmap: "nmap.svg",
 		Linux: "linux.svg",
 		"Shell Scripting": "bash.svg",
-		Qemu: "qemu.svg",
+    Qemu: "qemu.svg",
+		"Systems Programming": "systems.svg",
 	},
 	"AI & ML": {
 		"LangChain + OpenAI": "langchain.svg",
@@ -83,5 +84,5 @@ export default skills;
 // Core Programming Languages: Python, C, C++, JavaScript, TypeScript, Java, HTML/CSS
 // Software & Web Development: React/React Native, Next.js, Qt, Flask, Spring Boot, SQLite, Node.js, Docker, Firebase, Google Cloud Platform, Vercel, Figma, Tailwind CSS, Git, Cross-Platform Apps, Responsive Design, REST APIs, Progressive Web Apps (PWA), LaTeX
 // Embedded Systems & Hardware: ESP32, Raspberry Pi, Circuit Design, MQTT, Protocol Debugging, GStreamer
-// Cybersecurity & Systems: Pentesting Fundamentals, Reverse Engineering, WebRTC, Network Analysis, CTFs, Hashcat, Frida, JADX, Burp Suite, Nmap, Linux, Shell Scripting, Qemu
+// Cybersecurity & Systems: Pentesting Fundamentals, Reverse Engineering, WebRTC, Network Analysis, CTFs, Hashcat, Frida, JADX, Burp Suite, Nmap, Linux, Shell Scripting, Qemu, Systems Programming
 // AI & ML: LangChain + OpenAI, YOLO, TensorFlow, PyTorch, Pandas

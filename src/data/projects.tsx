@@ -1,4 +1,5 @@
 import { getAssetUrl } from "@/utils/basePath";
+import { FaGit } from "react-icons/fa";
 
 export const resumeURL = getAssetUrl("Resume.pdf");
 export const projectImagesBaseURL = getAssetUrl("images/projects/");
@@ -26,7 +27,6 @@ type ProjectEntry = {
 /*
  * Things to do:
  * - Add sound effects
- * - Add shell into webassembly
  * - See if I can add images to main modal card
  * - Add click electric pulse animations
  */
@@ -71,23 +71,24 @@ const projects: ProjectEntry[] = [
 			"A kernel my team wrote from scratch for UIUC's OS course, now running live in your browser via WebAssembly. It boots a shell, mounts a filesystem over HTTP, and takes keyboard input.",
 		modalContent: {
 			title: "ECE391: A Real Kernel, Running in Your Browser",
-			skills: [
+      skills: [
+        "Collaboration & Teamwork",
+        "Research & Analytical Thinking",
+        "Self-Directed Ownership",
 				"C",
-				"RISC-V Assembly",
-				"Operating Systems",
-				"WebAssembly",
-				"VirtIO",
-				"Filesystems",
-				"Memory Management",
-				"Process Scheduling",
-				"Next.js",
-				"TypeScript",
-				"Emscripten",
-				"xterm.js",
+        "TypeScript",
+        "Next.js",
+        "Tailwind CSS",
+        "Git",
+        "Vercel",
+        "Protocol Debugging",
+        "Linux",
+        "Qemu",
+        "Systems Programming",
 			],
 			description: [
-				"ECE 391 is UIUC's Computer Systems Engineering course, and it covers the full stack of abstractions that make modern operating systems work: process scheduling and CPU virtualization, virtual memory and page tables, the system call interface between user programs and the kernel, interrupt-driven I/O, device programming, synchronization primitives, and the file descriptor model. The capstone is a group kernel built from scratch on a real architecture. My team targeted RISC-V64 and implemented all of it over the course of the semester.",
-				"The work included a VirtIO console driver for keyboard and terminal I/O, a VirtIO block device driver to read a filesystem from disk, a custom filesystem called KTFS, page-table-based virtual memory, a process scheduler, a complete system call interface, and a Unix-style shell with multi-stage pipeline support. Each piece required reading the actual hardware spec or protocol document and implementing it precisely. Writing a device driver teaches you something that userspace programming never does: you own every byte of state between the hardware register and the kernel abstraction layer, and there is no library to blame when something goes wrong.",
+				"ECE 391 is UIUC's Computer Systems Engineering course, and it covers the full stack of abstractions that make modern operating systems work: process scheduling and CPU virtualization, virtual memory and page tables, the system call interface between user programs and the kernel, interrupt-driven I/O, device programming, synchronization primitives, and the file descriptor model. The capstone is an implementation of the Linux kernel built from scratch on a real architecture. The class targeted RISC-V64 and we implemented all of it over the course of the semester.",
+				"The work included a VirtIO console driver for keyboard and terminal I/O, a VirtIO block device driver to read a filesystem from disk, a custom filesystem called KTFS, page-table-based virtual memory, a process scheduler, kernel level multithreading, a complete system call interface with user and kernel mode separation, and a Unix-style shell with multi-stage pipeline support. Each piece required reading the actual hardware spec or protocol document and implementing it precisely. Writing a device driver teaches you something that userspace programming never does: you own every byte of state between the hardware register and the kernel abstraction layer, and there is no library to blame when something goes wrong.",
 				"What I carry forward from the course is less about the specific features we built and more about how to think under concurrency. Synchronization, mutual exclusion, interrupt latency, the ordering constraints that matter when a timer interrupt and a device interrupt can both fire during a scheduler decision: reasoning about those problems carefully is a skill that generalizes to everything. Debugging at the assembly level, reading machine register state to trace a crash, and developing a real mental model of the hardware-software boundary are things you can only learn by doing them.",
 				"After the course ended, I wanted to actually show the kernel running, so I embedded it in the browser. I compiled TinyEMU, a RISC-V emulator by Fabrice Bellard, to WebAssembly using Emscripten. It now boots inside the browser, mounts its filesystem over HTTP, and runs a fully interactive shell through xterm.js. Try it above. Type ls to see the filesystem, cat testfile2 to read a file, or run cat testfile2 | wc | cat to test a three-stage pipeline.",
 			],
