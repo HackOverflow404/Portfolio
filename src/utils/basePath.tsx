@@ -9,17 +9,17 @@ export function getBasePath(): string {
 
   if (typeof window !== 'undefined') {
     const { hostname, pathname } = window.location;
-    
+
     if (hostname.includes('github.io')) {
       const firstPathSegment = pathname.split('/')[1];
       cachedBasePath = firstPathSegment ? `/${firstPathSegment}` : '';
       return cachedBasePath;
     }
-    
+
     cachedBasePath = '';
     return cachedBasePath;
   }
-  
+
   cachedBasePath = process.env.NODE_ENV === 'production' ? '/Portfolio' : '';
   return cachedBasePath;
 }

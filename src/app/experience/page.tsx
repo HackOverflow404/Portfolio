@@ -87,7 +87,7 @@ export default function ProjectsPage() {
         My Experience
       </h2>
       {/* Header End */}
-      
+
       {/* Closed Modal Start */}
       <div className="relative">
         {/* overflow-hidden lives here so the grid's own overflow is visible,
@@ -151,7 +151,7 @@ export default function ProjectsPage() {
         </div>
       )}
       {/* Closed Modal End */}
-      
+
       {/* Open Modal Start */}
       <Modal isOpen={open} onClose={() => setOpen(false)}>
         {selected && (
@@ -201,7 +201,7 @@ export default function ProjectsPage() {
               </div>
             )}
             {/* Modal Links End */}
-            
+
             {/* Modal Skills Start */}
             {Array.isArray(selected.modalContent.skills) && selected.modalContent.skills.length > 0 && (
               <div className="my-4 flex flex-wrap gap-4 items-center">
@@ -289,7 +289,7 @@ export default function ProjectsPage() {
               </div>
             )}
             {/* Modal Embedded Content End */}
-            
+
             {/* Modal Content Start */}
             <div className="space-y-4 text-gray-300">
               {Array.isArray(selected.modalContent.description)
