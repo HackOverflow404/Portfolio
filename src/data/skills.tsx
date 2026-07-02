@@ -35,6 +35,7 @@ const skills: Skills = {
 		Docker: "docker.svg",
 		Firebase: "firebase.svg",
 		"Google Cloud Platform": "gcp.svg",
+		Azure: "azure.svg",
 		Vercel: "vercel.svg",
 		Figma: "figma.svg",
 		"Tailwind CSS": "tailwind.svg",
@@ -82,7 +83,7 @@ export default skills;
 
 // Soft Skills: Leadership & Team Management, Communication & Explanation, Collaboration & Teamwork, Creative Thinking, Research & Analytical Thinking, Self-Directed Ownership, Empathy-Driven Design, Scope & Priority Management
 // Core Programming Languages: Python, C, C++, JavaScript, TypeScript, Java, HTML/CSS
-// Software & Web Development: React/React Native, Next.js, Qt, Flask, Spring Boot, SQLite, Node.js, Docker, Firebase, Google Cloud Platform, Vercel, Figma, Tailwind CSS, Git, Cross-Platform Apps, Responsive Design, REST APIs, Progressive Web Apps (PWA), LaTeX
+// Software & Web Development: React/React Native, Next.js, Qt, Flask, Spring Boot, SQLite, Node.js, Docker, Firebase, Google Cloud Platform, Azure, Vercel, Figma, Tailwind CSS, Git, Cross-Platform Apps, Responsive Design, REST APIs, Progressive Web Apps (PWA), LaTeX
 // Embedded Systems & Hardware: ESP32, Raspberry Pi, Circuit Design, MQTT, Protocol Debugging, GStreamer
 // Cybersecurity & Systems: Pentesting Fundamentals, Reverse Engineering, WebRTC, Network Analysis, CTFs, Hashcat, Frida, JADX, Burp Suite, Nmap, Linux, Shell Scripting, Qemu, Systems Programming
 // AI & ML: LangChain + OpenAI, YOLO, TensorFlow, PyTorch, Pandas
