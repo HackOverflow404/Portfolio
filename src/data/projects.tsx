@@ -1,7 +1,7 @@
 import { getAssetUrl } from "@/utils/basePath";
 import { FaGit } from "react-icons/fa";
 
-export const resumeURL = getAssetUrl("Resume.pdf");
+export const resumeURL = getAssetUrl("Medhansh_Garg_Resume.pdf");
 export const projectImagesBaseURL = getAssetUrl("images/projects/");
 
 type ProjectLink = {
