@@ -25,6 +25,7 @@ const skills: Skills = {
 		"HTML/CSS": "html.svg",
 		Kotlin: "kotlin.svg",
 		Go: "go.svg",
+		Dart: "dart.svg",
 	},
 	"Software & Web Development": {
 		"React/React Native": "react.svg",
@@ -50,6 +51,7 @@ const skills: Skills = {
 		"Progressive Web Apps (PWA)": "pwa.svg",
 		LaTeX: "latex.svg",
 		"Android Development": "android.svg",
+		Flutter: "flutter.svg",
 	},
 	"Embedded Systems & Hardware": {
 		ESP32: "esp32.svg",
@@ -92,6 +94,8 @@ const skills: Skills = {
 		TensorFlow: "tensorflow.svg",
 		PyTorch: "pytorch.svg",
 		Pandas: "pandas.svg",
+		MediaPipe: "mediapipe.svg",
+		ONNX: "onnx.svg",
 		"Speech Recognition & Synthesis": "speech.svg",
 	},
 };
@@ -99,9 +103,9 @@ const skills: Skills = {
 export default skills;
 
 // Soft Skills: Leadership & Team Management, Communication & Explanation, Collaboration & Teamwork, Creative Thinking, Research & Analytical Thinking, Self-Directed Ownership, Empathy-Driven Design, Scope & Priority Management
-// Core Programming Languages: Python, C, C++, JavaScript, TypeScript, Java, HTML/CSS, Kotlin, Go
-// Software & Web Development: React/React Native, Next.js, Qt, PyQt5, Flask, Spring Boot, SQLite, Node.js, Docker, Kubernetes, Firebase, Google Cloud Platform, Azure, Vercel, Figma, Tailwind CSS, Git, Cross-Platform Apps, Responsive Design, REST APIs, Progressive Web Apps (PWA), LaTeX, Android Development
+// Core Programming Languages: Python, C, C++, JavaScript, TypeScript, Java, HTML/CSS, Kotlin, Go, Dart
+// Software & Web Development: React/React Native, Next.js, Qt, PyQt5, Flask, Spring Boot, SQLite, Node.js, Docker, Kubernetes, Firebase, Google Cloud Platform, Azure, Vercel, Figma, Tailwind CSS, Git, Cross-Platform Apps, Responsive Design, REST APIs, Progressive Web Apps (PWA), LaTeX, Android Development, Flutter
 // Embedded Systems & Hardware: ESP32, MicroPython, Raspberry Pi, Circuit Design, MQTT, Protocol Debugging, GStreamer, FFmpeg, Bluetooth Audio, LineageOS / AOSP
 // Homelab & Infrastructure: Tailscale, Samba / NAS, Home Assistant, Portainer, systemd
 // Cybersecurity & Systems: Pentesting Fundamentals, Reverse Engineering, WebRTC, Network Analysis, CTFs, Hashcat, Frida, JADX, Burp Suite, Nmap, Linux, Shell Scripting, Qemu, Systems Programming
-// AI & ML: LangChain + OpenAI, YOLO, TensorFlow, PyTorch, Pandas, Speech Recognition & Synthesis
+// AI & ML: LangChain + OpenAI, YOLO, TensorFlow, PyTorch, Pandas, MediaPipe, ONNX, Speech Recognition & Synthesis
