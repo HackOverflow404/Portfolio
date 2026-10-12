@@ -19,6 +19,8 @@ type ProjectModalContent = {
 };
 
 type ProjectEntry = {
+	// Stable slug for deep links: /experience?entry=<id>
+	id: string;
 	title: string;
 	description: string;
 	modalContent: ProjectModalContent;
@@ -41,6 +43,7 @@ type ProjectEntry = {
 
 const projects: ProjectEntry[] = [
 	{
+		id: "resume",
 		title: "View Résumé",
 		description: "View or download my résumé directly from here.",
 		modalContent: {
@@ -61,6 +64,7 @@ const projects: ProjectEntry[] = [
 		},
 	},
 	{
+		id: "hopcharge",
 		title: "Internship at Hopcharge",
 		description:
 			"Software Engineering Intern - Built three internal tools end to end: an ad pipeline that took creative output from 2-3 ads a week to 3 a day, an automated hiring dashboard, and a fleet-planning map for a battery-swap network.",
@@ -90,6 +94,7 @@ const projects: ProjectEntry[] = [
 		},
 	},
 	{
+		id: "ece391",
 		title: "ECE391: RISC-V OS in the Browser",
 		description:
 			"A kernel my team wrote from scratch for UIUC's OS course, now running live in your browser via WebAssembly. It boots a shell, mounts a filesystem over HTTP, and takes keyboard input.",
@@ -126,6 +131,7 @@ const projects: ProjectEntry[] = [
 		},
 	},
 	{
+		id: "asl-tutor",
 		title: "ASL Adaptive Tutor: Computer Vision That Teaches Sign Language",
 		description:
 			"An American Sign Language tutor that watches you sign through a camera, diagnoses which part of a sign is off (handshape, location or movement), and adapts your practice to close the gaps. Runs on a laptop and now live on an iPhone.",
@@ -162,6 +168,7 @@ const projects: ProjectEntry[] = [
 		},
 	},
 	{
+		id: "echo-show",
 		title: "Jailbreaking an Echo Show: LineageOS, a Camera Pipeline, and Bluetooth Audio",
 		description:
 			"Replaced Fire OS on an Amazon Echo Show 5 with a self-built LineageOS ROM, debugged a vendor HAL ABI mismatch to bring up its camera, turned it into a self-healing webcam and recording security camera, and patched Android's Bluetooth stack to hold speaker latency at a steady 30-180ms.",
@@ -205,6 +212,7 @@ const projects: ProjectEntry[] = [
 		},
 	},
 	{
+		id: "cs124-honors",
 		title: "CS 124 Honors Web Platform: Full-Stack Leadership at UIUC",
 		description:
 			"Leading a team of 11 developers to build and maintain the CS 124 Honors course platform at UIUC - featuring UIUC SSO authentication, five-tier role-based access, a staff task management dashboard, and a custom TOTP attendance system.",
@@ -245,6 +253,7 @@ const projects: ProjectEntry[] = [
 		},
 	},
 	{
+		id: "instinct",
 		title: "Instinct: A Private Voice Assistant on a Jailbroken Echo Show",
 		description:
 			"A voice assistant with a custom-trained wake word, on-device Whisper and Piper speech models on a Raspberry Pi, a WhatsApp bridge in Go, and a Kotlin dashboard on my LineageOS Echo Show that adapts to whether anyone is in the room.",
@@ -283,6 +292,7 @@ const projects: ProjectEntry[] = [
 		},
 	},
 	{
+		id: "mainframe",
 		title: "Mainframe: A Raspberry Pi Homelab, NAS, and Private Network",
 		description:
 			"A Raspberry Pi 4 that runs my home: a 2TB Samba NAS, Home Assistant fed over MQTT, a desk lamp driven through its own hacked RF remote, and the voice and security camera services for a jailbroken Echo Show, all reachable from anywhere over a Tailscale mesh.",
@@ -314,6 +324,7 @@ const projects: ProjectEntry[] = [
 		},
 	},
 	{
+		id: "microtech",
 		title: "Illinois MicroTech: External Vice President and EOH Lead",
 		description:
 			"External Vice President of Illinois MicroTech, running marketing and outreach, and lead of the club's EOH exhibit: a 15-person team that built 4 interactive stages teaching MEMS through a Louvre heist for 20,000+ attendees on a $250 budget.",
@@ -346,6 +357,7 @@ const projects: ProjectEntry[] = [
 		},
 	},
 	{
+		id: "care-health",
 		title: "Internship at Care Health Insurance",
 		description:
 			"Cybersecurity Intern - Assessed a health insurer's customer portal and Android app with Nmap, Burp Suite, Frida and JADX.",
@@ -370,6 +382,7 @@ const projects: ProjectEntry[] = [
 		},
 	},
 	{
+		id: "iotpp",
 		title: "Internship at IoT++",
 		description:
 			"Developed a vehicle routing prediction system using Random Forests and RNNs. Fine tuned image generation models for route depiction. Optimized YOLO on Orange Pi NPU using GStreamer.",
@@ -397,6 +410,7 @@ const projects: ProjectEntry[] = [
 		},
 	},
 	{
+		id: "tps-l2",
 		title:
 			"TPS-L2: A Spotify Controller from Repurposed Legacy Hardware",
 		description:
@@ -439,6 +453,7 @@ const projects: ProjectEntry[] = [
 		},
 	},
 	{
+		id: "hackerfab",
 		title: "HackerFab: Student-Built Semiconductor Fab",
 		description:
 			"Building a student-run photolithography patterning machine, automating a precision wafer stage with stepper motors and grblHAL.",
@@ -460,6 +475,7 @@ const projects: ProjectEntry[] = [
 		},
 	},
 	{
+		id: "remotecam",
 		title: "RemoteCam",
 		description:
 			"A cross-platform app that turns my iPhone into a wireless webcam and microphone for Linux, built on WebRTC and Firebase signaling, with a mobile PWA and a Qt desktop client that exposes a virtual camera and mic.",
@@ -501,6 +517,7 @@ const projects: ProjectEntry[] = [
 		},
 	},
 	{
+		id: "sigpwny-badge",
 		title: "PCB Badge for CTF at Sigpwny",
 		description:
 			"Helped design an ESP32-based DEFCON-style badge. Worked on SAO compatibility and embedded firmware.",
@@ -524,6 +541,7 @@ const projects: ProjectEntry[] = [
 		},
 	},
 	{
+		id: "biometrics-paper",
 		title:
 			"Research Paper on Biometric Authentication and Cybersecurity in the Digital Age",
 		description:
@@ -549,6 +567,7 @@ const projects: ProjectEntry[] = [
 		},
 	},
 	{
+		id: "alberflowy",
 		title: "AlberFlowy: Instant Structured Notes from the Launcher",
 		description:
 			"A custom Albert plugin that interfaces with WorkFlowy's private API for blazing-fast hierarchical note access, creation, editing, and deletion, all from the keyboard.",
@@ -586,6 +605,7 @@ const projects: ProjectEntry[] = [
 		},
 	},
 	{
+		id: "court-booking",
 		title: "Court Booking System",
 		description:
 			"Full-stack app for apartment complexes using React, Spring Boot, and SQLite. Admin dashboard streamlined sports facility scheduling.",
@@ -626,6 +646,7 @@ const projects: ProjectEntry[] = [
 		},
 	},
 	{
+		id: "uplift",
 		title: "Uplift",
 		description:
 			"Hackathon-built cross-platform app using React Native, Tesseract.js for OCR, and LangChain + OpenAI for contextual chat assistance.",
@@ -660,6 +681,7 @@ const projects: ProjectEntry[] = [
 		},
 	},
 	{
+		id: "resume-pipeline",
 		title: "Automated Résumé Fetch & Deploy",
 		description:
 			"Node.js script that pulls my Google-Docs résumé via a GCP Service Account and redeploys my portfolio site in one command.",
@@ -689,6 +711,7 @@ const projects: ProjectEntry[] = [
 		},
 	},
 	{
+		id: "legacy-laptop",
 		title: "Reverse Engineering a Legacy Laptop",
 		description:
 			"Took apart our nearly two-decade-old family laptop, an Acer Aspire 4736G, and gave its parts new lives: its fan cools my Pi, its LCD became my Spotify wall display, and its speakers became a standalone amplifier build.",
@@ -710,6 +733,7 @@ const projects: ProjectEntry[] = [
 		},
 	},
 	{
+		id: "led-controller",
 		title: "Smart LED Strip Controller",
 		description:
 			"Flask app on Raspberry Pi for smartphone-based LED control. Used MQTT, Docker, and integrated the Matter protocol for smart home automation.",
@@ -744,6 +768,7 @@ const projects: ProjectEntry[] = [
 		},
 	},
 	{
+		id: "cyberspace",
 		title: "Cyber Awareness Website",
 		description:
 			"Responsive cybersecurity education platform with interactive lessons and non-technical explanations. Scored 88/93 in Lighthouse testing.",
@@ -776,6 +801,7 @@ const projects: ProjectEntry[] = [
 		},
 	},
 	{
+		id: "leet-speak-paper",
 		title: "Research Paper on Leet Speak in Password Security",
 		description:
 			"I wrote a research paper evaluating the use of leet speak in password security under the guidance of a professor at Shobhit University.",

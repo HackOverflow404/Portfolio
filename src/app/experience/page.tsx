@@ -56,6 +56,28 @@ export default function ProjectsPage() {
     return () => { clearTimeout(timer); window.removeEventListener("resize", calculate); };
   }, []);
 
+  // Deep link: /experience?entry=<id or title> opens that entry's modal on load
+  useEffect(() => {
+    const query = new URLSearchParams(window.location.search).get("entry");
+    if (!query) return;
+    const q = query.trim().toLowerCase();
+    const match =
+      projects.find((p) => p.id === q) ??
+      projects.find((p) => p.title.toLowerCase() === q || p.modalContent.title.toLowerCase() === q);
+    if (match) {
+      setSelected(match);
+      setOpen(true);
+    }
+  }, []);
+
+  // Keep ?entry= in the address bar in sync with the open modal so it can be copied and shared
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    if (open && selected) url.searchParams.set("entry", selected.id);
+    else url.searchParams.delete("entry");
+    if (url.href !== window.location.href) window.history.replaceState(window.history.state, "", url);
+  }, [open, selected]);
+
   // Copy handler for resume link
   const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text);
