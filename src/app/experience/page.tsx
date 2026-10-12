@@ -8,7 +8,7 @@ import { Courier_Prime } from "next/font/google";
 import { getAssetUrl } from "@/utils/basePath";
 import dynamic from "next/dynamic";
 import skills from "@/data/skills";
-import projects, { resumeURL, projectImagesBaseURL } from "@/data/projects";
+import projects, { projectImagesBaseURL, resumeVariants, resumeVariantURL, type ResumeVariant } from "@/data/projects";
 import TargetCursor from "@/components/TargetCursor";
 const Modal = dynamic(() => import("@/components/Modal"), { ssr: false });
 const Carousel = dynamic(() => import("@/components/Carousel"), { ssr: false });
@@ -21,6 +21,7 @@ export default function ProjectsPage() {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<Project | null>(null);
   const [copied, setCopied] = useState(false);
+  const [resumeVariant, setResumeVariant] = useState<ResumeVariant>("swe");
   const [expanded, setExpanded] = useState(false);
   const [collapsedHeight, setCollapsedHeight] = useState<number | null>(null);
   const [fullHeight, setFullHeight] = useState<number | null>(null);
@@ -57,14 +58,18 @@ export default function ProjectsPage() {
   }, []);
 
   // Deep link: /experience?entry=<id or title> opens that entry's modal on load
+  // (the résumé also takes &variant=<swe|security|infra>)
   useEffect(() => {
-    const query = new URLSearchParams(window.location.search).get("entry");
+    const params = new URLSearchParams(window.location.search);
+    const query = params.get("entry");
     if (!query) return;
     const q = query.trim().toLowerCase();
     const match =
       projects.find((p) => p.id === q) ??
       projects.find((p) => p.title.toLowerCase() === q || p.modalContent.title.toLowerCase() === q);
     if (match) {
+      const variant = resumeVariants.find((v) => v.id === params.get("variant")?.trim().toLowerCase());
+      if (variant) setResumeVariant(variant.id);
       setSelected(match);
       setOpen(true);
     }
@@ -75,8 +80,19 @@ export default function ProjectsPage() {
     const url = new URL(window.location.href);
     if (open && selected) url.searchParams.set("entry", selected.id);
     else url.searchParams.delete("entry");
+    if (open && selected?.id === "resume") url.searchParams.set("variant", resumeVariant);
+    else url.searchParams.delete("variant");
     if (url.href !== window.location.href) window.history.replaceState(window.history.state, "", url);
-  }, [open, selected]);
+  }, [open, selected, resumeVariant]);
+
+  const resumeURL = resumeVariantURL(resumeVariant);
+  const modalLinks =
+    selected?.id === "resume"
+      ? [
+          { title: "Download Résumé", url: resumeURL },
+          { title: "Shareable Link", url: typeof window !== "undefined" ? window.location.origin + resumeURL : resumeURL },
+        ]
+      : selected?.modalContent.links;
 
   // Copy handler for resume link
   const handleCopy = (text: string) => {
@@ -190,11 +206,33 @@ export default function ProjectsPage() {
             <h2 className={`text-2xl font-bold text-cyan-300 mb-4 ${courier.className}`}>{selected.modalContent.title}</h2>
             {/* Modal Header End */}
 
+            {/* Resume Variant Picker Start */}
+            {selected.id === "resume" && (
+              <div className="my-4 flex flex-wrap gap-2" role="tablist" aria-label="Résumé version">
+                {resumeVariants.map((variant) => (
+                  <button
+                    key={variant.id}
+                    role="tab"
+                    aria-selected={resumeVariant === variant.id}
+                    onClick={() => setResumeVariant(variant.id)}
+                    className={`cursor-target cursor-none px-4 py-1.5 border rounded-full text-sm transition ${
+                      resumeVariant === variant.id
+                        ? "bg-cyan-300 border-cyan-300 text-black"
+                        : "border-cyan-300/60 text-cyan-300 hover:border-cyan-300"
+                    }`}
+                  >
+                    {variant.label}
+                  </button>
+                ))}
+              </div>
+            )}
+            {/* Resume Variant Picker End */}
+
             {/* Modal Link Start */}
-            {Array.isArray(selected.modalContent.links) && selected.modalContent.links.length > 0 && (
+            {Array.isArray(modalLinks) && modalLinks.length > 0 && (
               <div className="my-4">
                 <div className="flex flex-wrap gap-3">
-                  {selected.modalContent.links.map((link, idx) => (
+                  {modalLinks.map((link, idx) => (
                     <a
                       key={idx}
                       href={link.url}
@@ -210,9 +248,9 @@ export default function ProjectsPage() {
                       {link.title}
                     </a>
                   ))}
-                  {selected.title === "View Résumé" && (
+                  {selected.id === "resume" && (
                     <button
-                      onClick={() => handleCopy(window.location.origin + resumeURL)}
+                      onClick={() => handleCopy(window.location.href)}
                       className="inline-flex items-center px-4 py-2 border border-cyan-300 text-cyan-300 rounded-full text-sm hover:bg-cyan-600 hover:border-cyan-600 hover:text-black transition"
                     >
                       <LuClipboardCheck className="w-4 h-4 mr-2" />
@@ -324,9 +362,10 @@ export default function ProjectsPage() {
             {/* Modal Content End */}
 
             {/* Resume View Logic Start */}
-            {selected.title === "View Résumé" && (
+            {selected.id === "resume" && (
               <div className="cursor-target cursor-none w-full h-[60vh] mt-6 border border-cyan-500 rounded overflow-hidden shadow-lg">
                 <iframe
+                  key={resumeURL}
                   src={resumeURL}
                   className="w-full h-full"
                   title="Résumé Preview"

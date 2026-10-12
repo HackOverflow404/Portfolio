@@ -1,7 +1,18 @@
 import { getAssetUrl } from "@/utils/basePath";
 import { FaGit } from "react-icons/fa";
 
+// Root copy is the SWE résumé, kept so older links to it still work
 export const resumeURL = getAssetUrl("Medhansh_Garg_Resume.pdf");
+
+// Résumé variants, each linkable as /experience?entry=resume&variant=<id>
+export const resumeVariants = [
+	{ id: "swe", label: "Software Engineering" },
+	{ id: "security", label: "Security" },
+	{ id: "infra", label: "Infrastructure" },
+] as const;
+export type ResumeVariant = (typeof resumeVariants)[number]["id"];
+export const resumeVariantURL = (variant: ResumeVariant) =>
+	getAssetUrl(`resumes/${variant}/Medhansh_Garg_Resume.pdf`);
 export const projectImagesBaseURL = getAssetUrl("images/projects/");
 
 type ProjectLink = {
@@ -45,22 +56,13 @@ const projects: ProjectEntry[] = [
 	{
 		id: "resume",
 		title: "View Résumé",
-		description: "View or download my résumé directly from here.",
+		description: "View or download my résumé, in Software Engineering, Security, and Infrastructure versions.",
 		modalContent: {
 			title: "My Résumé",
 			description: [
-				"You can preview, download, or share my résumé below. If you'd like to get in touch, feel free to connect via the links provided.",
+				"Pick a version above to preview, download, or share it below. If you'd like to get in touch, feel free to connect via the links provided.",
 			],
-			links: [
-				{ title: "Download Résumé", url: resumeURL },
-				{
-					title: "Shareable Link",
-					url:
-						typeof window !== "undefined"
-							? window.location.origin + resumeURL
-							: resumeURL,
-				},
-			],
+			// Links are built per variant in the experience page
 		},
 	},
 	{
