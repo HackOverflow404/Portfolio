@@ -96,6 +96,7 @@ const skills: Skills = {
 		Pandas: "pandas.svg",
 		MediaPipe: "mediapipe.svg",
 		ONNX: "onnx.svg",
+		"Claude Code": "claude.svg",
 		"Speech Recognition & Synthesis": "speech.svg",
 	},
 };
@@ -108,4 +109,4 @@ export default skills;
 // Embedded Systems & Hardware: ESP32, MicroPython, Raspberry Pi, Circuit Design, MQTT, Protocol Debugging, GStreamer, FFmpeg, Bluetooth Audio, LineageOS / AOSP
 // Homelab & Infrastructure: Tailscale, Samba / NAS, Home Assistant, Portainer, systemd
 // Cybersecurity & Systems: Pentesting Fundamentals, Reverse Engineering, WebRTC, Network Analysis, CTFs, Hashcat, Frida, JADX, Burp Suite, Nmap, Linux, Shell Scripting, Qemu, Systems Programming
-// AI & ML: LangChain + OpenAI, YOLO, TensorFlow, PyTorch, Pandas, MediaPipe, ONNX, Speech Recognition & Synthesis
+// AI & ML: LangChain + OpenAI, YOLO, TensorFlow, PyTorch, Pandas, MediaPipe, ONNX, Claude Code, Speech Recognition & Synthesis

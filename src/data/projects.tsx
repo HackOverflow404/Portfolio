@@ -171,6 +171,39 @@ const projects: ProjectEntry[] = [
 		},
 	},
 	{
+		id: "pensieve",
+		title: "Pensieve: A Self-Hosted Second Brain With an AI Librarian",
+		description:
+			"A personal notes system on my Raspberry Pi, opened from every device over Tailscale, with one-tap capture from my iPhone and an AI librarian that files, links and tidies my notes inside a sandbox, with every change checked by plain rules and kept in git.",
+		modalContent: {
+			title: "Pensieve: Notes That File Themselves",
+			skills: [
+				"Self-Directed Ownership",
+				"Scope & Priority Management",
+				"Python",
+				"JavaScript",
+				"Claude Code",
+				"Raspberry Pi",
+				"Tailscale",
+				"Samba / NAS",
+				"systemd",
+				"MQTT",
+				"Home Assistant",
+				"Git",
+				"Shell Scripting",
+				"Linux",
+			],
+			description: [
+				"My notes lived in too many places: a notes app on my phone, text files on my laptop, messages I sent myself. I wanted one copy that every device opens, that I own, and that organizes itself without giving an AI free rein over it. Pensieve keeps my notes on Mainframe, my Raspberry Pi, and serves them over Tailscale: as a SilverBullet web app on my iPhone's home screen, and as an Obsidian vault on my laptop over a Samba share. Every change is snapshotted into git every 15 minutes and backed up to a private GitHub repository.",
+				"Capturing has to be faster than forgetting, so I built a small capture service and iOS Shortcuts for it. A quick note, or anything shared from another app (text, a web page, a photo, a PDF), lands in the Inbox in one tap. Instinct, my assistant, can save notes the same way.",
+				"Filing is done by Carla Hayden, a librarian named after the former Librarian of Congress. Every 15 minutes, if my notes changed, she runs as Claude Code in headless mode inside a bubblewrap sandbox, on a separate git worktree where the real notes and the rest of the Pi don't exist. She moves Inbox notes into the right project or area, links notes that mention each other, combines notes about the same thing, and turns action lines into tasks.",
+				"What I care about most is that I don't have to trust her. A checker written in plain code, with no AI, compares her work to the original: she may only wrap existing words in links, add related-note lines, move the notes she was given and create a few new ones, and when she tidies or combines notes every original word has to survive in the same order. Anything else rejects the whole run and alerts my phone. Her work lands as one git commit, only on files nobody touched in the meantime, so a single git revert undoes it. When I move a note she filed or revert one of her runs, her script turns that into a lesson she reads on every run after.",
+				"Each run also gathers every open checkbox across my notes into a Tasks page, the web app's home page, where ticking an item ticks it in its source note. One allowlist note decides what AI can read, where it can write and what is shared with Instinct, and it's enforced with read-only bind mounts rather than a request in a prompt. A health check watches the services, the backups, the Inbox and the Pi's 2GB of memory, and reports problems through Home Assistant.",
+				"One bug took real digging: Obsidian on my laptop never saw Carla's changes, so notes she had filed stayed in its Inbox and failed to open. Linux gets no file events from a Samba mount for changes made on the server, so I wrote an Obsidian plugin that rescans the vault every minute and whenever the window regains focus, passing each difference through Obsidian's own handler as if its file watcher had reported it.",
+			],
+		},
+	},
+	{
 		id: "echo-show",
 		title: "Jailbreaking an Echo Show: LineageOS, a Camera Pipeline, and Bluetooth Audio",
 		description:
